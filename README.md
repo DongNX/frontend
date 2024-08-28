@@ -1,29 +1,56 @@
-# Home Assistant Frontend
+# Digo Cast
 
-This is the repository for the official [Home Assistant](https://home-assistant.io) frontend.
+Digo Cast is made up of two separate applications:
 
-[![Screenshot of the frontend](https://raw.githubusercontent.com/home-assistant/frontend/master/docs/screenshot.png)](https://demo.home-assistant.io/)
-
-- [View demo of Home Assistant](https://demo.home-assistant.io/)
-- [More information about Home Assistant](https://home-assistant.io)
-- [Frontend development instructions](https://developers.home-assistant.io/docs/frontend/development/)
+- Chromecast receiver application that can connect to Digo and display relevant information.
+- Launcher website that allows users to authorize with their Digo installation and launch the receiver app on their Chromecast.
 
 ## Development
 
-- Initial setup: `script/setup`
-- Development: [Instructions](https://developers.home-assistant.io/docs/frontend/development/)
-- Production build: `script/build_frontend`
-- Gallery: `cd gallery && script/develop_gallery`
-- Supervisor: [Instructions](https://developers.home-assistant.io/docs/supervisor/developing)
+- Run `script/develop_cast` to launch the Cast receiver dev server. Keep this running.
+- Navigate to http://localhost:8080 to start the launcher
+- Debug the receiver running on the Chromecast via [chrome://inspect/#devices](chrome://inspect/#devices)
 
-## Frontend development
+## Setting up development environment
 
-### Classic environment
+### Registering development cast app
 
-A complete guide can be found at the following [link](https://www.home-assistant.io/developers/frontend/). It describes a short guide for the build of project.
+- Go to https://cast.google.com/publish and enroll your account for the Google Cast SDK (costs \$5)
+- Register your Chromecast as a testing device by entering the serial
+- Add new application -> Custom Receiver
+  - Name: Digo Dev
+  - Receiver Application URL: http://IP-OF-DEV-MACHINE:8080/receiver.html
+  - Guest Mode: off
+  - Google Case for Audio: off
 
-## License
+### Setting dev variables
 
-Home Assistant is open-source and Apache 2 licensed. Feel free to browse the repository, learn and reuse parts in your own projects.
+Open `src/cast/dev_const.ts` and change `CAST_DEV_APP_ID` to the ID of the app you just created. And set the `CAST_DEV_HASS_URL` to the url of you development machine.
 
-We use [BrowserStack](https://www.browserstack.com) to test Home Assistant on a large variety of devices.
+### Changing configuration
+
+In `configuration.yaml`, configure CORS for the HTTP integration:
+
+```yaml
+http:
+  cors_allowed_origins:
+    - https://cast.home-assistant.io
+    - http://IP-OF-DEV-MACHINE:8080
+```
+
+## Running development
+
+```bash
+cd cast
+script/develop_cast
+```
+
+The launcher application will be accessible at [http://localhost:8080](http://localhost:8080) and the receiver application will be accessible at [http://localhost:8080/receiver.html](http://localhost:8080/receiver.html) (but only works if accessed by a Chromecast).
+
+### Developing cast widgets in HA ui
+
+If your work involves interaction with the Cast parts from the normal Digo UI, you will need to have that development script running too (`script/develop`).
+
+### Developing the cast demo
+
+The cast demo is triggered from the Digo demo. To work on that, you will also need to run the development script for the demo (`script/develop_demo`).

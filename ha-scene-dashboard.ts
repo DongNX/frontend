@@ -1,0 +1,379 @@
+import "@lrnwebcomponents/simple-tooltip/simple-tooltip";
+import {
+  mdiContentDuplicate,
+  mdiDelete,
+  mdiHelpCircle,
+  mdiInformationOutline,
+  mdiPalette,
+  mdiPencilOff,
+  mdiPlay,
+  mdiPlus,
+} from "@mdi/js";
+import { differenceInDays } from "date-fns/esm";
+import {
+  CSSResultGroup,
+  LitElement,
+  TemplateResult,
+  css,
+  html,
+  nothing,
+} from "lit";
+import { customElement, property, state } from "lit/decorators";
+import memoizeOne from "memoize-one";
+import { formatShortDateTime } from "../../../common/datetime/format_date_time";
+import { relativeTime } from "../../../common/datetime/relative_time";
+import { HASSDomEvent, fireEvent } from "../../../common/dom/fire_event";
+import { computeStateName } from "../../../common/entity/compute_state_name";
+import { navigate } from "../../../common/navigate";
+import {
+  DataTableColumnContainer,
+  RowClickedEvent,
+} from "../../../components/data-table/ha-data-table";
+import "../../../components/ha-button";
+import "../../../components/ha-button-related-filter-menu";
+import "../../../components/ha-fab";
+import "../../../components/ha-icon-button";
+import "../../../components/ha-icon-overflow-menu";
+import "../../../components/ha-state-icon";
+import "../../../components/ha-svg-icon";
+import { isUnavailableState } from "../../../data/entity";
+import { forwardHaptic } from "../../../data/haptics";
+import {
+  SceneEntity,
+  activateScene,
+  deleteScene,
+  getSceneConfig,
+  showSceneEditor,
+} from "../../../data/scene";
+import {
+  showAlertDialog,
+  showConfirmationDialog,
+} from "../../../dialogs/generic/show-dialog-box";
+import "../../../layouts/hass-tabs-subpage-data-table";
+import { haStyle } from "../../../resources/styles";
+import { HomeAssistant, Route } from "../../../types";
+import { showToast } from "../../../util/toast";
+import { configSections } from "../ha-panel-config";
+
+type SceneItem = SceneEntity & {
+  name: string;
+};
+
+@customElement("ha-scene-dashboard")
+class HaSceneDashboard extends LitElement {
+  @property({ attribute: false }) public hass!: HomeAssistant;
+
+  @property({ type: Boolean }) public narrow = false;
+
+  @property({ type: Boolean }) public isWide = false;
+
+  @property({ attribute: false }) public route!: Route;
+
+  @property({ attribute: false }) public scenes!: SceneEntity[];
+
+  @state() private _activeFilters?: string[];
+
+  @state() private _filteredScenes?: string[] | null;
+
+  @state() private _filterValue?;
+
+  private _scenes = memoizeOne(
+    (scenes: SceneEntity[], filteredScenes?: string[] | null): SceneItem[] => {
+      if (filteredScenes === null) {
+        return [];
+      }
+      return (
+        filteredScenes
+          ? scenes.filter((scene) => filteredScenes!.includes(scene.entity_id))
+          : scenes
+      ).map((scene) => ({
+        ...scene,
+        name: computeStateName(scene),
+      }));
+    }
+  );
+
+  private _columns = memoizeOne(
+    (_language, narrow): DataTableColumnContainer => {
+      const columns: DataTableColumnContainer<SceneItem> = {
+        icon: {
+          title: "",
+          label: this.hass.localize(
+            "ui.panel.config.scene.picker.headers.state"
+          ),
+          type: "icon",
+          template: (scene) => html`
+            <ha-state-icon
+              .hass=${this.hass}
+              .stateObj=${scene}
+            ></ha-state-icon>
+          `,
+        },
+        name: {
+          title: this.hass.localize(
+            "ui.panel.config.scene.picker.headers.name"
+          ),
+          main: true,
+          sortable: true,
+          filterable: true,
+          direction: "asc",
+          grows: true,
+        },
+      };
+      if (!narrow) {
+        columns.state = {
+          title: this.hass.localize(
+            "ui.panel.config.scene.picker.headers.last_activated"
+          ),
+          sortable: true,
+          width: "30%",
+          template: (scene) => {
+            const lastActivated = scene.state;
+            if (!lastActivated || isUnavailableState(lastActivated)) {
+              return this.hass.localize("ui.components.relative_time.never");
+            }
+            const date = new Date(scene.state);
+            const now = new Date();
+            const dayDifference = differenceInDays(now, date);
+            return html`
+              ${dayDifference > 3
+                ? formatShortDateTime(date, this.hass.locale, this.hass.config)
+                : relativeTime(date, this.hass.locale)}
+            `;
+          },
+        };
+      }
+      columns.only_editable = {
+        title: "",
+        width: "56px",
+        template: (scene) =>
+          !scene.attributes.id
+            ? html`
+                <ha-svg-icon
+                  .path=${mdiPencilOff}
+                  style="color: var(--secondary-text-color)"
+                ></ha-svg-icon>
+              `
+            : "",
+      };
+      columns.actions = {
+        title: "",
+        width: "72px",
+        type: "overflow-menu",
+        template: (scene) => html`
+          <ha-icon-overflow-menu
+            .hass=${this.hass}
+            narrow
+            .items=${[
+              {
+                path: mdiInformationOutline,
+                label: this.hass.localize(
+                  "ui.panel.config.scene.picker.show_info"
+                ),
+                action: () => this._showInfo(scene),
+              },
+              {
+                path: mdiPlay,
+                label: this.hass.localize(
+                  "ui.panel.config.scene.picker.activate"
+                ),
+                action: () => this._activateScene(scene),
+              },
+              {
+                divider: true,
+              },
+              {
+                path: mdiContentDuplicate,
+                label: this.hass.localize(
+                  "ui.panel.config.scene.picker.duplicate"
+                ),
+                action: () => this._duplicate(scene),
+                disabled: !scene.attributes.id,
+              },
+              {
+                label: this.hass.localize(
+                  "ui.panel.config.scene.picker.delete"
+                ),
+                path: mdiDelete,
+                action: () => this._deleteConfirm(scene),
+                warning: scene.attributes.id,
+                disabled: !scene.attributes.id,
+              },
+            ]}
+          >
+          </ha-icon-overflow-menu>
+        `,
+      };
+
+      return columns;
+    }
+  );
+
+  protected render(): TemplateResult {
+    return html`
+      <hass-tabs-subpage-data-table
+        .hass=${this.hass}
+        .narrow=${this.narrow}
+        back-path="/config"
+        .route=${this.route}
+        .tabs=${configSections.automations}
+        .columns=${this._columns(this.hass.locale, this.narrow)}
+        id="entity_id"
+        .data=${this._scenes(this.scenes, this._filteredScenes)}
+        .empty=${!this.scenes.length}
+        .activeFilters=${this._activeFilters}
+        .noDataText=${this.hass.localize(
+          "ui.panel.config.scene.picker.no_scenes"
+        )}
+        @clear-filter=${this._clearFilter}
+        hasFab
+        clickable
+        @row-click=${this._handleRowClicked}
+      >
+        <ha-icon-button
+          slot="toolbar-icon"
+          @click=${this._showHelp}
+          .label=${this.hass.localize("ui.common.help")}
+          .path=${mdiHelpCircle}
+        ></ha-icon-button>
+        <ha-button-related-filter-menu
+          slot="filter-menu"
+          .narrow=${this.narrow}
+          .hass=${this.hass}
+          .value=${this._filterValue}
+          exclude-domains='["scene"]'
+          @related-changed=${this._relatedFilterChanged}
+        >
+        </ha-button-related-filter-menu>
+        ${!this.scenes.length
+          ? html`<div class="empty" slot="empty">
+              <ha-svg-icon .path=${mdiPalette}></ha-svg-icon>
+              <h1>
+                ${this.hass.localize(
+                  "ui.panel.config.scene.picker.empty_header"
+                )}
+              </h1>
+              <p>
+                ${this.hass.localize("ui.panel.config.scene.picker.empty_text")}
+              </p>
+            </div>`
+          : nothing}
+        <a href="/config/scene/edit/new" slot="fab">
+          <ha-fab
+            .label=${this.hass.localize(
+              "ui.panel.config.scene.picker.add_scene"
+            )}
+            extended
+          >
+            <ha-svg-icon slot="icon" .path=${mdiPlus}></ha-svg-icon>
+          </ha-fab>
+        </a>
+      </hass-tabs-subpage-data-table>
+    `;
+  }
+
+  private _handleRowClicked(ev: HASSDomEvent<RowClickedEvent>) {
+    const scene = this.scenes.find((a) => a.entity_id === ev.detail.id);
+
+    if (scene?.attributes.id) {
+      navigate(`/config/scene/edit/${scene?.attributes.id}`);
+    }
+  }
+
+  private _relatedFilterChanged(ev: CustomEvent) {
+    this._filterValue = ev.detail.value;
+    if (!this._filterValue) {
+      this._clearFilter();
+      return;
+    }
+    this._activeFilters = [ev.detail.filter];
+    this._filteredScenes = ev.detail.items.scene || null;
+  }
+
+  private _clearFilter() {
+    this._filteredScenes = undefined;
+    this._activeFilters = undefined;
+    this._filterValue = undefined;
+  }
+
+  private _showInfo(scene: SceneEntity) {
+    fireEvent(this, "hass-more-info", { entityId: scene.entity_id });
+  }
+
+  private _activateScene = async (scene: SceneEntity) => {
+    await activateScene(this.hass, scene.entity_id);
+    showToast(this, {
+      message: this.hass.localize("ui.panel.config.scene.activated", {
+        name: computeStateName(scene),
+      }),
+    });
+    forwardHaptic("light");
+  };
+
+  private _deleteConfirm(scene: SceneEntity): void {
+    showConfirmationDialog(this, {
+      title: this.hass!.localize(
+        "ui.panel.config.scene.picker.delete_confirm_title"
+      ),
+      text: this.hass!.localize(
+        "ui.panel.config.scene.picker.delete_confirm_text",
+        { name: computeStateName(scene) }
+      ),
+      confirmText: this.hass!.localize("ui.common.delete"),
+      dismissText: this.hass!.localize("ui.common.cancel"),
+      confirm: () => this._delete(scene),
+      destructive: true,
+    });
+  }
+
+  private async _delete(scene: SceneEntity): Promise<void> {
+    if (scene.attributes.id) {
+      await deleteScene(this.hass, scene.attributes.id);
+    }
+  }
+
+  private async _duplicate(scene) {
+    if (scene.attributes.id) {
+      const config = await getSceneConfig(this.hass, scene.attributes.id);
+      showSceneEditor({
+        ...config,
+        id: undefined,
+        name: `${config?.name} (${this.hass.localize(
+          "ui.panel.config.scene.picker.duplicate"
+        )})`,
+      });
+    }
+  }
+
+  private _showHelp() {
+    showAlertDialog(this, {
+      title: this.hass.localize("ui.panel.config.scene.picker.header"),
+      text: html`
+        ${this.hass.localize("ui.panel.config.scene.picker.introduction")}
+        <p></p>
+      `,
+    });
+  }
+
+  static get styles(): CSSResultGroup {
+    return [
+      haStyle,
+      css`
+        a {
+          text-decoration: none;
+        }
+        .empty {
+          --paper-font-headline_-_font-size: 28px;
+          --mdc-icon-size: 80px;
+          max-width: 500px;
+        }
+      `,
+    ];
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "ha-scene-dashboard": HaSceneDashboard;
+  }
+}
