@@ -179,11 +179,15 @@ gulp.task("build-master-translation", () => {
 
 gulp.task("build-merged-translations", () =>
   gulp
-    .src([
-      inFrontendDir + "/*.json",
-      "!" + inFrontendDir + "/en.json",
-      ...(env.isProdBuild() ? [] : [workDir + "/test.json"]),
-    ])
+    .src(
+      [
+        path.join(inFrontendDir, "*.json"),
+        "!" + path.join(inFrontendDir, "en.json"),
+        ...(env.isProdBuild() ? [] : [path.join(workDir, "test.json")]),
+      ],
+      { allowEmpty: true }
+    )
+
     .pipe(transform((data, file) => lokaliseTransform(data, data, file)))
     .pipe(
       flatmap((stream, file) => {

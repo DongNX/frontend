@@ -5,7 +5,7 @@ import mapStream from "map-stream";
 import transform from "gulp-json-transform";
 import { LokaliseApi } from "@lokalise/node-api";
 import JSZip from "jszip";
-
+//
 const inDir = "translations";
 const inDirFrontend = `${inDir}/frontend`;
 const inDirBackend = `${inDir}/backend`;
@@ -68,7 +68,7 @@ gulp.task("convert-backend-translations", function () {
   return gulp
     .src([`${inDirBackend}/*.json`])
     .pipe(transform((data, file) => convertBackendTranslations(data, file)))
-    .pipe(gulp.dest(inDirBackend));
+    .pipe(gulp.dest(inDirBackend), {allowEmpty: true});
 });
 
 gulp.task("check-translations-html", function () {
