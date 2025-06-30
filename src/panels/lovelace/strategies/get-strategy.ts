@@ -47,7 +47,6 @@ export const getLovelaceStrategy = async <T extends LovelaceStrategyConfigType>(
   configType: T,
   strategyType: string
 ): Promise<LovelaceStrategy> => {
-  console.log("____", configType, STRATEGIES[configType]);
   if (strategyType in STRATEGIES[configType]) {
     await STRATEGIES[configType][strategyType]();
     const tag = `${strategyType}-${configType}-strategy`;
@@ -93,10 +92,8 @@ const generateStrategy = async <T extends LovelaceStrategyConfigType>(
     return renderError("No strategy type found");
   }
 
-  console.log("generateStrategy", configType, strategyConfig, hass);
   try {
     const strategy = await getLovelaceStrategy<T>(configType, strategyType);
-    console.log("__strategy", strategy);
 
     // Backward compatibility for custom strategies for loading old strategies format
     if (isLegacyStrategy(strategy)) {
