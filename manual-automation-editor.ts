@@ -21,6 +21,7 @@ import "./condition/ha-automation-condition";
 import "./trigger/ha-automation-trigger";
 
 @customElement("manual-automation-editor")
+  //DIGO
 export class HaManualAutomationEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

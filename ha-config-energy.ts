@@ -32,6 +32,7 @@ const INITIAL_CONFIG: EnergyPreferences = {
 };
 
 @customElement("ha-config-energy")
+    // DIGO
 class HaConfigEnergy extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -571,20 +571,7 @@ export class HaScriptEditor extends KeyboardShortcutMixin(LitElement) {
     schema: SchemaUnion<ReturnType<typeof this._schema>>
   ): string | undefined | TemplateResult => {
     if (schema.name === "mode") {
-      return html`
-        <a
-          style="color: var(--secondary-text-color)"
-          href=${documentationUrl(
-            this.hass,
-            "/integrations/script/#script-modes"
-          )}
-          target="_blank"
-          rel="noreferrer"
-          >${this.hass.localize(
-            "ui.panel.config.script.editor.modes.learn_more"
-          )}</a
-        >
-      `;
+      return "";
     }
     return undefined;
   };
@@ -941,9 +928,10 @@ export class HaScriptEditor extends KeyboardShortcutMixin(LitElement) {
 }
 
 customElements.define("ha-script-editor", HaScriptEditor);
-
+//DIGO
 declare global {
   interface HTMLElementTagNameMap {
     "ha-script-editor": HaScriptEditor;
   }
 }
+

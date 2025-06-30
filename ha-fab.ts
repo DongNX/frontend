@@ -5,6 +5,7 @@ import { css } from "lit";
 import { mainWindow } from "../common/dom/get_main_window";
 
 @customElement("ha-fab")
+  // DIGO
 export class HaFab extends FabBase {
   protected firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);

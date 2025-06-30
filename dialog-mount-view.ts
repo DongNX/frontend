@@ -146,6 +146,7 @@ const mountSchema = memoizeOne(
 );
 
 @customElement("dialog-mount-view")
+  // DIGO
 class ViewMountDialog extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

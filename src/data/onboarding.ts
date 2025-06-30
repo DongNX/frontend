@@ -3,12 +3,13 @@ import { handleFetchPromise } from "../util/hass-call-api";
 
 export interface InstallationType {
   installation_type:
-    | "Home Assistant Operating System"
-    | "Home Assistant Container"
-    | "Home Assistant Supervised"
-    | "Home Assistant Core"
-    | "Unknown";
+  | "Digo Operating System"
+  | "Digo Container"
+  | "Digo Supervised"
+  | "Digo Core"
+  | "Unknown";
 }
+
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface OnboardingCoreConfigStepResponse {}

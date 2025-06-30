@@ -135,12 +135,12 @@ export class DemoHaAlert extends LitElement {
   protected render(): TemplateResult {
     return html`
       ${["light", "dark"].map(
-        (mode) => html`
+      (mode) => html`
           <div class=${mode}>
             <ha-card header="ha-alert ${mode} demo">
               <div class="card-content">
                 ${alerts.map(
-                  (alert) => html`
+        (alert) => html`
                     <ha-alert
                       .title=${alert.title || ""}
                       .alertType=${alert.type}
@@ -150,12 +150,12 @@ export class DemoHaAlert extends LitElement {
                       ${alert.iconSlot} ${alert.description} ${alert.actionSlot}
                     </ha-alert>
                   `
-                )}
+      )}
               </div>
             </ha-card>
           </div>
         `
-      )}
+    )}
     `;
   }
 

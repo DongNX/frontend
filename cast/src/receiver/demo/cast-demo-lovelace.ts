@@ -2,6 +2,7 @@ import { LovelaceCardConfig } from "../../../../src/data/lovelace/config/card";
 import { LovelaceConfig } from "../../../../src/data/lovelace/config/types";
 import { castContext } from "../cast_context";
 
+// DIGO
 export const castDemoLovelace: () => LovelaceConfig = () => {
   const touchSupported =
     castContext.getDeviceCapabilities().touch_input_supported;
@@ -12,12 +13,11 @@ export const castDemoLovelace: () => LovelaceConfig = () => {
         cards: [
           {
             type: "markdown",
-            title: "Home Assistant Cast",
-            content: `With Home Assistant you can easily create interfaces (just like this one) which can be shown on Chromecast devices connected to TVs or Google Assistant devices with a screen.${
-              touchSupported
+            title: "Digo Cast",
+            content: `With Digo you can easily create interfaces (just like this one) which can be shown on Chromecast devices connected to TVs or Google Assistant devices with a screen.${touchSupported
                 ? "\n\nYou are able to interact with this demo using the touch screen."
-                : "\n\nOn a Google Nest Hub you are able to interact with Home Assistant Cast via the touch screen."
-            }`,
+                : "\n\nOn a Google Nest Hub you are able to interact with Digo Cast via the touch screen."
+              }`,
           },
           {
             type: touchSupported ? "entities" : "glance",

@@ -19,6 +19,7 @@ import type { DataEntryFlowProgressExtended } from "./ha-config-integrations";
 import "./ha-integration-action-card";
 
 @customElement("ha-config-flow-card")
+  //DIGO
 export class HaConfigFlowCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

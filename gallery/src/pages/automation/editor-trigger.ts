@@ -46,7 +46,7 @@ const SCHEMAS: { name: string; triggers: Trigger[] }[] = [
   },
 
   {
-    name: "Home Assistant",
+    name: "Digo",
     triggers: [{ platform: "homeassistant", ...HaHassTrigger.defaultConfig }],
   },
 
@@ -126,6 +126,7 @@ const SCHEMAS: { name: string; triggers: Trigger[] }[] = [
 ];
 
 @customElement("demo-automation-editor-trigger")
+  // DIGO
 export class DemoAutomationEditorTrigger extends LitElement {
   @state() private hass!: HomeAssistant;
 
@@ -147,6 +148,7 @@ export class DemoAutomationEditorTrigger extends LitElement {
   protected render(): TemplateResult {
     const valueChanged = (ev) => {
       const sampleIdx = ev.target.sampleIdx;
+      // eslint-disable-next-line lit/no-this-assign-in-render
       this.data[sampleIdx] = ev.detail.value;
       this.requestUpdate();
     };
@@ -161,13 +163,13 @@ export class DemoAutomationEditorTrigger extends LitElement {
         </ha-formfield>
       </div>
       ${SCHEMAS.map(
-        (info, sampleIdx) => html`
+      (info, sampleIdx) => html`
           <demo-black-white-row
             .title=${info.name}
             .value=${this.data[sampleIdx]}
           >
             ${["light", "dark"].map(
-              (slot) => html`
+        (slot) => html`
                 <ha-automation-trigger
                   slot=${slot}
                   .hass=${this.hass}
@@ -177,10 +179,10 @@ export class DemoAutomationEditorTrigger extends LitElement {
                   @value-changed=${valueChanged}
                 ></ha-automation-trigger>
               `
-            )}
+      )}
           </demo-black-white-row>
         `
-      )}
+    )}
     `;
   }
 
@@ -198,6 +200,7 @@ export class DemoAutomationEditorTrigger extends LitElement {
     }
   `;
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

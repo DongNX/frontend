@@ -20,11 +20,12 @@ import type { HaSelect } from "./ha-select";
 const NONE = "__NONE_OPTION__";
 
 const NAME_MAP = {
-  cloud: "Home Assistant Cloud",
+  cloud: "Digo Cloud",
   google_translate: "Google Translate",
 };
 
 @customElement("ha-tts-picker")
+  // DIGO
 export class HaTTSPicker extends LitElement {
   @property() public value?: string;
 
@@ -48,13 +49,13 @@ export class HaTTSPicker extends LitElement {
       this.value ??
       (this.required
         ? this._engines.find(
-            (engine) => engine.supported_languages?.length !== 0
-          )
+          (engine) => engine.supported_languages?.length !== 0
+        )
         : NONE);
     return html`
       <ha-select
         .label=${this.label ||
-        this.hass!.localize("ui.components.tts-picker.tts")}
+      this.hass!.localize("ui.components.tts-picker.tts")}
         .value=${value}
         .required=${this.required}
         .disabled=${this.disabled}
@@ -64,10 +65,10 @@ export class HaTTSPicker extends LitElement {
         naturalMenuWidth
       >
         ${!this.required
-          ? html`<ha-list-item .value=${NONE}>
+        ? html`<ha-list-item .value=${NONE}>
               ${this.hass!.localize("ui.components.tts-picker.none")}
             </ha-list-item>`
-          : nothing}
+        : nothing}
         ${this._engines.map((engine) => {
           let label = engine.engine_id;
           if (engine.engine_id.includes(".")) {
@@ -151,7 +152,6 @@ export class HaTTSPicker extends LitElement {
     });
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-tts-picker": HaTTSPicker;

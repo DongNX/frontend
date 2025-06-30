@@ -54,16 +54,6 @@ export class HaPickThemeRow extends LitElement {
           ${!hasThemes
             ? this.hass.localize("ui.panel.profile.themes.error_no_theme")
             : ""}
-          <a
-            href=${documentationUrl(
-              this.hass,
-              "/integrations/frontend/#defining-themes"
-            )}
-            target="_blank"
-            rel="noreferrer"
-          >
-            ${this.hass.localize("ui.panel.profile.themes.link_promo")}
-          </a>
         </span>
         <ha-select
           .label=${this.hass.localize("ui.panel.profile.themes.dropdown_label")}
@@ -75,9 +65,7 @@ export class HaPickThemeRow extends LitElement {
           <mwc-list-item .value=${USE_DEFAULT_THEME}>
             ${this.hass.localize("ui.panel.profile.themes.use_default")}
           </mwc-list-item>
-          <mwc-list-item .value=${HOME_ASSISTANT_THEME}>
-            Home Assistant
-          </mwc-list-item>
+          <mwc-list-item .value=${HOME_ASSISTANT_THEME}> Digo </mwc-list-item>
           ${this._themeNames.map(
             (theme) => html`
               <mwc-list-item .value=${theme}>${theme}</mwc-list-item>
@@ -254,7 +242,6 @@ export class HaPickThemeRow extends LitElement {
     `;
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-pick-theme-row": HaPickThemeRow;

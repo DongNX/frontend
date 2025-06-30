@@ -50,7 +50,8 @@ class HuiPictureEntityCard extends LitElement implements LovelaceCard {
     return {
       type: "picture-entity",
       entity: foundEntities[0] || "",
-      image: "https://demo.home-assistant.io/stub_config/bedroom.png",
+      image:
+        "https://digotech.net/static/media/img_hardware_3.ee02396ea421a6b185d4.png",
     };
   }
 

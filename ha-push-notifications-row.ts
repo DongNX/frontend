@@ -6,6 +6,7 @@ import "../../components/ha-settings-row";
 import { HomeAssistant } from "../../types";
 
 @customElement("ha-push-notifications-row")
+  //DIGO
 class HaPushNotificationsRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

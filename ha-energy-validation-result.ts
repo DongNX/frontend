@@ -5,6 +5,7 @@ import { EnergyValidationIssue } from "../../../../data/energy";
 import { HomeAssistant } from "../../../../types";
 
 @customElement("ha-energy-validation-result")
+  // DIGO
 class EnergyValidationMessage extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

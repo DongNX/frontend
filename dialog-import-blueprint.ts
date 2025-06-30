@@ -17,6 +17,7 @@ import {
 import { haStyleDialog } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
 
+// DIGO
 @customElement("ha-dialog-import-blueprint")
 class DialogImportBlueprint extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

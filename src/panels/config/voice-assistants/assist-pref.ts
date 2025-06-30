@@ -1,5 +1,5 @@
 import "@material/mwc-list/mwc-list";
-import { mdiHelpCircle, mdiPlus, mdiStar } from "@mdi/js";
+import { mdiPlus, mdiStar } from "@mdi/js";
 import { CSSResultGroup, LitElement, PropertyValues, css, html } from "lit";
 import { customElement, property, state } from "lit/decorators";
 import memoizeOne from "memoize-one";
@@ -26,9 +26,9 @@ import { ExposeEntitySettings } from "../../../data/expose";
 import { showConfirmationDialog } from "../../../dialogs/generic/show-dialog-box";
 import type { HomeAssistant } from "../../../types";
 import { brandsUrl } from "../../../util/brands-url";
-import { documentationUrl } from "../../../util/documentation-url";
 import { showVoiceAssistantPipelineDetailDialog } from "./show-dialog-voice-assistant-pipeline-detail";
 
+// DIGO
 @customElement("assist-pref")
 export class AssistPref extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -81,19 +81,7 @@ export class AssistPref extends LitElement {
             referrerpolicy="no-referrer"
           />Assist
         </h1>
-        <div class="header-actions">
-          <a
-            href=${documentationUrl(this.hass, "/docs/assist/")}
-            target="_blank"
-            rel="noreferrer noopener"
-            class="icon-link"
-          >
-            <ha-icon-button
-              label="Learn how it works"
-              .path=${mdiHelpCircle}
-            ></ha-icon-button>
-          </a>
-        </div>
+
         <mwc-list>
           ${this._pipelines.map(
             (pipeline) => html`

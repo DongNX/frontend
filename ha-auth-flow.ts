@@ -25,6 +25,7 @@ import "./ha-auth-form";
 type State = "loading" | "error" | "step";
 
 @customElement("ha-auth-flow")
+  // DIGO
 export class HaAuthFlow extends LitElement {
   @property({ attribute: false }) public authProvider?: AuthProvider;
 

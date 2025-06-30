@@ -69,6 +69,7 @@ const _computeAddons = (addons): AddonCheckboxItem[] =>
     .sort((a, b) => (a.name > b.name ? 1 : -1));
 
 @customElement("supervisor-backup-content")
+  // DIGO
 export class SupervisorBackupContent extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -113,7 +113,7 @@ const tryDescribeTrigger = (
     );
   }
 
-  // Home Assistant Trigger
+  // Digo Trigger
   if (trigger.platform === "homeassistant" && trigger.event) {
     return hass.localize(
       trigger.event === "start"
@@ -147,11 +147,11 @@ const tryDescribeTrigger = (
 
     const attribute = trigger.attribute
       ? computeAttributeNameDisplay(
-          hass.localize,
-          stateObj,
-          hass.entities,
-          trigger.attribute
-        )
+        hass.localize,
+        stateObj,
+        hass.entities,
+        trigger.attribute
+      )
       : undefined;
 
     const duration = trigger.for
@@ -242,12 +242,12 @@ const tryDescribeTrigger = (
           from.push(
             trigger.attribute
               ? hass
-                  .formatEntityAttributeValue(
-                    stateObj,
-                    trigger.attribute,
-                    state
-                  )
-                  .toString()
+                .formatEntityAttributeValue(
+                  stateObj,
+                  trigger.attribute,
+                  state
+                )
+                .toString()
               : hass.formatEntityState(stateObj, state)
           );
         }
@@ -274,12 +274,12 @@ const tryDescribeTrigger = (
           to.push(
             trigger.attribute
               ? hass
-                  .formatEntityAttributeValue(
-                    stateObj,
-                    trigger.attribute,
-                    state
-                  )
-                  .toString()
+                .formatEntityAttributeValue(
+                  stateObj,
+                  trigger.attribute,
+                  state
+                )
+                .toString()
               : hass.formatEntityState(stateObj, state).toString()
           );
         }
@@ -683,9 +683,8 @@ const tryDescribeTrigger = (
       return localized;
     }
     const stateObj = hass.states[config.entity_id as string];
-    return `${stateObj ? computeStateName(stateObj) : config.entity_id} ${
-      config.type
-    }`;
+    return `${stateObj ? computeStateName(stateObj) : config.entity_id} ${config.type
+      }`;
   }
 
   return (
@@ -833,21 +832,21 @@ const tryDescribeCondition = (
     const states: string[] = [];
     const stateObj =
       hass.states[
-        Array.isArray(condition.entity_id)
-          ? condition.entity_id[0]
-          : condition.entity_id
+      Array.isArray(condition.entity_id)
+        ? condition.entity_id[0]
+        : condition.entity_id
       ];
     if (Array.isArray(condition.state)) {
       for (const state of condition.state.values()) {
         states.push(
           condition.attribute
             ? hass
-                .formatEntityAttributeValue(
-                  stateObj,
-                  condition.attribute,
-                  state
-                )
-                .toString()
+              .formatEntityAttributeValue(
+                stateObj,
+                condition.attribute,
+                state
+              )
+              .toString()
             : hass.formatEntityState(stateObj, state)
         );
       }
@@ -855,12 +854,12 @@ const tryDescribeCondition = (
       states.push(
         condition.attribute
           ? hass
-              .formatEntityAttributeValue(
-                stateObj,
-                condition.attribute,
-                condition.state
-              )
-              .toString()
+            .formatEntityAttributeValue(
+              stateObj,
+              condition.attribute,
+              condition.state
+            )
+            .toString()
           : hass.formatEntityState(stateObj, condition.state.toString())
       );
     }
@@ -895,11 +894,11 @@ const tryDescribeCondition = (
 
     const attribute = condition.attribute
       ? computeAttributeNameDisplay(
-          hass.localize,
-          stateObj,
-          hass.entities,
-          condition.attribute
-        )
+        hass.localize,
+        stateObj,
+        hass.entities,
+        condition.attribute
+      )
       : undefined;
 
     if (condition.above && condition.below) {
@@ -945,22 +944,20 @@ const tryDescribeCondition = (
         typeof condition.before !== "string"
           ? condition.before
           : condition.before.includes(".")
-            ? `entity ${
-                hass.states[condition.before]
-                  ? computeStateName(hass.states[condition.before])
-                  : condition.before
-              }`
+            ? `entity ${hass.states[condition.before]
+              ? computeStateName(hass.states[condition.before])
+              : condition.before
+            }`
             : localizeTimeString(condition.before, hass.locale, hass.config);
 
       const after =
         typeof condition.after !== "string"
           ? condition.after
           : condition.after.includes(".")
-            ? `entity ${
-                hass.states[condition.after]
-                  ? computeStateName(hass.states[condition.after])
-                  : condition.after
-              }`
+            ? `entity ${hass.states[condition.after]
+              ? computeStateName(hass.states[condition.after])
+              : condition.after
+            }`
             : localizeTimeString(condition.after, hass.locale, hass.config);
 
       let localizedDays: string[] = [];
@@ -1091,9 +1088,8 @@ const tryDescribeCondition = (
       return localized;
     }
     const stateObj = hass.states[config.entity_id as string];
-    return `${stateObj ? computeStateName(stateObj) : config.entity_id} ${
-      config.type
-    }`;
+    return `${stateObj ? computeStateName(stateObj) : config.entity_id} ${config.type
+      }`;
   }
 
   if (condition.condition === "template") {

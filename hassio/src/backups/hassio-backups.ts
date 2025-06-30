@@ -92,7 +92,7 @@ export class HassioBackups extends LitElement {
     }
     const content: string[] = [];
     if (backup.content.homeassistant) {
-      content.push("Home Assistant");
+      content.push("Digo");
     }
     if (backup.content.folders.length !== 0) {
       for (const folder of backup.content.folders) {
@@ -181,14 +181,14 @@ export class HassioBackups extends LitElement {
     return html`
       <hass-tabs-subpage-data-table
         .tabs=${atLeastVersion(this.hass.config.version, 2022, 5)
-          ? [
-              {
-                translationKey: "panel.backups",
-                path: `/hassio/backups`,
-                iconPath: mdiBackupRestore,
-              },
-            ]
-          : supervisorTabs(this.hass)}
+        ? [
+          {
+            translationKey: "panel.backups",
+            path: `/hassio/backups`,
+            iconPath: mdiBackupRestore,
+          },
+        ]
+        : supervisorTabs(this.hass)}
         .hass=${this.hass}
         .localizeFunc=${this.supervisor.localize}
         .searchLabel=${this.supervisor.localize("backup.search")}
@@ -205,8 +205,8 @@ export class HassioBackups extends LitElement {
         hasFab
         .mainPage=${!atLeastVersion(this.hass.config.version, 2021, 12)}
         back-path=${atLeastVersion(this.hass.config.version, 2022, 5)
-          ? "/config/system"
-          : "/config"}
+        ? "/config/system"
+        : "/config"}
         supervisor
       >
         <ha-button-menu slot="toolbar-icon" @action=${this._handleAction}>
@@ -222,28 +222,28 @@ export class HassioBackups extends LitElement {
             ${this.supervisor.localize("dialog.backup_location.title")}
           </mwc-list-item>
           ${atLeastVersion(this.hass.config.version, 0, 116)
-            ? html`<mwc-list-item>
+        ? html`<mwc-list-item>
                 ${this.supervisor.localize("backup.upload_backup")}
               </mwc-list-item>`
-            : ""}
+        : ""}
         </ha-button-menu>
 
         ${this._selectedBackups.length
-          ? html`<div
+        ? html`<div
               class=${classMap({
-                "header-toolbar": this.narrow,
-                "table-header": !this.narrow,
-              })}
+          "header-toolbar": this.narrow,
+          "table-header": !this.narrow,
+        })}
               slot="header"
             >
               <p class="selected-txt">
                 ${this.supervisor.localize("backup.selected", {
-                  number: this._selectedBackups.length,
-                })}
+          number: this._selectedBackups.length,
+        })}
               </p>
               <div class="header-btns">
                 ${!this.narrow
-                  ? html`
+            ? html`
                       <mwc-button
                         @click=${this._deleteSelected}
                         class="warning"
@@ -251,11 +251,11 @@ export class HassioBackups extends LitElement {
                         ${this.supervisor.localize("backup.delete_selected")}
                       </mwc-button>
                     `
-                  : html`
+            : html`
                       <ha-icon-button
                         .label=${this.supervisor.localize(
-                          "backup.delete_selected"
-                        )}
+              "backup.delete_selected"
+            )}
                         .path=${mdiDelete}
                         id="delete-btn"
                         class="warning"
@@ -267,7 +267,7 @@ export class HassioBackups extends LitElement {
                     `}
               </div>
             </div> `
-          : ""}
+        : ""}
 
         <ha-fab
           slot="fab"

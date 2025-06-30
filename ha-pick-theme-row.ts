@@ -26,6 +26,7 @@ const USE_DEFAULT_THEME = "__USE_DEFAULT_THEME__";
 const HOME_ASSISTANT_THEME = "default";
 
 @customElement("ha-pick-theme-row")
+  //DIGO
 export class HaPickThemeRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

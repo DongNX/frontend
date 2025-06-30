@@ -53,20 +53,6 @@ export class HaConfigVoiceAssistantsAssistants extends LitElement {
                 ></assist-pref>
               `
             : nothing}
-          ${this.cloudStatus?.logged_in
-            ? html`
-                <cloud-alexa-pref
-                  .hass=${this.hass}
-                  .exposedEntities=${this.exposedEntities}
-                  .cloudStatus=${this.cloudStatus}
-                ></cloud-alexa-pref>
-                <cloud-google-pref
-                  .hass=${this.hass}
-                  .exposedEntities=${this.exposedEntities}
-                  .cloudStatus=${this.cloudStatus}
-                ></cloud-google-pref>
-              `
-            : html`<cloud-discover .hass=${this.hass}></cloud-discover>`}
         </div>
       </hass-tabs-subpage>
     `;
@@ -90,7 +76,6 @@ export class HaConfigVoiceAssistantsAssistants extends LitElement {
     }
   `;
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-config-voice-assistants-assistants": HaConfigVoiceAssistantsAssistants;

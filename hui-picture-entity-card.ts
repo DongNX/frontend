@@ -27,6 +27,7 @@ import { LovelaceCard, LovelaceCardEditor } from "../types";
 import { PictureEntityCardConfig } from "./types";
 
 @customElement("hui-picture-entity-card")
+  //DIGO
 class HuiPictureEntityCard extends LitElement implements LovelaceCard {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
     await import("../editor/config-elements/hui-picture-entity-card-editor");

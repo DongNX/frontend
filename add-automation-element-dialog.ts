@@ -94,7 +94,7 @@ const ENTITY_DOMAINS_OTHER = new Set([
 ]);
 
 const ENTITY_DOMAINS_MAIN = new Set(["notify"]);
-
+//DIGO
 @customElement("add-automation-element-dialog")
 class DialogAddAutomationElement extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;

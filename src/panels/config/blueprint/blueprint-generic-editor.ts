@@ -16,6 +16,7 @@ import { BlueprintScriptConfig } from "../../../data/script";
 import { haStyle } from "../../../resources/styles";
 import { HomeAssistant } from "../../../types";
 
+// DIGO
 @customElement("blueprint-generic-editor")
 export abstract class HaBlueprintGenericEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -80,13 +81,7 @@ export abstract class HaBlueprintGenericEditor extends LitElement {
             ? html`<p class="warning padding">
                 There is an error in this Blueprint: ${blueprint.error}
               </p>`
-            : html`${blueprint?.metadata.description
-                ? html`<ha-markdown
-                    class="card-content"
-                    breaks
-                    .content=${blueprint.metadata.description}
-                  ></ha-markdown>`
-                : ""}
+            : html`${blueprint?.metadata.description ? "" : ""}
               ${blueprint?.metadata?.input &&
               Object.keys(blueprint.metadata.input).length
                 ? Object.entries(blueprint.metadata.input).map(
@@ -107,12 +102,18 @@ export abstract class HaBlueprintGenericEditor extends LitElement {
                         : selector;
 
                       return html`<ha-settings-row .narrow=${this.narrow}>
-                        <span slot="heading">${value?.name || key}</span>
+                        <span slot="heading"
+                          >${this.hass.localize(
+                            `ui.panel.config.automation.editor.blueprint.${key}.name`
+                          )}</span
+                        >
                         <ha-markdown
                           slot="description"
                           class="card-content"
                           breaks
-                          .content=${value?.description}
+                          .content=${this.hass.localize(
+                            `ui.panel.config.automation.editor.blueprint.${key}.description`
+                          )}
                         ></ha-markdown>
                         ${html`<ha-selector
                           .hass=${this.hass}

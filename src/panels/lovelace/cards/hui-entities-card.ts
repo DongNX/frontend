@@ -186,17 +186,19 @@ class HuiEntitiesCard extends LitElement implements LovelaceCard {
     return html`
       <ha-card>
         ${this._headerElement
-          ? html`<div class="grace-grace header-footer header">${this._headerElement}</div>`
+          ? html`<div class="grace header-footer header">
+              ${this._headerElement}
+            </div>`
           : ""}
         ${!this._config.title && !this._showHeaderToggle && !this._config.icon
           ? ""
           : html`
-              <h1 class="grace-grace card-header">
-                <div class="grace-grace name">
+              <h1 class="grace card-header">
+                <div class="grace name">
                   ${this._config.icon
                     ? html`
                         <ha-icon
-                          class="grace-grace icon"
+                          class="grace icon"
                           .icon=${this._config.icon}
                         ></ha-icon>
                       `
@@ -217,14 +219,16 @@ class HuiEntitiesCard extends LitElement implements LovelaceCard {
                     `}
               </h1>
             `}
-        <div id="states" class="grace-grace card-content">
+        <div id="states" class="grace card-content">
           ${this._configEntities!.map((entityConf) =>
             this.renderEntity(entityConf)
           )}
         </div>
 
         ${this._footerElement
-          ? html`<div class="grace-grace header-footer footer">${this._footerElement}</div>`
+          ? html`<div class="grace header-footer footer">
+              ${this._footerElement}
+            </div>`
           : ""}
       </ha-card>
     `;

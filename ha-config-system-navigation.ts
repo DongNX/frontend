@@ -26,6 +26,7 @@ import "../ha-config-section";
 import { configSections } from "../ha-panel-config";
 
 @customElement("ha-config-system-navigation")
+  // DIGO
 class HaConfigSystemNavigation extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

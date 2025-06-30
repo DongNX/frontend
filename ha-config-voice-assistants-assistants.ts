@@ -12,6 +12,7 @@ import "./assist-pref";
 import { voiceAssistantTabs } from "./ha-config-voice-assistants";
 
 @customElement("ha-config-voice-assistants-assistants")
+  // DIGO
 export class HaConfigVoiceAssistantsAssistants extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

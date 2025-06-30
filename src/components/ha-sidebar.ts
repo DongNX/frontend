@@ -1,3 +1,4 @@
+/* eslint-disable lit-a11y/role-has-required-aria-attrs */
 import "@material/mwc-button/mwc-button";
 import {
   mdiBell,
@@ -8,7 +9,6 @@ import {
   mdiClose,
   mdiCog,
   mdiFormatListBulletedType,
-  mdiHammer,
   mdiLightningBolt,
   mdiMenu,
   mdiMenuOpen,
@@ -52,12 +52,13 @@ import { haStyleScrollbar } from "../resources/styles";
 import type { HomeAssistant, PanelInfo, Route } from "../types";
 import "./ha-icon";
 import "./ha-icon-button";
+import "./ha-logo-svg";
 import "./ha-menu-button";
 import "./ha-sortable";
 import "./ha-svg-icon";
 import "./user/ha-user-badge";
 
-const SHOW_AFTER_SPACER = ["config", "developer-tools"];
+const SHOW_AFTER_SPACER = ["config"];
 
 const SUPPORT_SCROLL_IF_NEEDED = "scrollIntoViewIfNeeded" in document.body;
 
@@ -66,13 +67,13 @@ const SORT_VALUE_URL_PATHS = {
   map: 2,
   logbook: 3,
   history: 4,
-  "developer-tools": 9,
+  // "developer-tools": 9,
   config: 11,
 };
 
 const PANEL_ICONS = {
   calendar: mdiCalendar,
-  "developer-tools": mdiHammer,
+  // "developer-tools": mdiHammer,
   energy: mdiLightningBolt,
   history: mdiChartBox,
   logbook: mdiFormatListBulletedType,
@@ -154,7 +155,9 @@ const computePanels = memoizeOne(
     if (!panels) {
       return [[], []];
     }
-
+    if ("developer-tools" in panels) {
+      delete panels["developer-tools"];
+    }
     const beforeSpacer: PanelInfo[] = [];
     const afterSpacer: PanelInfo[] = [];
 
@@ -360,7 +363,14 @@ class HaSidebar extends SubscribeMixin(LitElement) {
         ? html`<mwc-button outlined @click=${this._closeEditMode}>
             ${this.hass.localize("ui.sidebar.done")}
           </mwc-button>`
-        : html`<div class="title">Home Assistant</div>`}
+        : html`<div class="title">
+            <ha-logo-svg
+              title=${this.hass.localize(
+                "ui.panel.config.info.home_assistant_logo"
+              )}
+            >
+            </ha-logo-svg>
+          </div>`}
     </div>`;
   }
 
@@ -390,8 +400,8 @@ class HaSidebar extends SubscribeMixin(LitElement) {
         @keydown=${this._listboxKeydown}
       >
         ${this.editMode
-          ? this._renderPanelsEdit(beforeSpacer)
-          : this._renderPanels(beforeSpacer)}
+        ? this._renderPanelsEdit(beforeSpacer)
+        : this._renderPanels(beforeSpacer)}
         ${this._renderSpacer()}
         ${this._renderPanels(afterSpacer)}
         ${this._renderExternalConfiguration()}
@@ -856,9 +866,6 @@ class HaSidebar extends SubscribeMixin(LitElement) {
           color: var(--sidebar-icon-color);
         }
         .title {
-          margin-left: 19px;
-          margin-inline-start: 19px;
-          margin-inline-end: initial;
           width: 100%;
           display: none;
         }
@@ -867,7 +874,9 @@ class HaSidebar extends SubscribeMixin(LitElement) {
           padding: 0 16px;
         }
         :host([expanded]) .title {
-          display: initial;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         :host([expanded]) .menu mwc-button {
           margin: 0 8px;
@@ -1086,6 +1095,10 @@ class HaSidebar extends SubscribeMixin(LitElement) {
         .menu ha-icon-button {
           -webkit-transform: scaleX(var(--scale-direction));
           transform: scaleX(var(--scale-direction));
+        }
+        ha-logo-svg {
+          height: 50px;
+          width: 50px;
         }
       `,
     ];

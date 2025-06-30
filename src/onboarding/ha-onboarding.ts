@@ -218,7 +218,7 @@ class HaOnboarding extends litLocalizeLiteMixin(HassElement) {
       this._handleProgress(ev)
     );
     if (window.innerWidth > 450) {
-      import("../resources/particles");
+      // import("../resources/particles");
     }
     makeDialogManager(this, this.shadowRoot!);
     import("../components/ha-language-picker");
@@ -266,8 +266,8 @@ class HaOnboarding extends litLocalizeLiteMixin(HassElement) {
     try {
       const response = await fetchInstallationType();
       this._supervisor = [
-        "Home Assistant OS",
-        "Home Assistant Supervised",
+        "Digo OS",
+        "Digo Supervised",
       ].includes(response.installation_type);
       if (this._supervisor) {
         // Only load if we have supervisor
@@ -389,15 +389,15 @@ class HaOnboarding extends litLocalizeLiteMixin(HassElement) {
         externalAuthParams.client_id && externalAuthParams.redirect_uri
           ? externalAuthParams
           : {
-              client_id: genClientId(),
-              redirect_uri: `${location.protocol}//${location.host}/?auth_callback=1`,
-              state: btoa(
-                JSON.stringify({
-                  hassUrl: `${location.protocol}//${location.host}`,
-                  clientId: genClientId(),
-                })
-              ),
-            };
+            client_id: genClientId(),
+            redirect_uri: `${location.protocol}//${location.host}/?auth_callback=1`,
+            state: btoa(
+              JSON.stringify({
+                hassUrl: `${location.protocol}//${location.host}`,
+                clientId: genClientId(),
+              })
+            ),
+          };
 
       let result: OnboardingResponses["integration"];
 

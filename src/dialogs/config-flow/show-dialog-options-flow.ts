@@ -94,9 +94,12 @@ export const showOptionsFlowDialog = (
       },
 
       renderShowFormStepFieldLabel(hass, step, field) {
-        return hass.localize(
+        const label = hass.localize(
           `component.${configEntry.domain}.options.step.${step.step_id}.data.${field.name}`
         );
+
+        const newLabel = label?.replace("Home Assistant", "Digo");
+        return newLabel;
       },
 
       renderShowFormStepFieldHelper(hass, step, field) {

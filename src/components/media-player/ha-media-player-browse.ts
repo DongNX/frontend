@@ -346,33 +346,32 @@ export class HaMediaPlayerBrowse extends LitElement {
 
     const backgroundImage = currentItem.thumbnail
       ? this._getThumbnailURLorBase64(currentItem.thumbnail).then(
-          (value) => `url(${value})`
-        )
+        (value) => `url(${value})`
+      )
       : "none";
 
     return html`
-              ${
-                currentItem.can_play
-                  ? html`
+              ${currentItem.can_play
+        ? html`
                       <div
                         class="header ${classMap({
-                          "no-img": !currentItem.thumbnail,
-                          "no-dialog": !this.dialog,
-                        })}"
+          "no-img": !currentItem.thumbnail,
+          "no-dialog": !this.dialog,
+        })}"
                         @transitionend=${this._setHeaderHeight}
                       >
                         <div class="header-content">
                           ${currentItem.thumbnail
-                            ? html`
+            ? html`
                                 <div
                                   class="img"
                                   style="background-image: ${until(
-                                    backgroundImage,
-                                    ""
-                                  )}"
+              backgroundImage,
+              ""
+            )}"
                                 >
                                   ${this.narrow && currentItem?.can_play
-                                    ? html`
+                ? html`
                                         <ha-fab
                                           mini
                                           .item=${currentItem}
@@ -381,31 +380,31 @@ export class HaMediaPlayerBrowse extends LitElement {
                                           <ha-svg-icon
                                             slot="icon"
                                             .label=${this.hass.localize(
-                                              `ui.components.media-browser.${this.action}-media`
-                                            )}
+                  `ui.components.media-browser.${this.action}-media`
+                )}
                                             .path=${this.action === "play"
-                                              ? mdiPlay
-                                              : mdiPlus}
+                    ? mdiPlay
+                    : mdiPlus}
                                           ></ha-svg-icon>
                                           ${this.hass.localize(
-                                            `ui.components.media-browser.${this.action}`
-                                          )}
+                      `ui.components.media-browser.${this.action}`
+                    )}
                                         </ha-fab>
                                       `
-                                    : ""}
+                : ""}
                                 </div>
                               `
-                            : nothing}
+            : nothing}
                           <div class="header-info">
                             <div class="breadcrumb">
                               <h1 class="title">${currentItem.title}</h1>
                               ${subtitle
-                                ? html` <h2 class="subtitle">${subtitle}</h2> `
-                                : ""}
+            ? html` <h2 class="subtitle">${subtitle}</h2> `
+            : ""}
                             </div>
                             ${currentItem.can_play &&
-                            (!currentItem.thumbnail || !this.narrow)
-                              ? html`
+            (!currentItem.thumbnail || !this.narrow)
+            ? html`
                                   <mwc-button
                                     raised
                                     .item=${currentItem}
@@ -413,40 +412,39 @@ export class HaMediaPlayerBrowse extends LitElement {
                                   >
                                     <ha-svg-icon
                                       .label=${this.hass.localize(
-                                        `ui.components.media-browser.${this.action}-media`
-                                      )}
+              `ui.components.media-browser.${this.action}-media`
+            )}
                                       .path=${this.action === "play"
-                                        ? mdiPlay
-                                        : mdiPlus}
+                ? mdiPlay
+                : mdiPlus}
                                     ></ha-svg-icon>
                                     ${this.hass.localize(
-                                      `ui.components.media-browser.${this.action}`
-                                    )}
+                  `ui.components.media-browser.${this.action}`
+                )}
                                   </mwc-button>
                                 `
-                              : ""}
+            : ""}
                           </div>
                         </div>
                       </div>
                     `
-                  : ""
-              }
+        : ""
+      }
           <div
             class="content"
             @scroll=${this._scroll}
             @touchmove=${this._scroll}
           >
-            ${
-              this._error
-                ? html`
+            ${this._error
+        ? html`
                     <div class="container">
                       <ha-alert alert-type="error">
                         ${this._renderError(this._error)}
                       </ha-alert>
                     </div>
                   `
-                : isTTSMediaSource(currentItem.media_content_id)
-                  ? html`
+        : isTTSMediaSource(currentItem.media_content_id)
+          ? html`
                       <ha-browse-media-tts
                         .item=${currentItem}
                         .hass=${this.hass}
@@ -454,12 +452,12 @@ export class HaMediaPlayerBrowse extends LitElement {
                         @tts-picked=${this._ttsPicked}
                       ></ha-browse-media-tts>
                     `
-                  : !children.length && !currentItem.not_shown
-                    ? html`
+          : !children.length && !currentItem.not_shown
+            ? html`
                         <div class="container no-items">
                           ${currentItem.media_content_id ===
-                          "media-source://media_source/local/."
-                            ? html`
+                "media-source://media_source/local/."
+                ? html`
                                 <div class="highlight-add-button">
                                   <span>
                                     <ha-svg-icon
@@ -468,89 +466,89 @@ export class HaMediaPlayerBrowse extends LitElement {
                                   </span>
                                   <span>
                                     ${this.hass.localize(
-                                      "ui.components.media-browser.file_management.highlight_button"
-                                    )}
+                  "ui.components.media-browser.file_management.highlight_button"
+                )}
                                   </span>
                                 </div>
                               `
-                            : this.hass.localize(
-                                "ui.components.media-browser.no_items"
-                              )}
+                : this.hass.localize(
+                  "ui.components.media-browser.no_items"
+                )}
                         </div>
                       `
-                    : this.preferredLayout === "grid" ||
-                        (this.preferredLayout === "auto" &&
-                          childrenMediaClass.layout === "grid")
-                      ? html`
+            : this.preferredLayout === "grid" ||
+              (this.preferredLayout === "auto" &&
+                childrenMediaClass.layout === "grid")
+              ? html`
                           <lit-virtualizer
                             scroller
                             .layout=${grid({
-                              itemSize: {
-                                width: "175px",
-                                height:
-                                  childrenMediaClass.thumbnail_ratio ===
-                                  "portrait"
-                                    ? "312px"
-                                    : "225px",
-                              },
-                              gap: "16px",
-                              flex: { preserve: "aspect-ratio" },
-                              justify: "space-evenly",
-                              direction: "vertical",
-                            })}
+                itemSize: {
+                  width: "175px",
+                  height:
+                    childrenMediaClass.thumbnail_ratio ===
+                      "portrait"
+                      ? "312px"
+                      : "225px",
+                },
+                gap: "16px",
+                flex: { preserve: "aspect-ratio" },
+                justify: "space-evenly",
+                direction: "vertical",
+              })}
                             .items=${children}
                             .renderItem=${this._renderGridItem}
                             class="children ${classMap({
-                              portrait:
-                                childrenMediaClass.thumbnail_ratio ===
-                                "portrait",
-                              not_shown: !!currentItem.not_shown,
-                            })}"
+                portrait:
+                  childrenMediaClass.thumbnail_ratio ===
+                  "portrait",
+                not_shown: !!currentItem.not_shown,
+              })}"
                           ></lit-virtualizer>
                           ${currentItem.not_shown
-                            ? html`
+                  ? html`
                                 <div class="grid not-shown">
                                   <div class="title">
                                     ${this.hass.localize(
-                                      "ui.components.media-browser.not_shown",
-                                      { count: currentItem.not_shown }
-                                    )}
+                    "ui.components.media-browser.not_shown",
+                    { count: currentItem.not_shown }
+                  )}
                                   </div>
                                 </div>
                               `
-                            : ""}
+                  : ""}
                         `
-                      : html`
+              : html`
                           <mwc-list>
                             <lit-virtualizer
                               scroller
                               .items=${children}
                               style=${styleMap({
-                                height: `${children.length * 72 + 26}px`,
-                              })}
+                height: `${children.length * 72 + 26}px`,
+              })}
                               .renderItem=${this._renderListItem}
                             ></lit-virtualizer>
                             ${currentItem.not_shown
-                              ? html`
+                  ? html`
                                   <mwc-list-item
                                     noninteractive
                                     class="not-shown"
                                     .graphic=${mediaClass.show_list_images
-                                      ? "medium"
-                                      : "avatar"}
+                      ? "medium"
+                      : "avatar"}
                                   >
                                     <span class="title">
                                       ${this.hass.localize(
-                                        "ui.components.media-browser.not_shown",
-                                        { count: currentItem.not_shown }
-                                      )}
+                        "ui.components.media-browser.not_shown",
+                        { count: currentItem.not_shown }
+                      )}
                                     </span>
                                   </mwc-list-item>
                                 `
-                              : ""}
+                  : ""}
                           </mwc-list>
                         `
-            }
+      }
           </div>
         </div>
       </div>
@@ -560,8 +558,8 @@ export class HaMediaPlayerBrowse extends LitElement {
   private _renderGridItem = (child: MediaPlayerItem): TemplateResult => {
     const backgroundImage = child.thumbnail
       ? this._getThumbnailURLorBase64(child.thumbnail).then(
-          (value) => `url(${value})`
-        )
+        (value) => `url(${value})`
+      )
       : "none";
 
     return html`
@@ -569,44 +567,44 @@ export class HaMediaPlayerBrowse extends LitElement {
         <ha-card outlined>
           <div class="thumbnail">
             ${child.thumbnail
-              ? html`
+        ? html`
                   <div
                     class="${classMap({
-                      "centered-image": ["app", "directory"].includes(
-                        child.media_class
-                      ),
-                      "brand-image": isBrandUrl(child.thumbnail),
-                    })} image"
+          "centered-image": ["app", "directory"].includes(
+            child.media_class
+          ),
+          "brand-image": isBrandUrl(child.thumbnail),
+        })} image"
                     style="background-image: ${until(backgroundImage, "")}"
                   ></div>
                 `
-              : html`
+        : html`
                   <div class="icon-holder image">
                     <ha-svg-icon
                       class="folder"
                       .path=${MediaClassBrowserSettings[
-                        child.media_class === "directory"
-                          ? child.children_media_class || child.media_class
-                          : child.media_class
-                      ].icon}
+            child.media_class === "directory"
+              ? child.children_media_class || child.media_class
+              : child.media_class
+          ].icon}
                     ></ha-svg-icon>
                   </div>
                 `}
             ${child.can_play
-              ? html`
+        ? html`
                   <ha-icon-button
                     class="play ${classMap({
-                      can_expand: child.can_expand,
-                    })}"
+          can_expand: child.can_expand,
+        })}"
                     .item=${child}
                     .label=${this.hass.localize(
-                      `ui.components.media-browser.${this.action}-media`
-                    )}
+          `ui.components.media-browser.${this.action}-media`
+        )}
                     .path=${this.action === "play" ? mdiPlay : mdiPlus}
                     @click=${this._actionClicked}
                   ></ha-icon-button>
                 `
-              : ""}
+        : ""}
           </div>
           <div class="title">
             ${child.title}
@@ -626,8 +624,8 @@ export class HaMediaPlayerBrowse extends LitElement {
     const backgroundImage =
       mediaClass.show_list_images && child.thumbnail
         ? this._getThumbnailURLorBase64(child.thumbnail).then(
-            (value) => `url(${value})`
-          )
+          (value) => `url(${value})`
+        )
         : "none";
 
     return html`
@@ -637,35 +635,35 @@ export class HaMediaPlayerBrowse extends LitElement {
         .graphic=${mediaClass.show_list_images ? "medium" : "avatar"}
       >
         ${backgroundImage === "none" && !child.can_play
-          ? html`<ha-svg-icon
+        ? html`<ha-svg-icon
               .path=${MediaClassBrowserSettings[
-                child.media_class === "directory"
-                  ? child.children_media_class || child.media_class
-                  : child.media_class
-              ].icon}
+            child.media_class === "directory"
+              ? child.children_media_class || child.media_class
+              : child.media_class
+          ].icon}
               slot="graphic"
             ></ha-svg-icon>`
-          : html`<div
+        : html`<div
               class=${classMap({
-                graphic: true,
-                thumbnail: mediaClass.show_list_images === true,
-              })}
+          graphic: true,
+          thumbnail: mediaClass.show_list_images === true,
+        })}
               style="background-image: ${until(backgroundImage, "")}"
               slot="graphic"
             >
               ${child.can_play
-                ? html`<ha-icon-button
+            ? html`<ha-icon-button
                     class="play ${classMap({
-                      show: !mediaClass.show_list_images || !child.thumbnail,
-                    })}"
+              show: !mediaClass.show_list_images || !child.thumbnail,
+            })}"
                     .item=${child}
                     .label=${this.hass.localize(
-                      `ui.components.media-browser.${this.action}-media`
-                    )}
+              `ui.components.media-browser.${this.action}-media`
+            )}
                     .path=${this.action === "play" ? mdiPlay : mdiPlus}
                     @click=${this._actionClicked}
                   ></ha-icon-button>`
-                : nothing}
+            : nothing}
             </div>`}
         <span class="title">${child.title}</span>
       </mwc-list-item>
@@ -807,25 +805,15 @@ export class HaMediaPlayerBrowse extends LitElement {
       return html`
         <h2>
           ${this.hass.localize(
-            "ui.components.media-browser.no_local_media_found"
-          )}
+        "ui.components.media-browser.no_local_media_found"
+      )}
         </h2>
         <p>
           ${this.hass.localize("ui.components.media-browser.no_media_folder")}
           <br />
           ${this.hass.localize("ui.components.media-browser.setup_local_help", {
-            documentation: html`<a
-              href=${documentationUrl(
-                this.hass,
-                "/more-info/local-media/setup-media"
-              )}
-              target="_blank"
-              rel="noreferrer"
-              >${this.hass.localize(
-                "ui.components.media-browser.documentation"
-              )}</a
-            >`,
-          })}
+        documentation: "",
+      })}
           <br />
           ${this.hass.localize("ui.components.media-browser.local_media_files")}
         </p>

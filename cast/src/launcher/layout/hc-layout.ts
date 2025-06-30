@@ -24,23 +24,23 @@ class HcLayout extends LitElement {
         <div class="layout">
           <img
             class="hero"
-            alt="A Google Nest Hub with a Home Assistant dashboard on its screen"
+            alt="A Google Nest Hub with a Digo dashboard on its screen"
             src="/images/google-nest-hub.png"
           />
           <h1 class="card-header">
-            Home Assistant Cast${this.subtitle ? ` – ${this.subtitle}` : ""}
+            Digo Cast${this.subtitle ? ` – ${this.subtitle}` : ""}
             ${this.auth
-              ? html`
+        ? html`
                   <div class="subtitle">
                     <a href=${this.auth.data.hassUrl} target="_blank"
                       >${this.auth.data.hassUrl.substr(
-                        this.auth.data.hassUrl.indexOf("//") + 2
-                      )}</a
+          this.auth.data.hassUrl.indexOf("//") + 2
+        )}</a
                     >
                     ${this.user ? html` – ${this.user.name} ` : ""}
                   </div>
                 `
-              : ""}
+        : ""}
           </h1>
           <slot></slot>
         </div>
@@ -157,6 +157,7 @@ class HcLayout extends LitElement {
     `;
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

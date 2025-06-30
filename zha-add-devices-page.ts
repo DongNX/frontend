@@ -22,6 +22,7 @@ import { zhaTabs } from "./zha-config-dashboard";
 import "./zha-device-pairing-status-card";
 
 @customElement("zha-add-devices-page")
+  //DIGO
 class ZHAAddDevicesPage extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

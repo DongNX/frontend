@@ -69,6 +69,7 @@ type AutomationItem = AutomationEntity & {
 };
 
 @customElement("ha-automation-picker")
+  // DIGO
 class HaAutomationPicker extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

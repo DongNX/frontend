@@ -134,7 +134,10 @@ module.exports.babelOptions = ({ latestBuild, isProdBuild, isTestBuild }) => ({
           "@polymer/polymer/lib/utils/html-tag.js": ["html"],
         },
         strictCSS: true,
-        htmlMinifier: module.exports.htmlMinifierOptions,
+        htmlMinifier: {
+          minifyCSS: false,
+          ...module.exports.htmlMinifierOptions,
+        },
         failOnError: false, // we can turn this off in case of false positives
       },
     ],

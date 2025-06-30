@@ -93,20 +93,7 @@ export class EnergyGridSettings extends LitElement {
         </h1>
 
         <div class="card-content">
-          <p>
-            ${this.hass.localize("ui.panel.config.energy.grid.sub")}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href=${documentationUrl(
-                this.hass,
-                "/docs/energy/electricity-grid/"
-              )}
-              >${this.hass.localize(
-                "ui.panel.config.energy.grid.learn_more"
-              )}</a
-            >
-          </p>
+          <p>${this.hass.localize("ui.panel.config.energy.grid.sub")}</p>
           ${gridValidation
             ? html`
                 <ha-energy-validation-result
@@ -495,6 +482,7 @@ export class EnergyGridSettings extends LitElement {
     return [haStyle, energyCardStyles];
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

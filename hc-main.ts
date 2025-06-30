@@ -44,6 +44,7 @@ const DEFAULT_CONFIG: LovelaceDashboardStrategyConfig = {
 
 let resourcesLoaded = false;
 @customElement("hc-main")
+  //DIGO
 export class HcMain extends HassElement {
   @state() private _showDemo = false;
 

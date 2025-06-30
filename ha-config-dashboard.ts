@@ -76,6 +76,7 @@ const randomTip = (hass: HomeAssistant, narrow: boolean) => {
 };
 
 @customElement("ha-config-dashboard")
+  // DIGO
 class HaConfigDashboard extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

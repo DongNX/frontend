@@ -14,6 +14,7 @@ import "./hassio-router";
 import { SupervisorBaseElement } from "./supervisor-base-element";
 
 @customElement("hassio-main")
+  //DIGO
 export class HassioMain extends SupervisorBaseElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

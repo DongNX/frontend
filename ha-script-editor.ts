@@ -927,7 +927,7 @@ export class HaScriptEditor extends KeyboardShortcutMixin(LitElement) {
 }
 
 customElements.define("ha-script-editor", HaScriptEditor);
-
+//DIGO
 declare global {
   interface HTMLElementTagNameMap {
     "ha-script-editor": HaScriptEditor;

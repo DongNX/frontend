@@ -40,6 +40,7 @@ const SOURCE_TYPE_ICONS: Record<BlueprintSourceType, string> = {
 };
 
 @customElement("ha-dialog-new-automation")
+// DIGO
 class DialogNewAutomation extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -144,54 +145,15 @@ class DialogNewAutomation extends LitElement implements HassDialog {
                 ></ha-svg-icon>
                 ${blueprint.name}
                 <span slot="secondary">
-                  ${blueprint.author
-                    ? this.hass.localize(
-                        `ui.panel.config.${this._mode}.dialog_new.blueprint_source.author`,
-                        { author: blueprint.author }
-                      )
-                    : this.hass.localize(
-                        `ui.panel.config.${this._mode}.dialog_new.blueprint_source.${blueprint.sourceType}`
-                      )}
+                  ${this.hass.localize(
+                    `ui.panel.config.${this._mode}.dialog_new.blueprint_source.${blueprint.sourceType}`
+                  )}
                 </span>
                 <ha-icon-next slot="meta"></ha-icon-next>
               </ha-list-item>
             `
           )}
-          ${processedBlueprints.length === 0
-            ? html`
-                <a
-                  href=${documentationUrl(this.hass, "/get-blueprints")}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  class="item"
-                >
-                  <ha-list-item hasmeta twoline graphic="icon">
-                    <ha-svg-icon slot="graphic" .path=${mdiWeb}></ha-svg-icon>
-                    ${this.hass.localize(
-                      `ui.panel.config.${this._mode}.dialog_new.create_blueprint`
-                    )}
-                    <span slot="secondary">
-                      ${this.hass.localize(
-                        `ui.panel.config.${this._mode}.dialog_new.create_blueprint_description`
-                      )}
-                    </span>
-                    <ha-svg-icon slot="meta" path=${mdiOpenInNew}></ha-svg-icon>
-                  </ha-list-item>
-                </a>
-              `
-            : html`
-                <ha-tip .hass=${this.hass}>
-                  <a
-                    href=${documentationUrl(this.hass, "/get-blueprints")}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    ${this.hass.localize(
-                      `ui.panel.config.${this._mode}.dialog_new.discover_blueprint_tip`
-                    )}
-                  </a>
-                </ha-tip>
-              `}
+          ${processedBlueprints.length === 0 ? html`` : html``}
         </mwc-list>
       </ha-dialog>
     `;

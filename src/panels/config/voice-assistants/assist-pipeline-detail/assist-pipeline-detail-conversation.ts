@@ -1,12 +1,13 @@
 import { css, CSSResultGroup, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators";
 import memoizeOne from "memoize-one";
+import { fireEvent } from "../../../../common/dom/fire_event";
 import { LocalizeKeys } from "../../../../common/translations/localize";
+import "../../../../components/ha-form/ha-form";
 import { AssistPipeline } from "../../../../data/assist_pipeline";
 import { HomeAssistant } from "../../../../types";
-import "../../../../components/ha-form/ha-form";
-import { fireEvent } from "../../../../common/dom/fire_event";
 
+// DIGO
 @customElement("assist-pipeline-detail-conversation")
 export class AssistPipelineDetailConversation extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

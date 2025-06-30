@@ -35,6 +35,7 @@ import { PictureGlanceCardConfig, PictureGlanceEntityConfig } from "./types";
 const STATES_OFF = new Set(["closed", "locked", "not_home", "off"]);
 
 @customElement("hui-picture-glance-card")
+  //DIGO
 class HuiPictureGlanceCard extends LitElement implements LovelaceCard {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
     await import("../editor/config-elements/hui-picture-glance-card-editor");

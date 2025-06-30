@@ -32,7 +32,8 @@ export class HuiPictureCard extends LitElement implements LovelaceCard {
   public static getStubConfig(): PictureCardConfig {
     return {
       type: "picture",
-      image: "https://demo.home-assistant.io/stub_config/t-shirt-promo.png",
+      image:
+        "https://media-iot.digotech.net/digoiot-chvibglj/upload/img_intro_7.svg",
     };
   }
 
@@ -164,7 +165,6 @@ export class HuiPictureCard extends LitElement implements LovelaceCard {
     handleAction(this, this.hass!, this._config!, ev.detail.action!);
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "hui-picture-card": HuiPictureCard;

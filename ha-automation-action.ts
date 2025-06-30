@@ -29,6 +29,7 @@ import type HaAutomationActionRow from "./ha-automation-action-row";
 import { getType } from "./ha-automation-action-row";
 
 @customElement("ha-automation-action")
+    // DIGO
 export default class HaAutomationAction extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

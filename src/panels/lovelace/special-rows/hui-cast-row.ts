@@ -31,7 +31,7 @@ class HuiCastRow extends LitElement implements LovelaceRow {
   public setConfig(config: CastConfig): void {
     this._config = {
       icon: "mdi:television",
-      name: "Home Assistant Cast",
+      name: "Digo Cast",
       view: 0,
       ...config,
     };
@@ -57,14 +57,14 @@ class HuiCastRow extends LitElement implements LovelaceRow {
       <div class="flex">
         <div class="name">${this._config.name}</div>
         ${this._noHTTPS
-          ? html` Cast requires HTTPS `
-          : this._castManager === undefined
-            ? nothing
-            : this._castManager === null
-              ? html` Cast API unavailable `
-              : this._castManager.castState === "NO_DEVICES_AVAILABLE"
-                ? html` No devices found `
-                : html`
+        ? html` Cast requires HTTPS `
+        : this._castManager === undefined
+          ? nothing
+          : this._castManager === null
+            ? html` Cast API unavailable `
+            : this._castManager.castState === "NO_DEVICES_AVAILABLE"
+              ? html` No devices found `
+              : html`
                     <div class="controls">
                       <google-cast-launcher></google-cast-launcher>
                       <mwc-button
@@ -109,7 +109,7 @@ class HuiCastRow extends LitElement implements LovelaceRow {
     if (this._config && this._config.hide_if_unavailable) {
       this.style.display =
         !this._castManager ||
-        this._castManager.castState === "NO_DEVICES_AVAILABLE"
+          this._castManager.castState === "NO_DEVICES_AVAILABLE"
           ? "none"
           : "";
     }

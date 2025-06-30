@@ -33,6 +33,7 @@ const SOURCE_TYPE_ICONS: Record<BlueprintSourceType, string> = {
 };
 
 @customElement("ha-dialog-new-automation")
+  // DIGO
 class DialogNewAutomation extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

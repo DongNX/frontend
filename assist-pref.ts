@@ -28,6 +28,7 @@ import type { HomeAssistant } from "../../../types";
 import { brandsUrl } from "../../../util/brands-url";
 import { showVoiceAssistantPipelineDetailDialog } from "./show-dialog-voice-assistant-pipeline-detail";
 
+// DIGO
 @customElement("assist-pref")
 export class AssistPref extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

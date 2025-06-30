@@ -288,15 +288,6 @@ class HaScriptPicker extends LitElement {
                   "ui.panel.config.script.picker.empty_text"
                 )}
               </p>
-              <a
-                href=${documentationUrl(this.hass, "/docs/script/editor/")}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ha-button>
-                  ${this.hass.localize("ui.panel.config.common.learn_more")}
-                </ha-button>
-              </a>
             </div>`
           : nothing}
         <ha-fab
@@ -411,15 +402,7 @@ class HaScriptPicker extends LitElement {
       title: this.hass.localize("ui.panel.config.script.caption"),
       text: html`
         ${this.hass.localize("ui.panel.config.script.picker.introduction")}
-        <p>
-          <a
-            href=${documentationUrl(this.hass, "/docs/scripts/")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            ${this.hass.localize("ui.panel.config.script.picker.learn_more")}
-          </a>
-        </p>
+        <p></p>
       `,
     });
   }

@@ -79,14 +79,14 @@ class ConfigUrlForm extends LitElement {
       >
         <div class="card-content">
           ${!canEdit
-            ? html`
+        ? html`
                 <p>
                   ${this.hass.localize(
-                    "ui.panel.config.core.section.core.core_config.edit_requires_storage"
-                  )}
+          "ui.panel.config.core.section.core.core_config.edit_requires_storage"
+        )}
                 </p>
               `
-            : ""}
+        : ""}
           ${this._error ? html`<div class="error">${this._error}</div>` : ""}
 
           <div class="description">
@@ -94,17 +94,17 @@ class ConfigUrlForm extends LitElement {
           </div>
 
           ${hasCloud
-            ? html`
+        ? html`
                 <div class="row">
                   <div class="flex">
                     ${this.hass.localize(
-                      "ui.panel.config.url.external_url_label"
-                    )}
+          "ui.panel.config.url.external_url_label"
+        )}
                   </div>
                   <ha-formfield
                     .label=${this.hass.localize(
-                      "ui.panel.config.url.external_use_ha_cloud"
-                    )}
+          "ui.panel.config.url.external_use_ha_cloud"
+        )}
                   >
                     <ha-switch
                       .disabled=${disabled}
@@ -114,17 +114,17 @@ class ConfigUrlForm extends LitElement {
                   </ha-formfield>
                 </div>
               `
-            : ""}
+        : ""}
           ${!this._showCustomExternalUrl
-            ? ""
-            : html`
+        ? ""
+        : html`
                 <div class="row">
                   <div class="flex">
                     ${hasCloud
-                      ? ""
-                      : this.hass.localize(
-                          "ui.panel.config.url.external_url_label"
-                        )}
+            ? ""
+            : this.hass.localize(
+              "ui.panel.config.url.external_url_label"
+            )}
                   </div>
                   <ha-textfield
                     class="flex"
@@ -139,46 +139,46 @@ class ConfigUrlForm extends LitElement {
                 </div>
               `}
           ${hasCloud || !isComponentLoaded(this.hass, "cloud")
-            ? ""
-            : html`
+        ? ""
+        : html`
                 <div class="row">
                   <div class="flex"></div>
                   <a href="/config/cloud"
                     >${this.hass.localize(
-                      "ui.panel.config.url.external_get_ha_cloud"
-                    )}</a
+          "ui.panel.config.url.external_get_ha_cloud"
+        )}</a
                   >
                 </div>
               `}
           ${!this._showCustomExternalUrl && hasCloud
-            ? html`
+        ? html`
                 ${remoteEnabled
-                  ? html`
+            ? html`
                       <div class="row">
                         <div class="flex"></div>
                         <a href="/config/cloud"
                           >${this.hass.localize(
-                            "ui.panel.config.url.manage_ha_cloud"
-                          )}</a
+              "ui.panel.config.url.manage_ha_cloud"
+            )}</a
                         >
                       </div>
                     `
-                  : html`
+            : html`
                       <ha-alert alert-type="error">
                         ${this.hass.localize(
-                          "ui.panel.config.url.ha_cloud_remote_not_enabled"
-                        )}
+              "ui.panel.config.url.ha_cloud_remote_not_enabled"
+            )}
                         <a href="/config/cloud" slot="action"
                           ><mwc-button
                             .label=${this.hass.localize(
-                              "ui.panel.config.url.enable_remote"
-                            )}
+              "ui.panel.config.url.enable_remote"
+            )}
                           ></mwc-button
                         ></a>
                       </ha-alert>
                     `}
               `
-            : ""}
+        : ""}
 
           <div class="row">
             <div class="flex">
@@ -187,8 +187,8 @@ class ConfigUrlForm extends LitElement {
 
             <ha-formfield
               .label=${this.hass.localize(
-                "ui.panel.config.url.internal_url_automatic"
-              )}
+          "ui.panel.config.url.internal_url_automatic"
+        )}
             >
               <ha-switch
                 .checked=${internalUrl === null}
@@ -198,8 +198,8 @@ class ConfigUrlForm extends LitElement {
           </div>
 
           ${!this._showCustomInternalUrl
-            ? ""
-            : html`
+        ? ""
+        : html`
                 <div class="row">
                   <div class="flex"></div>
                   <ha-textfield
@@ -215,35 +215,35 @@ class ConfigUrlForm extends LitElement {
                 </div>
               `}
           ${
-            // If the user has configured a cert, show an error if
-            httpUseHttps && // there is no internal url configured
-            (!internalUrl ||
-              // the internal url does not start with https
-              !internalUrl.startsWith("https://") ||
-              // the internal url points at an IP address
-              isIPAddress(new URL(internalUrl).hostname))
-              ? html`
+      // If the user has configured a cert, show an error if
+      httpUseHttps && // there is no internal url configured
+        (!internalUrl ||
+          // the internal url does not start with https
+          !internalUrl.startsWith("https://") ||
+          // the internal url points at an IP address
+          isIPAddress(new URL(internalUrl).hostname))
+        ? html`
                   <ha-alert
                     .alertType=${this._showCustomInternalUrl
-                      ? "info"
-                      : "warning"}
+            ? "info"
+            : "warning"}
                     .title=${this.hass.localize(
-                      "ui.panel.config.url.internal_url_https_error_title"
-                    )}
+              "ui.panel.config.url.internal_url_https_error_title"
+            )}
                   >
                     ${this.hass.localize(
-                      "ui.panel.config.url.internal_url_https_error_description"
-                    )}
+              "ui.panel.config.url.internal_url_https_error_description"
+            )}
                   </ha-alert>
                 `
-              : ""
-          }
+        : ""
+      }
         </div>
         <div class="card-actions">
           <mwc-button @click=${this._save} .disabled=${disabled}>
             ${this.hass.localize(
-              "ui.panel.config.core.section.core.core_config.save_button"
-            )}
+        "ui.panel.config.core.section.core.core_config.save_button"
+      )}
           </mwc-button>
         </div>
       </ha-card>
@@ -354,7 +354,6 @@ class ConfigUrlForm extends LitElement {
     `;
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-config-url-form": ConfigUrlForm;

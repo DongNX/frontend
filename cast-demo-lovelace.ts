@@ -2,6 +2,7 @@ import { LovelaceCardConfig } from "../../../../src/data/lovelace/config/card";
 import { LovelaceConfig } from "../../../../src/data/lovelace/config/types";
 import { castContext } from "../cast_context";
 
+// DIGO
 export const castDemoLovelace: () => LovelaceConfig = () => {
   const touchSupported =
     castContext.getDeviceCapabilities().touch_input_supported;

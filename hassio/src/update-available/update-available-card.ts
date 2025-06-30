@@ -51,10 +51,11 @@ declare global {
   }
 }
 
+
 const SUPERVISOR_UPDATE_NAMES = {
-  core: "Home Assistant Core",
-  os: "Home Assistant Operating System",
-  supervisor: "Home Assistant Supervisor",
+  core: "Digo Core",
+  os: "Digo Operating System",
+  supervisor: "Digo Supervisor",
 };
 
 type updateType = "os" | "supervisor" | "core" | "addon";
@@ -68,25 +69,26 @@ const changelogUrl = (
   }
   if (entry === "core") {
     return version.includes("dev")
-      ? "https://github.com/home-assistant/core/commits/dev"
+      ? "https://digotech.net/"
       : version.includes("b")
-        ? "https://next.home-assistant.io/latest-release-notes/"
-        : "https://www.home-assistant.io/latest-release-notes/";
+        ? "https://digotech.net/"
+        : "https://digotech.net/";
   }
   if (entry === "os") {
     return version.includes("dev")
-      ? "https://github.com/home-assistant/operating-system/commits/dev"
-      : `https://github.com/home-assistant/operating-system/releases/tag/${version}`;
+      ? "https://digotech.net/"
+      : `https://digotech.net/`;
   }
   if (entry === "supervisor") {
     return version.includes("dev")
-      ? "https://github.com/home-assistant/supervisor/commits/main"
-      : `https://github.com/home-assistant/supervisor/releases/tag/${version}`;
+      ? "https://digotech.net/"
+      : `https://digotech.net/`;
   }
   return undefined;
 };
 
 @customElement("update-available-card")
+  // DIGO
 class UpdateAvailableCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -127,54 +129,54 @@ class UpdateAvailableCard extends LitElement {
       <ha-card
         outlined
         .header=${this.supervisor.localize("update_available.update_name", {
-          name: this._name,
-        })}
+      name: this._name,
+    })}
       >
         <div class="card-content">
           ${this._error
-            ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
-            : ""}
+        ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
+        : ""}
           ${this._version === this._version_latest
-            ? html`<p>
+        ? html`<p>
                 ${this.supervisor.localize("update_available.no_update", {
-                  name: this._name,
-                })}
+          name: this._name,
+        })}
               </p>`
-            : !this._updating
-              ? html`
+        : !this._updating
+          ? html`
                   ${this._changelogContent
-                    ? html`
+              ? html`
                         <ha-faded>
                           <ha-markdown .content=${this._changelogContent}>
                           </ha-markdown>
                         </ha-faded>
                       `
-                    : ""}
+              : ""}
                   <div class="versions">
                     <p>
                       ${this.supervisor.localize(
-                        "update_available.description",
-                        {
-                          name: this._name,
-                          version: this._version,
-                          newest_version: this._version_latest,
-                        }
-                      )}
+                "update_available.description",
+                {
+                  name: this._name,
+                  version: this._version,
+                  newest_version: this._version_latest,
+                }
+              )}
                     </p>
                   </div>
                   ${["core", "addon"].includes(this._updateType)
-                    ? html`
+              ? html`
                         <ha-formfield
                           .label=${this.supervisor.localize(
-                            "update_available.create_backup"
-                          )}
+                "update_available.create_backup"
+              )}
                         >
                           <ha-checkbox checked></ha-checkbox>
                         </ha-formfield>
                       `
-                    : ""}
+              : ""}
                 `
-              : html`<ha-circular-progress
+          : html`<ha-circular-progress
                     aria-label="Updating"
                     size="large"
                     indeterminate
@@ -182,31 +184,31 @@ class UpdateAvailableCard extends LitElement {
                   </ha-circular-progress>
                   <p class="progress-text">
                     ${this.supervisor.localize("update_available.updating", {
-                      name: this._name,
-                      version: this._version_latest,
-                    })}
+            name: this._name,
+            version: this._version_latest,
+          })}
                   </p>`}
         </div>
         ${this._version !== this._version_latest && !this._updating
-          ? html`
+        ? html`
               <div class="card-actions">
                 ${changelog
-                  ? html`<a .href=${changelog} target="_blank" rel="noreferrer">
+            ? html`<a .href=${changelog} target="_blank" rel="noreferrer">
                       <mwc-button
                         .label=${this.supervisor.localize(
-                          "update_available.open_release_notes"
-                        )}
+              "update_available.open_release_notes"
+            )}
                       >
                       </mwc-button>
                     </a>`
-                  : ""}
+            : ""}
                 <span></span>
                 <ha-progress-button @click=${this._update} raised>
                   ${this.supervisor.localize("common.update")}
                 </ha-progress-button>
               </div>
             `
-          : ""}
+        : ""}
       </ha-card>
     `;
   }
@@ -286,9 +288,9 @@ class UpdateAvailableCard extends LitElement {
     const addonStoreInfo =
       !this._addonInfo.detached && !this._addonInfo.available
         ? this._addonStoreInfo(
-            this._addonInfo.slug,
-            this.supervisor.store.addons
-          )
+          this._addonInfo.slug,
+          this.supervisor.store.addons
+        )
         : undefined;
 
     if (this._addonInfo.changelog) {

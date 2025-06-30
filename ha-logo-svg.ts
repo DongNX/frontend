@@ -2,6 +2,7 @@ import { css, CSSResultGroup, LitElement, html, TemplateResult } from "lit";
 import { customElement } from "lit/decorators";
 
 @customElement("ha-logo-svg")
+  //DIGO
 export class HaLogoSvg extends LitElement {
   protected render(): TemplateResult {
     return html`<svg width="506" height="334" viewBox="0 0 506 334" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators";
 import { HomeAssistant } from "../../../../src/types";
 
 @customElement("hc-launch-screen")
+  //DIGO
 class HcLaunchScreen extends LitElement {
   @property({ attribute: false }) public hass?: HomeAssistant;
 

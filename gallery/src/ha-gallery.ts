@@ -72,7 +72,7 @@ class HaGallery extends LitElement {
         .open=${!this._narrow}
         .type=${this._narrow ? "modal" : "dismissible"}
       >
-        <span slot="title">Home Assistant Design</span>
+        <span slot="title">Digo Design</span>
         <!-- <span slot="subtitle">subtitle</span> -->
         <div class="sidebar">${sidebar}</div>
         <div slot="appContent">
@@ -89,10 +89,10 @@ class HaGallery extends LitElement {
           </mwc-top-app-bar-fixed>
           <div class="content">
             ${PAGES[this._page].description
-              ? html`
+        ? html`
                   <page-description .page=${this._page}></page-description>
                 `
-              : ""}
+        : ""}
             ${dynamicElement(`demo-${this._page.replace("/", "-")}`)}
           </div>
           <div class="page-footer">
@@ -103,8 +103,8 @@ class HaGallery extends LitElement {
             </div>
             <div>
               ${PAGES[this._page].description ||
-              Object.keys(PAGES[this._page].metadata).length > 0
-                ? html`
+        Object.keys(PAGES[this._page].metadata).length > 0
+        ? html`
                     <a
                       href=${`${GITHUB_DEMO_URL}${this._page}.markdown`}
                       target="_blank"
@@ -112,9 +112,9 @@ class HaGallery extends LitElement {
                       Edit text
                     </a>
                   `
-                : ""}
+        : ""}
               ${PAGES[this._page].demo
-                ? html`
+        ? html`
                     <a
                       href=${`${GITHUB_DEMO_URL}${this._page}.ts`}
                       target="_blank"
@@ -122,7 +122,7 @@ class HaGallery extends LitElement {
                       Edit demo
                     </a>
                   `
-                : ""}
+        : ""}
             </div>
           </div>
         </div>

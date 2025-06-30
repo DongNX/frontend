@@ -11,7 +11,7 @@ import "../../../components/ha-textfield";
 import { PersonMutableParams } from "../../../data/person";
 import {
   deleteUser,
-  SYSTEM_GROUP_ID_ADMIN,
+   SYSTEM_GROUP_ID_ADMIN,
   SYSTEM_GROUP_ID_USER,
   updateUser,
   User,

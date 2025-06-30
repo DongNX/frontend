@@ -25,6 +25,7 @@ import "../components/supervisor-metric";
 import { hassioStyle } from "../resources/hassio-style";
 
 @customElement("hassio-core-info")
+  //DIGO
 class HassioCoreInfo extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

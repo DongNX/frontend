@@ -94,7 +94,7 @@ const ENTITY_DOMAINS_OTHER = new Set([
 ]);
 
 const ENTITY_DOMAINS_MAIN = new Set(["notify"]);
-
+//DIGO
 @customElement("add-automation-element-dialog")
 class DialogAddAutomationElement extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -274,8 +274,7 @@ class DialogAddAutomationElement extends LitElement implements HassDialog {
           );
         }
       }
-
-      return result.sort((a, b) => {
+      const res = result.sort((a, b) => {
         if (a.group && b.group) {
           return 0;
         }
@@ -287,6 +286,11 @@ class DialogAddAutomationElement extends LitElement implements HassDialog {
         }
         return stringCompare(a.name, b.name, this.hass.locale.language);
       });
+      const newData = res.filter(
+        (el) => !el?.name?.toLocaleLowerCase()?.includes("home assistant")
+      );
+
+      return newData;
     }
   );
 

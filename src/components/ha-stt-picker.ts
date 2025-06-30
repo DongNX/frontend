@@ -45,13 +45,13 @@ export class HaSTTPicker extends LitElement {
       this.value ??
       (this.required
         ? this._engines.find(
-            (engine) => engine.supported_languages?.length !== 0
-          )
+          (engine) => engine.supported_languages?.length !== 0
+        )
         : NONE);
     return html`
       <ha-select
         .label=${this.label ||
-        this.hass!.localize("ui.components.stt-picker.stt")}
+      this.hass!.localize("ui.components.stt-picker.stt")}
         .value=${value}
         .required=${this.required}
         .disabled=${this.disabled}
@@ -61,10 +61,10 @@ export class HaSTTPicker extends LitElement {
         naturalMenuWidth
       >
         ${!this.required
-          ? html`<ha-list-item .value=${NONE}>
+        ? html`<ha-list-item .value=${NONE}>
               ${this.hass!.localize("ui.components.stt-picker.none")}
             </ha-list-item>`
-          : nothing}
+        : nothing}
         ${this._engines.map((engine) => {
           let label = engine.engine_id;
           if (engine.engine_id.includes(".")) {

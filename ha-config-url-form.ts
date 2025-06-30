@@ -21,6 +21,7 @@ import { saveCoreConfig } from "../../../data/core";
 import type { ValueChangedEvent, HomeAssistant } from "../../../types";
 
 @customElement("ha-config-url-form")
+  // DIGO
 class ConfigUrlForm extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

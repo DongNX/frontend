@@ -39,14 +39,6 @@ class HaPushNotificationsRow extends LitElement {
           ${this.hass.localize(
             `ui.panel.profile.push_notifications.${descriptionKey}`
           )}
-          <a
-            href=${documentationUrl(this.hass, "/integrations/html5")}
-            target="_blank"
-            rel="noreferrer"
-            >${this.hass.localize(
-              "ui.panel.profile.push_notifications.link_promo"
-            )}</a
-          >
         </span>
         <ha-push-notifications-toggle
           .hass=${this.hass}
@@ -64,6 +56,7 @@ class HaPushNotificationsRow extends LitElement {
     `;
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

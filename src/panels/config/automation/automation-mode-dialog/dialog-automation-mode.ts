@@ -15,9 +15,9 @@ import { isMaxMode, MODES } from "../../../../data/script";
 import { HassDialog } from "../../../../dialogs/make-dialog-manager";
 import { haStyle, haStyleDialog } from "../../../../resources/styles";
 import type { HomeAssistant } from "../../../../types";
-import { documentationUrl } from "../../../../util/documentation-url";
 import type { AutomationModeDialog } from "./show-dialog-automation-mode";
 
+// DIGO
 @customElement("ha-dialog-automation-mode")
 class DialogAutomationMode extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -71,17 +71,6 @@ class DialogAutomationMode extends LitElement implements HassDialog {
           @selected=${this._modeChanged}
           @closed=${stopPropagation}
           fixedMenuPosition
-          .helper=${html`
-            <a
-              style="color: var(--secondary-text-color)"
-              href=${documentationUrl(this.hass, "/docs/automation/modes/")}
-              target="_blank"
-              rel="noreferrer"
-              >${this.hass.localize(
-                "ui.panel.config.automation.editor.modes.learn_more"
-              )}</a
-            >
-          `}
         >
           ${MODES.map(
             (mode) => html`

@@ -130,8 +130,9 @@ export class HuiCardPicker extends LitElement {
 
     const suggestedCards = this._suggestedCards(this._cards);
     const othersCards = this._otherCards(this._cards);
-    const customCardsItems = this._customCards(this._cards);
-
+    const customCardsItems = this._customCards(this._cards).filter(
+      (el) => el?.card?.type !== "simple-weather-card"
+    );
     return html`
       <search-input
         .hass=${this.hass}

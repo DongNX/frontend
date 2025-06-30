@@ -27,14 +27,7 @@ class EnergyValidationMessage extends LitElement {
             `component.energy.issues.${issue.type}.description`,
             issue.translation_placeholders
           )}
-          ${issue.type === "recorder_untracked"
-            ? html`(<a
-                  href="https://www.home-assistant.io/integrations/recorder#configure-filter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >${this.hass.localize("ui.panel.config.common.learn_more")}</a
-                >)`
-            : ""}
+          ${issue.type === "recorder_untracked" ? "" : ""}
           <ul>
             ${issue.affected_entities.map(
               ([entity, value]) =>

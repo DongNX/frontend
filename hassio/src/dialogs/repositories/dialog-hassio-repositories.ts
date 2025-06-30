@@ -28,6 +28,7 @@ import "../../../../src/components/ha-textfield";
 import "../../../../src/components/ha-list-new";
 import "../../../../src/components/ha-list-item-new";
 
+// DIGO
 @customElement("dialog-hassio-repositories")
 class HassioRepositoriesDialog extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -65,7 +66,7 @@ class HassioRepositoriesDialog extends LitElement {
         (repo) =>
           repo.slug !== "core" && // The core add-ons repository
           repo.slug !== "local" && // Locally managed add-ons
-          repo.slug !== "a0d7b954" && // Home Assistant Community Add-ons
+          repo.slug !== "a0d7b954" && // Digo Community Add-ons
           repo.slug !== "5c53de3b" // The ESPHome repository
       )
       .sort((a, b) =>
@@ -98,18 +99,18 @@ class HassioRepositoriesDialog extends LitElement {
         scrimClickAction
         escapeKeyAction
         .heading=${createCloseHeading(
-          this.hass,
-          this._dialogParams!.supervisor.localize("dialog.repositories.title")
-        )}
+      this.hass,
+      this._dialogParams!.supervisor.localize("dialog.repositories.title")
+    )}
       >
         ${this._error
-          ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
-          : ""}
+        ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
+        : ""}
         <div class="form">
           <ha-list-new>
             ${repositories.length
-              ? repositories.map(
-                  (repo) => html`
+        ? repositories.map(
+          (repo) => html`
                     <ha-list-item-new class="option">
                       ${repo.name}
                       <div slot="supporting-text">
@@ -119,13 +120,13 @@ class HassioRepositoriesDialog extends LitElement {
                       <div class="delete" slot="end">
                         <ha-icon-button
                           .label=${this._dialogParams!.supervisor.localize(
-                            "dialog.repositories.remove"
-                          )}
+            "dialog.repositories.remove"
+          )}
                           .disabled=${usedRepositories.includes(repo.slug)}
                           .slug=${repo.slug}
                           .path=${usedRepositories.includes(repo.slug)
-                            ? mdiDeleteOff
-                            : mdiDelete}
+              ? mdiDeleteOff
+              : mdiDelete}
                           @click=${this._removeRepository}
                         >
                         </ha-icon-button>
@@ -135,16 +136,16 @@ class HassioRepositoriesDialog extends LitElement {
                           offset="1"
                         >
                           ${this._dialogParams!.supervisor.localize(
-                            usedRepositories.includes(repo.slug)
-                              ? "dialog.repositories.used"
-                              : "dialog.repositories.remove"
-                          )}
+                usedRepositories.includes(repo.slug)
+                  ? "dialog.repositories.used"
+                  : "dialog.repositories.remove"
+              )}
                         </simple-tooltip>
                       </div>
                     </ha-list-item-new>
                   `
-                )
-              : html`<ha-list-item-new> No repositories </ha-list-item-new>`}
+        )
+        : html`<ha-list-item-new> No repositories </ha-list-item-new>`}
           </ha-list-new>
           <div class="layout horizontal bottom">
             <ha-textfield
@@ -152,20 +153,20 @@ class HassioRepositoriesDialog extends LitElement {
               id="repository_input"
               .value=${this._dialogParams!.url || ""}
               .label=${this._dialogParams!.supervisor.localize(
-                "dialog.repositories.add"
-              )}
+          "dialog.repositories.add"
+        )}
               @keydown=${this._handleKeyAdd}
               dialogInitialFocus
             ></ha-textfield>
             <mwc-button @click=${this._addRepository}>
               ${this._processing
-                ? html`<ha-circular-progress
+        ? html`<ha-circular-progress
                     indeterminate
                     size="small"
                   ></ha-circular-progress>`
-                : this._dialogParams!.supervisor.localize(
-                    "dialog.repositories.add"
-                  )}
+        : this._dialogParams!.supervisor.localize(
+          "dialog.repositories.add"
+        )}
             </mwc-button>
           </div>
         </div>

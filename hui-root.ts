@@ -74,6 +74,7 @@ import "./views/hui-view";
 import type { HUIView } from "./views/hui-view";
 
 @customElement("hui-root")
+  //DIGO
 class HUIRoot extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -101,6 +101,7 @@ import { DataEntryFlowProgressExtended } from "./ha-config-integrations";
 import { showAddIntegrationDialog } from "./show-add-integration-dialog";
 
 @customElement("ha-config-integration-page")
+  // DIGO
 class HaConfigIntegrationPage extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

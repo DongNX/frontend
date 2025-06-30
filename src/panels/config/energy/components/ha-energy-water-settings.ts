@@ -63,17 +63,7 @@ export class EnergyWaterSettings extends LitElement {
         </h1>
 
         <div class="card-content">
-          <p>
-            ${this.hass.localize("ui.panel.config.energy.water.sub")}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href=${documentationUrl(this.hass, "/docs/energy/water/")}
-              >${this.hass.localize(
-                "ui.panel.config.energy.water.learn_more"
-              )}</a
-            >
-          </p>
+          <p>${this.hass.localize("ui.panel.config.energy.water.sub")}</p>
           ${waterValidation.map(
             (result) => html`
               <ha-energy-validation-result
@@ -201,7 +191,6 @@ export class EnergyWaterSettings extends LitElement {
     return [haStyle, energyCardStyles];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-energy-water-settings": EnergyWaterSettings;

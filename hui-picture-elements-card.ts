@@ -18,6 +18,7 @@ import { createStyledHuiElement } from "./picture-elements/create-styled-hui-ele
 import { PictureElementsCardConfig } from "./types";
 
 @customElement("hui-picture-elements-card")
+  //DIGO
 class HuiPictureElementsCard extends LitElement implements LovelaceCard {
   @property({ attribute: false }) public hass?: HomeAssistant;
 

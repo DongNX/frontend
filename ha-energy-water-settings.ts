@@ -27,6 +27,7 @@ import "./ha-energy-validation-result";
 import { energyCardStyles } from "./styles";
 
 @customElement("ha-energy-water-settings")
+// DIGO
 export class EnergyWaterSettings extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -136,16 +136,16 @@ export class SupervisorBackupContent extends LitElement {
       ${this.backup
         ? html`<div class="details">
             ${this.backup.type === "full"
-              ? this._localize("full_backup")
-              : this._localize("partial_backup")}
+            ? this._localize("full_backup")
+            : this._localize("partial_backup")}
             (${Math.ceil(this.backup.size * 10) / 10 + " MB"})<br />
             ${this.hass
-              ? formatDateTime(
-                  new Date(this.backup.date),
-                  this.hass.locale,
-                  this.hass.config
-                )
-              : this.backup.date}
+            ? formatDateTime(
+              new Date(this.backup.date),
+              this.hass.locale,
+              this.hass.config
+            )
+            : this.backup.date}
           </div>`
         : html`<ha-textfield
             name="backupName"
@@ -157,8 +157,8 @@ export class SupervisorBackupContent extends LitElement {
       ${!this.backup || this.backup.type === "full"
         ? html`<div class="sub-header">
               ${!this.backup
-                ? this._localize("type")
-                : this._localize("select_type")}
+            ? this._localize("type")
+            : this._localize("select_type")}
             </div>
             <div class="backup-types">
               <ha-formfield .label=${this._localize("full_backup")}>
@@ -184,13 +184,13 @@ export class SupervisorBackupContent extends LitElement {
       ${this.backupType === "partial"
         ? html`<div class="partial-picker">
             ${!this.backup || this.backup.homeassistant
-              ? html`<ha-formfield
+            ? html`<ha-formfield
                   .label=${html`<supervisor-formfield-label
-                    label="Home Assistant"
+                    label="Digo"
                     .iconPath=${mdiHomeAssistant}
                     .version=${this.backup
-                      ? this.backup.homeassistant
-                      : this.hass.config.version}
+                  ? this.backup.homeassistant
+                  : this.hass.config.version}
                   >
                   </supervisor-formfield-label>`}
                 >
@@ -200,9 +200,9 @@ export class SupervisorBackupContent extends LitElement {
                   >
                   </ha-checkbox>
                 </ha-formfield>`
-              : ""}
+            : ""}
             ${foldersSection?.templates.length
-              ? html`
+            ? html`
                   <ha-formfield
                     .label=${html`<supervisor-formfield-label
                       .label=${this._localize("folders")}
@@ -220,9 +220,9 @@ export class SupervisorBackupContent extends LitElement {
                   </ha-formfield>
                   <div class="section-content">${foldersSection.templates}</div>
                 `
-              : ""}
+            : ""}
             ${addonsSection?.templates.length
-              ? html`
+            ? html`
                   <ha-formfield
                     .label=${html`<supervisor-formfield-label
                       .label=${this._localize("addons")}
@@ -240,11 +240,11 @@ export class SupervisorBackupContent extends LitElement {
                   </ha-formfield>
                   <div class="section-content">${addonsSection.templates}</div>
                 `
-              : ""}
+            : ""}
           </div> `
         : ""}
       ${this.backupType === "partial" &&
-      (!this.backup || this.backupHasPassword)
+        (!this.backup || this.backupHasPassword)
         ? html`<hr />`
         : ""}
       ${!this.backup
@@ -270,7 +270,7 @@ export class SupervisorBackupContent extends LitElement {
             >
             </ha-textfield>
             ${!this.backup
-              ? html`<ha-textfield
+            ? html`<ha-textfield
                   .label=${this._localize("confirm_password")}
                   type="password"
                   name="confirmBackupPassword"
@@ -278,7 +278,7 @@ export class SupervisorBackupContent extends LitElement {
                   @change=${this._handleTextValueChanged}
                 >
                 </ha-textfield>`
-              : ""}
+            : ""}
           `
         : ""}
     `;
@@ -380,8 +380,8 @@ export class SupervisorBackupContent extends LitElement {
     const addons =
       section === "addons"
         ? new Map(
-            this.supervisor?.addon.addons.map((item) => [item.slug, item])
-          )
+          this.supervisor?.addon.addons.map((item) => [item.slug, item])
+        )
         : undefined;
     let checkedItems = 0;
     this[section].forEach((item) => {
@@ -391,9 +391,9 @@ export class SupervisorBackupContent extends LitElement {
             .label=${item.name}
             .iconPath=${section === "addons" ? mdiPuzzle : mdiFolder}
             .imageUrl=${section === "addons" &&
-            !this.onboarding &&
-            atLeastVersion(this.hass.config.version, 0, 105) &&
-            addons?.get(item.slug)?.icon
+              !this.onboarding &&
+              atLeastVersion(this.hass.config.version, 0, 105) &&
+              addons?.get(item.slug)?.icon
               ? `/api/hassio/addons/${item.slug}/icon`
               : undefined}
             .version=${item.version}
@@ -455,9 +455,9 @@ export class SupervisorBackupContent extends LitElement {
     this[section] = this[section].map((entry) =>
       entry.slug === item.slug
         ? {
-            ...entry,
-            checked: ev.currentTarget.checked,
-          }
+          ...entry,
+          checked: ev.currentTarget.checked,
+        }
         : entry
     );
   }

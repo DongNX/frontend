@@ -10,6 +10,7 @@ import { HomeAssistant } from "../../../../types";
 import { JoinBetaDialogParams } from "./show-dialog-join-beta";
 
 @customElement("dialog-join-beta")
+  // DIGO
 export class DialogJoinBeta
   extends LitElement
   implements HassDialog<JoinBetaDialogParams>

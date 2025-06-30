@@ -44,6 +44,7 @@ interface CardElement {
 }
 
 @customElement("hui-card-picker")
+  //DIGO
 export class HuiCardPicker extends LitElement {
   @property({ attribute: false }) public hass?: HomeAssistant;
 

@@ -73,18 +73,6 @@ export class HaManualAutomationEditor extends LitElement {
             "ui.panel.config.automation.editor.triggers.header"
           )}
         </h2>
-        <a
-          href=${documentationUrl(this.hass, "/docs/automation/trigger/")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <ha-icon-button
-            .path=${mdiHelpCircle}
-            .label=${this.hass.localize(
-              "ui.panel.config.automation.editor.triggers.learn_more"
-            )}
-          ></ha-icon-button>
-        </a>
       </div>
       ${!ensureArray(this.config.trigger)?.length
         ? html`<p>
@@ -114,18 +102,6 @@ export class HaManualAutomationEditor extends LitElement {
             >(${this.hass.localize("ui.common.optional")})</span
           >
         </h2>
-        <a
-          href=${documentationUrl(this.hass, "/docs/automation/condition/")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <ha-icon-button
-            .path=${mdiHelpCircle}
-            .label=${this.hass.localize(
-              "ui.panel.config.automation.editor.conditions.learn_more"
-            )}
-          ></ha-icon-button>
-        </a>
       </div>
       ${!ensureArray(this.config.condition)?.length
         ? html`<p>
@@ -153,20 +129,7 @@ export class HaManualAutomationEditor extends LitElement {
             "ui.panel.config.automation.editor.actions.header"
           )}
         </h2>
-        <div>
-          <a
-            href=${documentationUrl(this.hass, "/docs/automation/action/")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ha-icon-button
-              .path=${mdiHelpCircle}
-              .label=${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.learn_more"
-              )}
-            ></ha-icon-button>
-          </a>
-        </div>
+        <div></div>
       </div>
       ${!ensureArray(this.config.action)?.length
         ? html`<p>
@@ -290,7 +253,6 @@ export class HaManualAutomationEditor extends LitElement {
     ];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "manual-automation-editor": HaManualAutomationEditor;

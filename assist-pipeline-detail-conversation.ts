@@ -7,6 +7,7 @@ import "../../../../components/ha-form/ha-form";
 import { AssistPipeline } from "../../../../data/assist_pipeline";
 import { HomeAssistant } from "../../../../types";
 
+// DIGO
 @customElement("assist-pipeline-detail-conversation")
 export class AssistPipelineDetailConversation extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

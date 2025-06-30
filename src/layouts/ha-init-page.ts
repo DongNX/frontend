@@ -15,23 +15,23 @@ class HaInitPage extends LitElement {
   protected render() {
     return this.error
       ? html`
-          <p>Unable to connect to Home Assistant.</p>
+          <p>Unable to connect to Digo.</p>
           <p class="retry-text">
             Retrying in ${this._retryInSeconds} seconds...
           </p>
           <mwc-button @click=${this._retry}>Retry now</mwc-button>
           ${location.host.includes("ui.nabu.casa")
-            ? html`
+          ? html`
                 <p>
                   It is possible that you are seeing this screen because your
-                  Home Assistant is not currently connected. You can ask it to
+                  Digo is not currently connected. You can ask it to
                   come online from your
                   <a href="https://account.nabucasa.com/"
                     >Nabu Casa account page</a
                   >.
                 </p>
               `
-            : ""}
+          : ""}
         `
       : html`
           <div id="progress-indicator-wrapper">
@@ -39,8 +39,8 @@ class HaInitPage extends LitElement {
           </div>
           <div id="loading-text">
             ${this.migration
-              ? "Database migration in progress, please wait this might take some time"
-              : "Loading data"}
+          ? "Database migration in progress, please wait this might take some time"
+          : "Loading data"}
           </div>
         `;
   }

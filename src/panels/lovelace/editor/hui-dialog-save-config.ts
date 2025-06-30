@@ -56,19 +56,8 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
         escapeKeyAction
         @closed=${this._close}
         .heading=${html`${this.hass!.localize(
-            "ui.panel.lovelace.editor.save_config.header"
-          )}<a
-            class="header_button"
-            href=${documentationUrl(this.hass!, "/lovelace/")}
-            title=${this.hass!.localize("ui.panel.lovelace.menu.help")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ha-icon-button
-              .path=${mdiHelpCircle}
-              .label=${this.hass!.localize("ui.common.help")}
-            ></ha-icon-button>
-          </a>`}
+      "ui.panel.lovelace.editor.save_config.header"
+    )}`}
       >
         <div>
           <p>
@@ -76,16 +65,16 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
           </p>
 
           ${this._params.mode === "storage"
-            ? html`
+        ? html`
                 <p>
                   ${this.hass!.localize(
-                    "ui.panel.lovelace.editor.save_config.para_sure"
-                  )}
+          "ui.panel.lovelace.editor.save_config.para_sure"
+        )}
                 </p>
                 <ha-formfield
                   .label=${this.hass!.localize(
-                    "ui.panel.lovelace.editor.save_config.empty_config"
-                  )}
+          "ui.panel.lovelace.editor.save_config.empty_config"
+        )}
                 >
                   <ha-switch
                     .checked=${this._emptyConfig}
@@ -94,21 +83,21 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
                   ></ha-switch
                 ></ha-formfield>
               `
-            : html`
+        : html`
                 <p>
                   ${this.hass!.localize(
-                    "ui.panel.lovelace.editor.save_config.yaml_mode"
-                  )}
+          "ui.panel.lovelace.editor.save_config.yaml_mode"
+        )}
                 </p>
                 <p>
                   ${this.hass!.localize(
-                    "ui.panel.lovelace.editor.save_config.yaml_control"
-                  )}
+          "ui.panel.lovelace.editor.save_config.yaml_control"
+        )}
                 </p>
                 <p>
                   ${this.hass!.localize(
-                    "ui.panel.lovelace.editor.save_config.yaml_config"
-                  )}
+          "ui.panel.lovelace.editor.save_config.yaml_config"
+        )}
                 </p>
                 <ha-yaml-editor
                   .hass=${this.hass}
@@ -118,7 +107,7 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
               `}
         </div>
         ${this._params.mode === "storage"
-          ? html`
+        ? html`
               <mwc-button slot="primaryAction" @click=${this.closeDialog}>
                 ${this.hass!.localize("ui.common.cancel")}
               </mwc-button>
@@ -128,22 +117,22 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
                 @click=${this._saveConfig}
               >
                 ${this._saving
-                  ? html`<ha-circular-progress
+            ? html`<ha-circular-progress
                       indeterminate
                       size="small"
                       aria-label="Saving"
                     ></ha-circular-progress>`
-                  : ""}
+            : ""}
                 ${this.hass!.localize(
-                  "ui.panel.lovelace.editor.save_config.save"
-                )}
+              "ui.panel.lovelace.editor.save_config.save"
+            )}
               </mwc-button>
             `
-          : html`
+        : html`
               <mwc-button slot="primaryAction" @click=${this.closeDialog}>
                 ${this.hass!.localize(
-                  "ui.panel.lovelace.editor.save_config.close"
-                )}</mwc-button
+          "ui.panel.lovelace.editor.save_config.close"
+        )}</mwc-button
               >
             `}
       </ha-dialog>
@@ -186,7 +175,6 @@ export class HuiSaveConfig extends LitElement implements HassDialog {
     return [haStyleDialog];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "hui-dialog-save-config": HuiSaveConfig;

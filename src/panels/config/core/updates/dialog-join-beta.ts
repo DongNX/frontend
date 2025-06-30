@@ -1,5 +1,4 @@
 import "@material/mwc-button/mwc-button";
-import { mdiOpenInNew } from "@mdi/js";
 import { css, CSSResultGroup, html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators";
 import { fireEvent } from "../../../../common/dom/fire_event";
@@ -8,10 +7,10 @@ import { createCloseHeading } from "../../../../components/ha-dialog";
 import { HassDialog } from "../../../../dialogs/make-dialog-manager";
 import { haStyleDialog } from "../../../../resources/styles";
 import { HomeAssistant } from "../../../../types";
-import { documentationUrl } from "../../../../util/documentation-url";
 import { JoinBetaDialogParams } from "./show-dialog-join-beta";
 
 @customElement("dialog-join-beta")
+  // DIGO
 export class DialogJoinBeta
   extends LitElement
   implements HassDialog<JoinBetaDialogParams>
@@ -39,9 +38,9 @@ export class DialogJoinBeta
         open
         @closed=${this.closeDialog}
         .heading=${createCloseHeading(
-          this.hass,
-          this.hass.localize("ui.dialogs.join_beta_channel.title")
-        )}
+      this.hass,
+      this.hass.localize("ui.dialogs.join_beta_channel.title")
+    )}
       >
         <ha-alert alert-type="warning">
           ${this.hass.localize("ui.dialogs.join_beta_channel.backup")}
@@ -51,20 +50,11 @@ export class DialogJoinBeta
           ${this.hass.localize("ui.dialogs.join_beta_channel.release_items")}
         </p>
         <ul>
-          <li>Home Assistant Core</li>
-          <li>Home Assistant Supervisor</li>
-          <li>Home Assistant Operating System</li>
+          <li>Digo Core</li>
+          <li>Digo Supervisor</li>
+          <li>Digo Operating System</li>
         </ul>
-        <a
-          href=${documentationUrl(this.hass!, "/faq/release/")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          ${this.hass!.localize(
-            "ui.dialogs.join_beta_channel.view_documentation"
-          )}
-          <ha-svg-icon .path=${mdiOpenInNew}></ha-svg-icon>
-        </a>
+
         <mwc-button slot="primaryAction" @click=${this._cancel}>
           ${this.hass.localize("ui.common.cancel")}
         </mwc-button>

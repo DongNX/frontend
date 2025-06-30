@@ -86,9 +86,9 @@ export default class HaAutomationAction extends LitElement {
       >
         <div class="actions">
           ${repeat(
-            this.actions,
-            (action) => this._getKey(action),
-            (action, idx) => html`
+      this.actions,
+      (action) => this._getKey(action),
+      (action, idx) => html`
               <ha-automation-action-row
                 .path=${[...(this.path ?? []), idx]}
                 .index=${idx}
@@ -104,22 +104,22 @@ export default class HaAutomationAction extends LitElement {
                 .hass=${this.hass}
               >
                 ${this._showReorder && !this.disabled
-                  ? html`
+          ? html`
                       <div class="handle" slot="icons">
                         <ha-svg-icon .path=${mdiDrag}></ha-svg-icon>
                       </div>
                     `
-                  : nothing}
+          : nothing}
               </ha-automation-action-row>
             `
-          )}
+    )}
           <div class="buttons">
             <ha-button
               outlined
               .disabled=${this.disabled}
               .label=${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.add"
-              )}
+      "ui.panel.config.automation.editor.actions.add"
+    )}
               @click=${this._addActionDialog}
             >
               <ha-svg-icon .path=${mdiPlus} slot="icon"></ha-svg-icon>
@@ -127,8 +127,8 @@ export default class HaAutomationAction extends LitElement {
             <ha-button
               .disabled=${this.disabled}
               .label=${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.add_building_block"
-              )}
+      "ui.panel.config.automation.editor.actions.add_building_block"
+    )}
               @click=${this._addActionBuildingBlockDialog}
             >
               <ha-svg-icon .path=${mdiPlus} slot="icon"></ha-svg-icon>
@@ -148,6 +148,7 @@ export default class HaAutomationAction extends LitElement {
       const row = this.shadowRoot!.querySelector<HaAutomationActionRow>(
         "ha-automation-action-row:last-of-type"
       )!;
+
       row.updateComplete.then(() => {
         row.expand();
         row.scrollIntoView();
@@ -308,6 +309,7 @@ export default class HaAutomationAction extends LitElement {
     `;
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

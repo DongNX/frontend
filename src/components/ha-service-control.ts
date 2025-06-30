@@ -389,26 +389,7 @@ export class HaServiceControl extends LitElement {
         : html`
             <div class="description">
               ${description ? html`<p>${description}</p>` : ""}
-              ${this._manifest
-                ? html` <a
-                    href=${this._manifest.is_built_in
-                      ? documentationUrl(
-                          this.hass,
-                          `/integrations/${this._manifest.domain}`
-                        )
-                      : this._manifest.documentation}
-                    title=${this.hass.localize(
-                      "ui.components.service-control.integration_doc"
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <ha-icon-button
-                      .path=${mdiHelpCircle}
-                      class="help-icon"
-                    ></ha-icon-button>
-                  </a>`
-                : nothing}
+              ${this._manifest ? "" : nothing}
             </div>
           `}
       ${serviceData && "target" in serviceData

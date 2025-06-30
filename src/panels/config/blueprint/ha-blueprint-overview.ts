@@ -194,16 +194,16 @@ class HaBlueprintOverview extends LitElement {
                       ),
                       action: () => this._showUsed(blueprint),
                     },
-                    {
-                      path: mdiShareVariant,
-                      disabled: !blueprint.source_url,
-                      label: this.hass.localize(
-                        blueprint.source_url
-                          ? "ui.panel.config.blueprint.overview.share_blueprint"
-                          : "ui.panel.config.blueprint.overview.share_blueprint_no_url"
-                      ),
-                      action: () => this._share(blueprint),
-                    },
+                    // {
+                    //   path: mdiShareVariant,
+                    //   disabled: !blueprint.source_url,
+                    //   label: this.hass.localize(
+                    //     blueprint.source_url
+                    //       ? "ui.panel.config.blueprint.overview.share_blueprint"
+                    //       : "ui.panel.config.blueprint.overview.share_blueprint_no_url"
+                    //   ),
+                    //   action: () => this._share(blueprint),
+                    // },
                     {
                       path: mdiDownload,
                       disabled: !blueprint.source_url,
@@ -265,19 +265,7 @@ class HaBlueprintOverview extends LitElement {
           class="mdc-data-table__cell"
           style="width: 100%; text-align: center;"
           role="cell"
-        >
-          <a
-            href="https://www.home-assistant.io/get-blueprints"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <ha-button
-              >${this.hass.localize(
-                "ui.panel.config.blueprint.overview.discover_more"
-              )}</ha-button
-            >
-          </a>
-        </div>`}
+        ></div>`}
       >
         <ha-icon-button
           slot="toolbar-icon"
@@ -304,20 +292,7 @@ class HaBlueprintOverview extends LitElement {
       title: this.hass.localize("ui.panel.config.blueprint.caption"),
       text: html`
         ${this.hass.localize("ui.panel.config.blueprint.overview.introduction")}
-        <p>
-          <a
-            href=${documentationUrl(
-              this.hass,
-              "/docs/automation/using_blueprints/"
-            )}
-            target="_blank"
-            rel="noreferrer"
-          >
-            ${this.hass.localize(
-              "ui.panel.config.blueprint.overview.learn_more"
-            )}
-          </a>
-        </p>
+        <p></p>
       `,
     });
   }
@@ -503,6 +478,7 @@ class HaBlueprintOverview extends LitElement {
     return haStyle;
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

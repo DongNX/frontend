@@ -56,8 +56,8 @@ const triggerPhrases = {
   event: "triggered_by_event", // event trigger
   time: "triggered_by_time", // time trigger
   "time pattern": "triggered_by_time_pattern", // time trigger
-  "Home Assistant stopping": "triggered_by_homeassistant_stopping", // stop event
-  "Home Assistant starting": "triggered_by_homeassistant_starting", // start event
+  "Digo stopping": "triggered_by_homeassistant_stopping", // stop event
+  "Digo starting": "triggered_by_homeassistant_starting", // start event
 };
 
 export const getLogbookDataForContext = async (

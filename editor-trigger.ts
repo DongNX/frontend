@@ -126,6 +126,7 @@ const SCHEMAS: { name: string; triggers: Trigger[] }[] = [
 ];
 
 @customElement("demo-automation-editor-trigger")
+  // DIGO
 export class DemoAutomationEditorTrigger extends LitElement {
   @state() private hass!: HomeAssistant;
 

@@ -30,6 +30,7 @@ import "./debug/assist-render-pipeline-events";
 import { VoiceAssistantPipelineDetailsDialogParams } from "./show-dialog-voice-assistant-pipeline-detail";
 
 @customElement("dialog-voice-assistant-pipeline-detail")
+  //DIGO
 export class DialogVoiceAssistantPipelineDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

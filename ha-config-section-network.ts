@@ -9,6 +9,7 @@ import "./supervisor-hostname";
 import "./supervisor-network";
 
 @customElement("ha-config-section-network")
+  // DIGO
 class HaConfigSectionNetwork extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

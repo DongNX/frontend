@@ -26,12 +26,12 @@ class HaConfigSectionNetwork extends LitElement {
       >
         <div class="content">
           ${isComponentLoaded(this.hass, "hassio")
-            ? html`<supervisor-hostname
+        ? html`<supervisor-hostname
                   .hass=${this.hass}
                   .narrow=${this.narrow}
                 ></supervisor-hostname>
                 <supervisor-network .hass=${this.hass}></supervisor-network>`
-            : ""}
+        : ""}
           <ha-config-url-form .hass=${this.hass}></ha-config-url-form>
           <ha-config-network .hass=${this.hass}></ha-config-network>
         </div>

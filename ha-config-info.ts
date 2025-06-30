@@ -41,6 +41,7 @@ const PAGES = [
 }[];
 
 @customElement("ha-config-info")
+    //DIGO
 class HaConfigInfo extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

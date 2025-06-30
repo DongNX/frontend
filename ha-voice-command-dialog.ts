@@ -47,6 +47,7 @@ interface Message {
 }
 
 @customElement("ha-voice-command-dialog")
+  //DIGO
 export class HaVoiceCommandDialog extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

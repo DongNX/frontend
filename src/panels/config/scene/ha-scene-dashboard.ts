@@ -150,11 +150,6 @@ class HaSceneDashboard extends LitElement {
         template: (scene) =>
           !scene.attributes.id
             ? html`
-                <simple-tooltip animation-delay="0" position="left">
-                  ${this.hass.localize(
-                    "ui.panel.config.scene.picker.only_editable"
-                  )}
-                </simple-tooltip>
                 <ha-svg-icon
                   .path=${mdiPencilOff}
                   style="color: var(--secondary-text-color)"
@@ -262,15 +257,6 @@ class HaSceneDashboard extends LitElement {
               <p>
                 ${this.hass.localize("ui.panel.config.scene.picker.empty_text")}
               </p>
-              <a
-                href=${documentationUrl(this.hass, "/docs/scene/editor/")}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ha-button>
-                  ${this.hass.localize("ui.panel.config.common.learn_more")}
-                </ha-button>
-              </a>
             </div>`
           : nothing}
         <a href="/config/scene/edit/new" slot="fab">
@@ -365,15 +351,7 @@ class HaSceneDashboard extends LitElement {
       title: this.hass.localize("ui.panel.config.scene.picker.header"),
       text: html`
         ${this.hass.localize("ui.panel.config.scene.picker.introduction")}
-        <p>
-          <a
-            href=${documentationUrl(this.hass, "/docs/scene/editor/")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            ${this.hass.localize("ui.panel.config.scene.picker.learn_more")}
-          </a>
-        </p>
+        <p></p>
       `,
     });
   }
@@ -394,7 +372,6 @@ class HaSceneDashboard extends LitElement {
     ];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-scene-dashboard": HaSceneDashboard;

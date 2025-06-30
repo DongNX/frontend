@@ -80,6 +80,7 @@ export interface MediaPlayerItemId {
 }
 
 @customElement("ha-media-player-browse")
+  // DIGO
 export class HaMediaPlayerBrowse extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

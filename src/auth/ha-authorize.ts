@@ -207,12 +207,6 @@ export class HaAuthorize extends litLocalizeLiteMixin(LitElement) {
           nativeName
           @value-changed=${this._languageChanged}
         ></ha-language-picker>
-        <a
-          href="https://www.home-assistant.io/docs/authentication/"
-          target="_blank"
-          rel="noreferrer noopener"
-          >${this.localize("ui.panel.page-authorize.help")}</a
-        >
       </div>
     `;
   }
@@ -267,7 +261,7 @@ export class HaAuthorize extends litLocalizeLiteMixin(LitElement) {
     }
 
     if (window.innerWidth > 450) {
-      import("../resources/particles");
+      // import("../resources/particles");
     }
 
     // If we are logging into the instance that is hosting this auth form
@@ -334,7 +328,6 @@ export class HaAuthorize extends litLocalizeLiteMixin(LitElement) {
     }
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-authorize": HaAuthorize;

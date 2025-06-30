@@ -257,6 +257,7 @@ export interface Redirect {
 }
 
 @customElement("ha-panel-my")
+  //DIGO
 class HaPanelMy extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

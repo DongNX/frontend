@@ -92,23 +92,23 @@ class ZHAAddDevicesPage extends LitElement {
         >
         <div class="searching">
           ${this._active
-            ? html`
+        ? html`
                 <h1>
                   ${this.hass!.localize(
-                    "ui.panel.config.zha.add_device_page.spinner"
-                  )}
+          "ui.panel.config.zha.add_device_page.spinner"
+        )}
                 </h1>
                 <ha-circular-progress
                   indeterminate
                   aria-label="Searching"
                 ></ha-circular-progress>
               `
-            : html`
+        : html`
                 <div>
                   <mwc-button @click=${this._subscribe} class="search-button">
                     ${this.hass!.localize(
-                      "ui.panel.config.zha.add_device_page.search_again"
-                    )}
+          "ui.panel.config.zha.add_device_page.search_again"
+        )}
                   </mwc-button>
                 </div>
               `}
@@ -116,41 +116,30 @@ class ZHAAddDevicesPage extends LitElement {
         ${this._error ? html` <div class="error">${this._error}</div> ` : ""}
         <div class="content">
           ${Object.keys(this._discoveredDevices).length < 1
-            ? html`
+        ? html`
                 <div class="discovery-text">
                   <h4>
                     ${this.hass.localize(
-                      "ui.panel.config.zha.add_device_page.pairing_mode",
-                      {
-                        documentation_link: html`
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href=${documentationUrl(
-                              this.hass,
-                              "/integrations/zha#adding-devices"
-                            )}
-                          >
-                            ${this.hass.localize(
-                              "ui.panel.config.zha.add_device_page.pairing_mode_link"
-                            )}
-                          </a>
-                        `,
-                      }
-                    )}
+          "ui.panel.config.zha.add_device_page.pairing_mode",
+          {
+            documentation_link: this.hass.localize(
+              "ui.panel.config.zha.add_device_page.pairing_mode_link"
+            ),
+          }
+        )}
                   </h4>
                   <h4>
                     ${this.hass!.localize(
-                      this._active
-                        ? "ui.panel.config.zha.add_device_page.discovered_text"
-                        : "ui.panel.config.zha.add_device_page.no_devices_found"
-                    )}
+          this._active
+            ? "ui.panel.config.zha.add_device_page.discovered_text"
+            : "ui.panel.config.zha.add_device_page.no_devices_found"
+        )}
                   </h4>
                 </div>
               `
-            : html`
+        : html`
                 ${Object.values(this._discoveredDevices).map(
-                  (device) => html`
+          (device) => html`
                     <zha-device-pairing-status-card
                       class="card"
                       .hass=${this.hass}
@@ -159,18 +148,18 @@ class ZHAAddDevicesPage extends LitElement {
                       .showHelp=${this._showHelp}
                     ></zha-device-pairing-status-card>
                   `
-                )}
+        )}
               `}
         </div>
         ${this._showLogs
-          ? html`<ha-textarea
+        ? html`<ha-textarea
               readonly
               class="log"
               autogrow
               .value=${this._formattedEvents}
             >
             </ha-textarea>`
-          : ""}
+        : ""}
       </hass-tabs-subpage>
     `;
   }

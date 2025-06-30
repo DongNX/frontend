@@ -50,6 +50,7 @@ declare global {
 }
 
 @customElement("hui-dialog-edit-card")
+  //DIGO
 export class HuiDialogEditCard
   extends LitElement
   implements HassDialog<EditCardDialogParams>

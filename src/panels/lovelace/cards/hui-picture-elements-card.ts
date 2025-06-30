@@ -49,7 +49,7 @@ class HuiPictureElementsCard extends LitElement implements LovelaceCard {
           },
         },
       ],
-      image: "https://demo.home-assistant.io/stub_config/floorplan.png",
+      image: "",
     };
   }
 
@@ -192,6 +192,7 @@ class HuiPictureElementsCard extends LitElement implements LovelaceCard {
     );
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

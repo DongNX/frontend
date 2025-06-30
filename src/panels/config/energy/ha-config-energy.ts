@@ -88,13 +88,6 @@ class HaConfigEnergy extends LitElement {
           ${this.hass.localize("ui.panel.config.energy.new_device_info")}
         </ha-alert>
         <div class="container">
-          <ha-energy-grid-settings
-            .hass=${this.hass}
-            .preferences=${this._preferences!}
-            .statsMetadata=${this._statsMetadata}
-            .validationResult=${this._validationResult}
-            @value-changed=${this._prefsChanged}
-          ></ha-energy-grid-settings>
           <ha-energy-solar-settings
             .hass=${this.hass}
             .preferences=${this._preferences!}

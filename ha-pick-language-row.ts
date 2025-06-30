@@ -6,6 +6,7 @@ import "../../components/ha-settings-row";
 import { HomeAssistant } from "../../types";
 
 @customElement("ha-pick-language-row")
+  //DIGO
 export class HaPickLanguageRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

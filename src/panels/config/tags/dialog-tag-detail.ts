@@ -15,8 +15,8 @@ import { HomeAssistant } from "../../../types";
 import { TagDetailDialogParams } from "./show-dialog-tag-detail";
 
 const TAG_BASE = "https://www.home-assistant.io/tag/";
-
 @customElement("dialog-tag-detail")
+  // DIGO
 class DialogTagDetail
   extends LitElement
   implements HassDialog<TagDetailDialogParams>
@@ -108,14 +108,9 @@ class DialogTagDetail
                 <div>
                   <p>
                     ${this.hass!.localize("ui.panel.config.tag.detail.usage", {
-                      companion_link: html`<a
-                        href="https://companion.home-assistant.io/"
-                        target="_blank"
-                        rel="noreferrer"
-                        >${this.hass!.localize(
-                          "ui.panel.config.tag.detail.companion_apps"
-                        )}</a
-                      >`,
+                      companion_link: this.hass!.localize(
+                        "ui.panel.config.tag.detail.companion_apps"
+                      ),
                     })}
                   </p>
                 </div>

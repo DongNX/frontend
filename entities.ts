@@ -1,6 +1,7 @@
 import { convertEntities } from "../../../../src/fake_data/entity";
 import { DemoConfig } from "../types";
 
+//DIGO
 export const demoEntitiesSections: DemoConfig["entities"] = () =>
   convertEntities({
     "cover.living_room_garden_shutter": {

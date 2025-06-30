@@ -71,6 +71,7 @@ export interface IntegrationListItem {
   single_config_entry?: boolean;
 }
 
+// DIGO
 @customElement("dialog-add-integration")
 class AddIntegrationDialog extends LitElement {
   public hass!: HomeAssistant;

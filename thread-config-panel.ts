@@ -62,6 +62,7 @@ interface ThreadNetwork {
 }
 
 @customElement("thread-config-panel")
+  //DIGO
 export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

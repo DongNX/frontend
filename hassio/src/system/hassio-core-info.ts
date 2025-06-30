@@ -67,8 +67,8 @@ class HassioCoreInfo extends LitElement {
                 core-${this.supervisor.core.version_latest}
               </span>
               ${!atLeastVersion(this.hass.config.version, 2021, 12) &&
-              this.supervisor.core.update_available
-                ? html`
+        this.supervisor.core.update_available
+        ? html`
                     <a href="/hassio/update-available/core">
                       <mwc-button
                         .label=${this.supervisor.localize("common.show")}
@@ -76,19 +76,19 @@ class HassioCoreInfo extends LitElement {
                       </mwc-button>
                     </a>
                   `
-                : ""}
+        : ""}
             </ha-settings-row>
           </div>
           <div>
             ${metrics.map(
-              (metric) => html`
+          (metric) => html`
                 <supervisor-metric
                   .description=${metric.description}
                   .value=${metric.value ?? 0}
                   .tooltip=${metric.tooltip}
                 ></supervisor-metric>
               `
-            )}
+        )}
           </div>
         </div>
         <div class="card-actions">
@@ -97,8 +97,8 @@ class HassioCoreInfo extends LitElement {
             class="warning"
             @click=${this._coreRestart}
             .title=${this.supervisor.localize("common.restart_name", {
-              name: "Core",
-            })}
+          name: "Core",
+        })}
           >
             ${this.supervisor.localize("common.restart_name", { name: "Core" })}
           </ha-progress-button>
@@ -121,10 +121,10 @@ class HassioCoreInfo extends LitElement {
 
     const confirmed = await showConfirmationDialog(this, {
       title: this.supervisor.localize("confirm.restart.title", {
-        name: "Home Assistant Core",
+        name: "Digo Core",
       }),
       text: this.supervisor.localize("confirm.restart.text", {
-        name: "Home Assistant Core",
+        name: "Digo Core",
       }),
       confirmText: this.supervisor.localize("common.restart"),
       dismissText: this.supervisor.localize("common.cancel"),
@@ -141,7 +141,7 @@ class HassioCoreInfo extends LitElement {
       if (this.hass.connection.connected) {
         showAlertDialog(this, {
           title: this.supervisor.localize("common.failed_to_restart_name", {
-            name: "Home Assistant Core",
+            name: "Digo Core",
           }),
           text: extractApiErrorMessage(err),
         });

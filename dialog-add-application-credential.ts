@@ -32,7 +32,7 @@ const rowRenderer: ComboBoxLitRenderer<Domain> = (item) =>
   html`<mwc-list-item>
     <span>${item.name}</span>
   </mwc-list-item>`;
-
+// DIGO
 @customElement("dialog-add-application-credential")
 export class DialogAddApplicationCredential extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

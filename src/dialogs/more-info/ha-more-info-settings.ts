@@ -41,12 +41,7 @@ export class HaMoreInfoSettings extends LitElement {
           <ha-alert alert-type="warning">
             ${this.hass.localize("ui.dialogs.entity_registry.no_unique_id", {
               entity_id: this.entityId,
-              faq_link: html`<a
-                href=${documentationUrl(this.hass, "/faq/unique_id")}
-                target="_blank"
-                rel="noreferrer"
-                >${this.hass.localize("ui.dialogs.entity_registry.faq")}</a
-              >`,
+              faq_link: "",
             })}
           </ha-alert>
         </div>
@@ -97,7 +92,6 @@ export class HaMoreInfoSettings extends LitElement {
     ];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-more-info-settings": HaMoreInfoSettings;

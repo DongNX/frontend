@@ -26,6 +26,7 @@ import type { SystemLogDetailDialogParams } from "./show-dialog-system-log-detai
 import { formatSystemLogTime } from "./util";
 
 class DialogSystemLogDetail extends LitElement {
+  // digo
   @property({ attribute: false }) public hass!: HomeAssistant;
 
   @state() private _params?: SystemLogDetailDialogParams;

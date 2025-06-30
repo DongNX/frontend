@@ -20,7 +20,7 @@ import { navigate } from "../../../common/navigate";
 const logProviders: LogProvider[] = [
   {
     key: "core",
-    name: "Home Assistant Core",
+    name: "Digo Core",
   },
   {
     key: "supervisor",
@@ -43,6 +43,7 @@ const logProviders: LogProvider[] = [
     name: "Multicast",
   },
 ];
+
 
 @customElement("ha-config-logs")
 export class HaConfigLogs extends LitElement {
@@ -111,13 +112,13 @@ export class HaConfigLogs extends LitElement {
         back-path="/config/system"
       >
         ${isComponentLoaded(this.hass, "hassio")
-          ? html`
+        ? html`
               <ha-button-menu slot="toolbar-icon">
                 <ha-button
                   slot="trigger"
                   .label=${this._logProviders.find(
-                    (p) => p.key === this._selectedLogProvider
-                  )!.name}
+          (p) => p.key === this._selectedLogProvider
+        )!.name}
                 >
                   <ha-svg-icon
                     slot="trailingIcon"
@@ -125,7 +126,7 @@ export class HaConfigLogs extends LitElement {
                   ></ha-svg-icon>
                 </ha-button>
                 ${this._logProviders.map(
-                  (provider) => html`
+          (provider) => html`
                     <mwc-list-item
                       ?selected=${provider.key === this._selectedLogProvider}
                       .provider=${provider.key}
@@ -134,28 +135,28 @@ export class HaConfigLogs extends LitElement {
                       ${provider.name}
                     </mwc-list-item>
                   `
-                )}
+        )}
               </ha-button-menu>
             `
-          : ""}
+        : ""}
         ${search}
         <div class="content">
           ${this._selectedLogProvider === "core"
-            ? html`
+        ? html`
                 <system-log-card
                   .hass=${this.hass}
                   .header=${this._logProviders.find(
-                    (p) => p.key === this._selectedLogProvider
-                  )!.name}
+          (p) => p.key === this._selectedLogProvider
+        )!.name}
                   .filter=${this._filter}
                 ></system-log-card>
               `
-            : ""}
+        : ""}
           <error-log-card
             .hass=${this.hass}
             .header=${this._logProviders.find(
-              (p) => p.key === this._selectedLogProvider
-            )!.name}
+          (p) => p.key === this._selectedLogProvider
+        )!.name}
             .filter=${this._filter}
             .provider=${this._selectedLogProvider}
             .show=${this._selectedLogProvider !== "core"}

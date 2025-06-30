@@ -54,6 +54,7 @@ import { LovelaceCard } from "../lovelace/types";
 import { showTodoItemEditDialog } from "./show-dialog-todo-item-editor";
 
 @customElement("ha-panel-todo")
+  //DIGO
 class PanelTodo extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

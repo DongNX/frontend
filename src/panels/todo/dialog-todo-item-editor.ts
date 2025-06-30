@@ -25,7 +25,9 @@ import { haStyleDialog } from "../../resources/styles";
 import { HomeAssistant } from "../../types";
 import { TodoItemEditDialogParams } from "./show-dialog-todo-item-editor";
 
+
 @customElement("dialog-todo-item-editor")
+  // DIGO
 class DialogTodoItemEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -46,8 +48,8 @@ class DialogTodoItemEditor extends LitElement {
   @state() private _submitting = false;
 
   // Dates are manipulated and displayed in the browser timezone
-  // which may be different from the Home Assistant timezone. When
-  // events are persisted, they are relative to the Home Assistant
+  // which may be different from the Digo timezone. When
+  // events are persisted, they are relative to the Digo
   // timezone, but floating without a timezone.
   private _timeZone?: string;
 
@@ -105,16 +107,16 @@ class DialogTodoItemEditor extends LitElement {
         @closed=${this.closeDialog}
         scrimClickAction
         .heading=${createCloseHeading(
-          this.hass,
-          this.hass.localize(
-            `ui.components.todo.item.${isCreate ? "add" : "edit"}`
-          )
-        )}
+      this.hass,
+      this.hass.localize(
+        `ui.components.todo.item.${isCreate ? "add" : "edit"}`
+      )
+    )}
       >
         <div class="content">
           ${this._error
-            ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
-            : ""}
+        ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
+        : ""}
 
           <div class="flex">
             <ha-checkbox
@@ -130,34 +132,34 @@ class DialogTodoItemEditor extends LitElement {
               required
               @input=${this._handleSummaryChanged}
               .validationMessage=${this.hass.localize(
-                "ui.common.error_required"
-              )}
+          "ui.common.error_required"
+        )}
               dialogInitialFocus
               .disabled=${!canUpdate}
             ></ha-textfield>
           </div>
           ${this._todoListSupportsFeature(
-            TodoListEntityFeature.SET_DESCRIPTION_ON_ITEM
-          )
-            ? html`<ha-textarea
+          TodoListEntityFeature.SET_DESCRIPTION_ON_ITEM
+        )
+        ? html`<ha-textarea
                 class="description"
                 name="description"
                 .label=${this.hass.localize(
-                  "ui.components.todo.item.description"
-                )}
+          "ui.components.todo.item.description"
+        )}
                 .value=${this._description}
                 @input=${this._handleDescriptionChanged}
                 autogrow
                 .disabled=${!canUpdate}
               ></ha-textarea>`
-            : nothing}
+        : nothing}
           ${this._todoListSupportsFeature(
-            TodoListEntityFeature.SET_DUE_DATE_ON_ITEM
-          ) ||
-          this._todoListSupportsFeature(
-            TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
-          )
-            ? html`<div>
+          TodoListEntityFeature.SET_DUE_DATE_ON_ITEM
+        ) ||
+        this._todoListSupportsFeature(
+          TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
+        )
+        ? html`<div>
                 <span class="label"
                   >${this.hass.localize("ui.components.todo.item.due")}:</span
                 >
@@ -170,21 +172,21 @@ class DialogTodoItemEditor extends LitElement {
                     canClear
                   ></ha-date-input>
                   ${this._todoListSupportsFeature(
-                    TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
-                  )
-                    ? html`<ha-time-input
+          TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
+        )
+            ? html`<ha-time-input
                         .value=${dueTime}
                         .locale=${this.hass.locale}
                         .disabled=${!canUpdate}
                         @value-changed=${this._dueTimeChanged}
                       ></ha-time-input>`
-                    : nothing}
+            : nothing}
                 </div>
               </div>`
-            : nothing}
+        : nothing}
         </div>
         ${isCreate
-          ? html`
+        ? html`
               <mwc-button
                 slot="primaryAction"
                 @click=${this._createItem}
@@ -193,7 +195,7 @@ class DialogTodoItemEditor extends LitElement {
                 ${this.hass.localize("ui.components.todo.item.add")}
               </mwc-button>
             `
-          : html`
+        : html`
               <mwc-button
                 slot="primaryAction"
                 @click=${this._saveItem}
@@ -202,9 +204,9 @@ class DialogTodoItemEditor extends LitElement {
                 ${this.hass.localize("ui.components.todo.item.save")}
               </mwc-button>
               ${this._todoListSupportsFeature(
-                TodoListEntityFeature.DELETE_TODO_ITEM
-              )
-                ? html`
+          TodoListEntityFeature.DELETE_TODO_ITEM
+        )
+            ? html`
                     <mwc-button
                       slot="secondaryAction"
                       class="warning"
@@ -214,7 +216,7 @@ class DialogTodoItemEditor extends LitElement {
                       ${this.hass.localize("ui.components.todo.item.delete")}
                     </mwc-button>
                   `
-                : ""}
+            : ""}
             `}
       </ha-dialog>
     `;
@@ -336,11 +338,11 @@ class DialogTodoItemEditor extends LitElement {
             ? this._due.toISOString()
             : this._formatDate(this._due)
           : this._todoListSupportsFeature(
-                TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
-              ) ||
-              this._todoListSupportsFeature(
-                TodoListEntityFeature.SET_DUE_DATE_ON_ITEM
-              )
+            TodoListEntityFeature.SET_DUE_DATETIME_ON_ITEM
+          ) ||
+            this._todoListSupportsFeature(
+              TodoListEntityFeature.SET_DUE_DATE_ON_ITEM
+            )
             ? null
             : undefined,
         status: this._checked

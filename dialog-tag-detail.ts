@@ -17,6 +17,7 @@ import { TagDetailDialogParams } from "./show-dialog-tag-detail";
 const TAG_BASE = "https://www.home-assistant.io/tag/";
 
 @customElement("dialog-tag-detail")
+  // DIGO
 class DialogTagDetail
   extends LitElement
   implements HassDialog<TagDetailDialogParams>

@@ -75,6 +75,7 @@ const createNewFunctions = {
 };
 
 @customElement("ha-blueprint-overview")
+    // DIGO
 class HaBlueprintOverview extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -30,6 +30,7 @@ import "./debug/assist-render-pipeline-events";
 import { VoiceAssistantPipelineDetailsDialogParams } from "./show-dialog-voice-assistant-pipeline-detail";
 
 @customElement("dialog-voice-assistant-pipeline-detail")
+  //DIGO
 export class DialogVoiceAssistantPipelineDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -52,10 +53,11 @@ export class DialogVoiceAssistantPipelineDetail extends LitElement {
     this._error = undefined;
     this._cloudActive = this._params.cloudActiveSubscription;
     if (this._params.pipeline) {
-      this._data = this._params.pipeline;
+      this._data = { ...this._params.pipeline, conversation_engine: "DIGO" };
       this._preferred = this._params.preferred;
     } else {
       this._data = {
+        conversation_engine: "digo",
         language: (
           this.hass.config.language || this.hass.locale.language
         ).substring(0, 2),
@@ -84,7 +86,6 @@ export class DialogVoiceAssistantPipelineDetail extends LitElement {
     if (!this._params || !this._data) {
       return nothing;
     }
-
     const title = this._params.pipeline?.id
       ? this._params.pipeline.name
       : this.hass.localize(

@@ -74,21 +74,6 @@ export class HaManualScriptEditor extends LitElement {
                   "ui.panel.config.script.editor.field.fields"
                 )}
               </h2>
-              <a
-                href=${documentationUrl(
-                  this.hass,
-                  "/integrations/script/#fields"
-                )}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ha-icon-button
-                  .path=${mdiHelpCircle}
-                  .label=${this.hass.localize(
-                    "ui.panel.config.script.editor.field.link_help_fields"
-                  )}
-                ></ha-icon-button>
-              </a>
             </div>
 
             <ha-script-fields
@@ -105,18 +90,6 @@ export class HaManualScriptEditor extends LitElement {
         <h2 id="sequence-heading" class="name">
           ${this.hass.localize("ui.panel.config.script.editor.sequence")}
         </h2>
-        <a
-          href=${documentationUrl(this.hass, "/docs/scripts/")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <ha-icon-button
-            .path=${mdiHelpCircle}
-            .label=${this.hass.localize(
-              "ui.panel.config.script.editor.link_available_actions"
-            )}
-          ></ha-icon-button>
-        </a>
       </div>
 
       <ha-automation-action
@@ -207,6 +180,7 @@ export class HaManualScriptEditor extends LitElement {
     ];
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

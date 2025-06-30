@@ -19,6 +19,7 @@ import { HomeAssistant } from "../../../types";
 import { CastConfig, LovelaceRow } from "../entity-rows/types";
 
 @customElement("hui-cast-row")
+  //DIGO
 class HuiCastRow extends LitElement implements LovelaceRow {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

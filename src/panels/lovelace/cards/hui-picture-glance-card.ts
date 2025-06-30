@@ -58,7 +58,8 @@ class HuiPictureGlanceCard extends LitElement implements LovelaceCard {
     return {
       type: "picture-glance",
       title: "Kitchen",
-      image: "https://demo.home-assistant.io/stub_config/kitchen.png",
+      image:
+        "https://digotech.net/static/media/img_hardware_3.ee02396ea421a6b185d4.png",
       entities: foundEntities,
     };
   }

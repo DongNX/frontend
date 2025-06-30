@@ -18,6 +18,7 @@ import "../../panels/config/entities/entity-registry-settings";
 import type { HomeAssistant } from "../../types";
 
 @customElement("ha-more-info-settings")
+  //DIGO
 export class HaMoreInfoSettings extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

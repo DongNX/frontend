@@ -169,58 +169,47 @@ export class HaVoiceCommandDialog extends LitElement {
                 ></ha-svg-icon>
               </ha-button>
               ${this._pipelines?.map(
-                (pipeline) =>
-                  html`<ha-list-item
+      (pipeline) =>
+        html`<ha-list-item
                     ?selected=${pipeline.id === this._pipelineId ||
-                    (!this._pipelineId &&
-                      pipeline.id === this._preferredPipeline)}
+          (!this._pipelineId &&
+            pipeline.id === this._preferredPipeline)}
                     .pipeline=${pipeline.id}
                     @click=${this._selectPipeline}
                     .hasMeta=${pipeline.id === this._preferredPipeline}
                   >
                     ${pipeline.name}${pipeline.id === this._preferredPipeline
-                      ? html`
+            ? html`
                           <ha-svg-icon
                             slot="meta"
                             .path=${mdiStar}
                           ></ha-svg-icon>
                         `
-                      : nothing}
+            : nothing}
                   </ha-list-item>`
-              )}
+    )}
               ${this.hass.user?.is_admin
-                ? html`<li divider role="separator"></li>
+        ? html`<li divider role="separator"></li>
                     <a href="/config/voice-assistants/assistants"
                       ><ha-list-item @click=${this.closeDialog}
                         >${this.hass.localize(
-                          "ui.dialogs.voice_command.manage_assistants"
-                        )}</ha-list-item
+          "ui.dialogs.voice_command.manage_assistants"
+        )}</ha-list-item
                       ></a
                     >`
-                : nothing}
+        : nothing}
             </ha-button-menu>
           </div>
-          <a
-            href=${documentationUrl(this.hass, "/docs/assist/")}
-            slot="actionItems"
-            target="_blank"
-            rel="noopener noreferer"
-          >
-            <ha-icon-button
-              .label=${this.hass.localize("ui.common.help")}
-              .path=${mdiHelpCircleOutline}
-            ></ha-icon-button>
-          </a>
         </ha-dialog-header>
         <div class="messages">
           <div class="messages-container" id="scroll-container">
             ${this._conversation!.map(
-              (message) => html`
+          (message) => html`
                 <div class=${this._computeMessageClasses(message)}>
                   ${message.text}
                 </div>
               `
-            )}
+        )}
           </div>
         </div>
         <div class="input" slot="primaryAction">
@@ -234,44 +223,44 @@ export class HaVoiceCommandDialog extends LitElement {
           >
             <span slot="trailingIcon">
               ${this._showSendButton || !supportsSTT
-                ? html`
+        ? html`
                     <ha-icon-button
                       class="listening-icon"
                       .path=${mdiSend}
                       @click=${this._handleSendMessage}
                       .label=${this.hass.localize(
-                        "ui.dialogs.voice_command.send_text"
-                      )}
+          "ui.dialogs.voice_command.send_text"
+        )}
                     >
                     </ha-icon-button>
                   `
-                : html`
+        : html`
                     ${this._audioRecorder?.active
-                      ? html`
+            ? html`
                           <div class="bouncer">
                             <div class="double-bounce1"></div>
                             <div class="double-bounce2"></div>
                           </div>
                         `
-                      : nothing}
+            : nothing}
 
                     <div class="listening-icon">
                       <ha-icon-button
                         .path=${mdiMicrophone}
                         @click=${this._handleListeningButton}
                         .label=${this.hass.localize(
-                          "ui.dialogs.voice_command.start_listening"
-                        )}
+              "ui.dialogs.voice_command.start_listening"
+            )}
                       >
                       </ha-icon-button>
                       ${!supportsMicrophone
-                        ? html`
+            ? html`
                             <ha-svg-icon
                               .path=${mdiAlertCircle}
                               class="unsupported"
                             ></ha-svg-icon>
                           `
-                        : null}
+            : null}
                     </div>
                   `}
             </span>
@@ -430,29 +419,18 @@ export class HaVoiceCommandDialog extends LitElement {
       text: html`
         <p>
           ${this.hass.localize(
-            "ui.dialogs.voice_command.not_supported_microphone_browser"
-          )}
+        "ui.dialogs.voice_command.not_supported_microphone_browser"
+      )}
         </p>
         <p>
           ${this.hass.localize(
-            "ui.dialogs.voice_command.not_supported_microphone_documentation",
-            {
-              documentation_link: html`
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href=${documentationUrl(
-                    this.hass,
-                    "/docs/configuration/securing/#remote-access"
-                  )}
-                >
-                  ${this.hass.localize(
-                    "ui.dialogs.voice_command.not_supported_microphone_documentation_link"
-                  )}
-                </a>
-              `,
-            }
-          )}
+        "ui.dialogs.voice_command.not_supported_microphone_documentation",
+        {
+          documentation_link: this.hass.localize(
+            "ui.dialogs.voice_command.not_supported_microphone_documentation_link"
+          ),
+        }
+      )}
         </p>
       `,
     });

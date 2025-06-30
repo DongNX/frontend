@@ -127,17 +127,17 @@ export class HaConfigTags extends SubscribeMixin(LitElement) {
           .path=${mdiRobot}
         ></ha-icon-button>`,
     };
-    columns.edit = {
-      title: "",
-      type: "icon-button",
-      template: (tag) =>
-        html` <ha-icon-button
-          .tag=${tag}
-          @click=${this._handleEditClick}
-          .label=${this.hass.localize("ui.panel.config.tag.edit")}
-          .path=${mdiCog}
-        ></ha-icon-button>`,
-    };
+    // columns.edit = {
+    //   title: "",
+    //   type: "icon-button",
+    //   template: (tag) =>
+    //     html` <ha-icon-button
+    //       .tag=${tag}
+    //       @click=${this._handleEditClick}
+    //       .label=${this.hass.localize("ui.panel.config.tag.edit")}
+    //       .path=${mdiCog}
+    //     ></ha-icon-button>`,
+    // };
     return columns;
   });
 
@@ -183,12 +183,6 @@ export class HaConfigTags extends SubscribeMixin(LitElement) {
         .noDataText=${this.hass.localize("ui.panel.config.tag.no_tags")}
         hasFab
       >
-        <ha-icon-button
-          slot="toolbar-icon"
-          @click=${this._showHelp}
-          .label=${this.hass.localize("ui.common.help")}
-          .path=${mdiHelpCircle}
-        ></ha-icon-button>
         <ha-fab
           slot="fab"
           .label=${this.hass.localize("ui.panel.config.tag.add_tag")}
@@ -217,35 +211,6 @@ export class HaConfigTags extends SubscribeMixin(LitElement) {
 
   private _handleEditClick = (ev: Event) =>
     this._openDialog((ev.currentTarget as any).tag);
-
-  private _showHelp() {
-    showAlertDialog(this, {
-      title: this.hass.localize("ui.panel.config.tag.caption"),
-      text: html`
-        <p>
-          ${this.hass.localize("ui.panel.config.tag.detail.usage", {
-            companion_link: html`<a
-              href="https://companion.home-assistant.io/"
-              target="_blank"
-              rel="noreferrer"
-              >${this.hass!.localize(
-                "ui.panel.config.tag.detail.companion_apps"
-              )}</a
-            >`,
-          })}
-        </p>
-        <p>
-          <a
-            href=${documentationUrl(this.hass, "/integrations/tag/")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            ${this.hass.localize("ui.panel.config.tag.learn_more")}
-          </a>
-        </p>
-      `,
-    });
-  }
 
   private async _fetchTags() {
     this._tags = await fetchTags(this.hass);
@@ -316,7 +281,6 @@ export class HaConfigTags extends SubscribeMixin(LitElement) {
     }
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-config-tags": HaConfigTags;

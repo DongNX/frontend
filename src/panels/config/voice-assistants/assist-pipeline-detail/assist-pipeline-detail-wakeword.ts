@@ -8,14 +8,14 @@ import {
 } from "lit";
 import { customElement, property, state } from "lit/decorators";
 import memoizeOne from "memoize-one";
+import { fireEvent } from "../../../../common/dom/fire_event";
 import { LocalizeKeys } from "../../../../common/translations/localize";
 import "../../../../components/ha-form/ha-form";
 import { AssistPipeline } from "../../../../data/assist_pipeline";
-import { HomeAssistant } from "../../../../types";
 import { fetchWakeWordInfo, WakeWord } from "../../../../data/wake_word";
-import { documentationUrl } from "../../../../util/documentation-url";
-import { fireEvent } from "../../../../common/dom/fire_event";
+import { HomeAssistant } from "../../../../types";
 
+// DIGO
 @customElement("assist-pipeline-detail-wakeword")
 export class AssistPipelineDetailWakeWord extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -107,19 +107,8 @@ export class AssistPipelineDetailWakeWord extends LitElement {
           </div>
           ${!hasWakeWorkEntities
             ? html`${this.hass.localize(
-                  `ui.panel.config.voice_assistants.assistants.pipeline.detail.steps.wakeword.no_wake_words`
-                )}
-                <a
-                  href=${documentationUrl(
-                    this.hass,
-                    "/voice_control/install_wake_word_add_on/"
-                  )}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  >${this.hass.localize(
-                    `ui.panel.config.voice_assistants.assistants.pipeline.detail.steps.wakeword.no_wake_words_link`
-                  )}</a
-                >`
+                `ui.panel.config.voice_assistants.assistants.pipeline.detail.steps.wakeword.no_wake_words`
+              )} `
             : nothing}
           <ha-form
             .schema=${this._schema(this._wakeWords)}

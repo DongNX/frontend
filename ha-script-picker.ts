@@ -63,6 +63,7 @@ type ScriptItem = ScriptEntity & {
 };
 
 @customElement("ha-script-picker")
+  //DIGO
 class HaScriptPicker extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -39,6 +39,7 @@ const COMPONENTS = {
 };
 
 @customElement("partial-panel-resolver")
+  //digo
 class PartialPanelResolver extends HassRouterPage {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

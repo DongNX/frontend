@@ -26,6 +26,7 @@ import { HomeAssistant } from "../../types";
 import { TodoItemEditDialogParams } from "./show-dialog-todo-item-editor";
 
 @customElement("dialog-todo-item-editor")
+  // DIGO
 class DialogTodoItemEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

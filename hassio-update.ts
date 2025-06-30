@@ -21,6 +21,7 @@ const computeVersion = (key: string, version: string): string =>
   key === "os" ? version : `${key}-${version}`;
 
 @customElement("hassio-update")
+  //DIGO
 export class HassioUpdate extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

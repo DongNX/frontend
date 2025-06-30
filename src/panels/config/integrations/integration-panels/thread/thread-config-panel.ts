@@ -88,72 +88,63 @@ export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
           ></ha-icon-button>
           <a
             href=${getConfigEntryDiagnosticsDownloadUrl(
-              this._configEntryId || ""
-            )}
+      this._configEntryId || ""
+    )}
             target="_blank"
             @click=${this._signUrl}
           >
             <mwc-list-item>
               ${this.hass.localize(
-                "ui.panel.config.integrations.config_entry.download_diagnostics"
-              )}
+      "ui.panel.config.integrations.config_entry.download_diagnostics"
+    )}
             </mwc-list-item>
           </a>
           <mwc-list-item @click=${this._addTLV}
             >${this.hass.localize(
-              "ui.panel.config.thread.add_dataset_from_tlv"
-            )}</mwc-list-item
+      "ui.panel.config.thread.add_dataset_from_tlv"
+    )}</mwc-list-item
           >
           ${!this._otbrInfo
-            ? html`<mwc-list-item @click=${this._addOTBR}
+        ? html`<mwc-list-item @click=${this._addOTBR}
                 >${this.hass.localize(
-                  "ui.panel.config.thread.add_open_thread_border_router"
-                )}</mwc-list-item
+          "ui.panel.config.thread.add_open_thread_border_router"
+        )}</mwc-list-item
               >`
-            : ""}
+        : ""}
         </ha-button-menu>
         <div class="content">
           <h1>${this.hass.localize("ui.panel.config.thread.my_network")}</h1>
           ${networks.preferred
-            ? this._renderNetwork(networks.preferred)
-            : html`<ha-card>
+        ? this._renderNetwork(networks.preferred)
+        : html`<ha-card>
                 <div class="card-content no-routers">
                   <h3>
                     ${this.hass.localize(
-                      "ui.panel.config.thread.no_preferred_network"
-                    )}
+          "ui.panel.config.thread.no_preferred_network"
+        )}
                   </h3>
                   <ha-svg-icon .path=${mdiDevices}></ha-svg-icon>
-                  <a
-                    href=${documentationUrl(this.hass, `/integrations/thread`)}
-                    target="_blank"
-                  >
-                    <mwc-button
-                      >${this.hass.localize(
-                        "ui.panel.config.thread.more_info"
-                      )}</mwc-button
-                    >
-                  </a>
+
                 </div>
               </ha-card>`}
           ${networks.networks.length
-            ? html`<h3>
+        ? html`<h3>
                   ${this.hass.localize("ui.panel.config.thread.other_networks")}
                 </h3>
                 ${networks.networks.map((network) =>
-                  this._renderNetwork(network)
-                )}`
-            : ""}
+          this._renderNetwork(network)
+        )}`
+        : ""}
         </div>
         ${this.hass.auth.external?.config.canImportThreadCredentials
-          ? html`<ha-fab
+        ? html`<ha-fab
               slot="fab"
               @click=${this._importExternalThreadCredentials}
               extended
               label="Import credentials"
               ><ha-svg-icon slot="icon" .path=${mdiCellphoneKey}></ha-svg-icon
             ></ha-fab>`
-          : nothing}
+        : nothing}
       </hass-subpage>
     `;
   }
@@ -162,35 +153,35 @@ export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
     return html`<ha-card>
       <div class="card-header">
         ${network.name}${network.dataset
-          ? html`<div>
+        ? html`<div>
               <ha-icon-button
                 .networkDataset=${network.dataset}
                 .path=${mdiInformationOutline}
                 @click=${this._showDatasetInfo}
               ></ha-icon-button
               >${!network.dataset.preferred && !network.routers?.length
-                ? html`<ha-icon-button
+            ? html`<ha-icon-button
                     .networkDataset=${network.dataset}
                     .path=${mdiDeleteOutline}
                     @click=${this._removeDataset}
                   ></ha-icon-button>`
-                : ""}
+            : ""}
             </div>`
-          : ""}
+        : ""}
       </div>
       ${network.routers?.length
         ? html`<div class="card-content routers">
               <h4>
                 ${this.hass.localize("ui.panel.config.thread.border_routers", {
-                  count: network.routers.length,
-                })}
+          count: network.routers.length,
+        })}
               </h4>
             </div>
             ${network.routers.map((router) => {
-              const showOverflow =
-                ("dataset" in network && router.border_agent_id) ||
-                router.extended_address === this._otbrInfo?.extended_address;
-              return html`<ha-list-item
+          const showOverflow =
+            ("dataset" in network && router.border_agent_id) ||
+            router.extended_address === this._otbrInfo?.extended_address;
+          return html`<ha-list-item
                 class="router"
                 twoline
                 graphic="avatar"
@@ -199,11 +190,11 @@ export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
                 <img
                   slot="graphic"
                   .src=${brandsUrl({
-                    domain: router.brand,
-                    brand: true,
-                    type: "icon",
-                    darkOptimized: this.hass.themes?.darkMode,
-                  })}
+            domain: router.brand,
+            brand: true,
+            type: "icon",
+            darkOptimized: this.hass.themes?.darkMode,
+          })}
                   alt=${router.brand}
                   crossorigin="anonymous"
                   referrerpolicy="no-referrer"
@@ -211,20 +202,20 @@ export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
                   @load=${this._onImageLoad}
                 />
                 ${router.model_name ||
-                router.server?.replace(".local.", "") ||
-                ""}
+            router.server?.replace(".local.", "") ||
+            ""}
                 <span slot="secondary">${router.server}</span>
                 ${showOverflow
-                  ? html`${network.dataset &&
-                      router.extended_address ===
-                        network.dataset.preferred_extended_address
-                        ? html`<ha-svg-icon
+              ? html`${network.dataset &&
+                router.extended_address ===
+                network.dataset.preferred_extended_address
+                ? html`<ha-svg-icon
                             .path=${mdiCellphoneKey}
                             .title=${this.hass.localize(
-                              "ui.panel.config.thread.default_router"
-                            )}
+                  "ui.panel.config.thread.default_router"
+                )}
                           ></ha-svg-icon>`
-                        : ""}
+                : ""}
                       <ha-button-menu
                         slot="meta"
                         .network=${network}
@@ -233,65 +224,65 @@ export class ThreadConfigPanel extends SubscribeMixin(LitElement) {
                       >
                         <ha-icon-button
                           .label=${this.hass.localize(
-                            "ui.common.overflow_menu"
-                          )}
+                  "ui.common.overflow_menu"
+                )}
                           .path=${mdiDotsVertical}
                           slot="trigger"
                         ></ha-icon-button>
                         ${network.dataset && router.border_agent_id
-                          ? html`<ha-list-item
+                  ? html`<ha-list-item
                               .disabled=${router.border_agent_id ===
-                              network.dataset.preferred_border_agent_id}
+                    network.dataset.preferred_border_agent_id}
                             >
                               ${router.border_agent_id ===
-                              network.dataset.preferred_border_agent_id
-                                ? this.hass.localize(
-                                    "ui.panel.config.thread.default_router"
-                                  )
-                                : this.hass.localize(
-                                    "ui.panel.config.thread.set_default_router"
-                                  )}
+                      network.dataset.preferred_border_agent_id
+                      ? this.hass.localize(
+                        "ui.panel.config.thread.default_router"
+                      )
+                      : this.hass.localize(
+                        "ui.panel.config.thread.set_default_router"
+                      )}
                             </ha-list-item>`
-                          : ""}
+                  : ""}
                         ${router.extended_address ===
-                        this._otbrInfo?.extended_address
-                          ? html`<ha-list-item>
+                  this._otbrInfo?.extended_address
+                  ? html`<ha-list-item>
                                 ${this.hass.localize(
-                                  "ui.panel.config.thread.reset_border_router"
-                                )}</ha-list-item
+                    "ui.panel.config.thread.reset_border_router"
+                  )}</ha-list-item
                               >
                               <ha-list-item>
                                 ${this.hass.localize(
-                                  "ui.panel.config.thread.change_channel"
-                                )}</ha-list-item
+                    "ui.panel.config.thread.change_channel"
+                  )}</ha-list-item
                               >
                               ${network.dataset?.preferred
-                                ? ""
-                                : html`<ha-list-item>
+                      ? ""
+                      : html`<ha-list-item>
                                     ${this.hass.localize(
-                                      "ui.panel.config.thread.add_to_my_network"
-                                    )}
+                        "ui.panel.config.thread.add_to_my_network"
+                      )}
                                   </ha-list-item>`}`
-                          : ""}
-                      </ha-button-menu>`
                   : ""}
+                      </ha-button-menu>`
+              : ""}
               </ha-list-item>`;
-            })}`
+        })}`
         : html`<div class="card-content no-routers">
             <ha-svg-icon .path=${mdiDevices}></ha-svg-icon>
             ${network.dataset?.extended_pan_id &&
             this._otbrInfo?.active_dataset_tlvs?.includes(
               network.dataset.extended_pan_id
             )
-              ? html`${this.hass.localize(
-                    "ui.panel.config.thread.no_routers_otbr_network"
-                  )}
+            ? html`${this.hass.localize(
+              "ui.panel.config.thread.no_routers_otbr_network"
+            )}
                   <mwc-button @click=${this._resetBorderRouter}
                     >${this.hass.localize(
-                      "ui.panel.config.thread.reset_border_router"
-                    )}</mwc-button
+              "ui.panel.config.thread.reset_border_router"
+            )}</mwc-button
                   >`
-              : this.hass.localize("ui.panel.config.thread.no_border_routers")}
+            : this.hass.localize("ui.panel.config.thread.no_border_routers")}
           </div> `}
       ${network.dataset && !network.dataset.preferred
         ? html`<div class="card-actions">

@@ -64,15 +64,7 @@ export class EnergyGasSettings extends LitElement {
         </h1>
 
         <div class="card-content">
-          <p>
-            ${this.hass.localize("ui.panel.config.energy.gas.sub")}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href=${documentationUrl(this.hass, "/docs/energy/gas/")}
-              >${this.hass.localize("ui.panel.config.energy.gas.learn_more")}</a
-            >
-          </p>
+          <p>${this.hass.localize("ui.panel.config.energy.gas.sub")}</p>
           ${gasValidation.map(
             (result) => html`
               <ha-energy-validation-result

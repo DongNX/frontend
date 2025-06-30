@@ -27,6 +27,7 @@ import type { SystemLogDetailDialogParams } from "./show-dialog-system-log-detai
 import { formatSystemLogTime } from "./util";
 
 class DialogSystemLogDetail extends LitElement {
+  // digo
   @property({ attribute: false }) public hass!: HomeAssistant;
 
   @state() private _params?: SystemLogDetailDialogParams;
@@ -132,18 +133,7 @@ class DialogSystemLogDetail extends LitElement {
                           )}</a
                         >${this._manifest.is_built_in ||
                         this._manifest.issue_tracker
-                          ? html`,
-                              <a
-                                href=${integrationIssuesUrl(
-                                  integration,
-                                  this._manifest
-                                )}
-                                target="_blank"
-                                rel="noreferrer"
-                                >${this.hass.localize(
-                                  "ui.panel.config.logs.detail.issues"
-                                )}</a
-                              >`
+                          ? ""
                           : ""})
                       `}
                 `
@@ -264,7 +254,6 @@ class DialogSystemLogDetail extends LitElement {
     ];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "dialog-system-log-detail": DialogSystemLogDetail;

@@ -17,6 +17,7 @@ import { haStyle, haStyleDialog } from "../../../../resources/styles";
 import type { HomeAssistant } from "../../../../types";
 import type { AutomationModeDialog } from "./show-dialog-automation-mode";
 
+// DIGO
 @customElement("ha-dialog-automation-mode")
 class DialogAutomationMode extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass!: HomeAssistant;

@@ -250,11 +250,7 @@ class PanelTodo extends LitElement {
               </ha-list-item>`
             : nothing}
           <li divider role="separator"></li>
-          <ha-list-item graphic="icon" @click=${this._showVoiceCommandDialog}>
-            <ha-svg-icon .path=${mdiCommentProcessingOutline} slot="graphic">
-            </ha-svg-icon>
-            ${this.hass.localize("ui.panel.todo.assist")}
-          </ha-list-item>
+
           ${entityRegistryEntry?.platform === "local_todo"
             ? html` <li divider role="separator"></li>
                 <ha-list-item
@@ -354,10 +350,6 @@ class PanelTodo extends LitElement {
         text: this.hass.localize("ui.panel.todo.restart_confirm"),
       });
     }
-  }
-
-  private _showVoiceCommandDialog(): void {
-    showVoiceCommandDialog(this, this.hass, { pipeline_id: "last_used" });
   }
 
   private _addItem() {

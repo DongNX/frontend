@@ -1,6 +1,7 @@
 import { convertEntities } from "../../../../src/fake_data/entity";
 import { DemoConfig } from "../types";
 
+//DIGO
 export const demoEntitiesSections: DemoConfig["entities"] = () =>
   convertEntities({
     "cover.living_room_garden_shutter": {
@@ -413,7 +414,7 @@ export const demoEntitiesSections: DemoConfig["entities"] = () =>
         current: 0,
         max: 50,
         icon: "mdi:auto-mode",
-        friendly_name: "Home Assistant Auto-update",
+        friendly_name: "Digo Auto-update",
       },
     },
     "update.home_assistant_operating_system_update": {
@@ -428,10 +429,10 @@ export const demoEntitiesSections: DemoConfig["entities"] = () =>
         release_url:
           "https://github.com/home-assistant/operating-system/commits/dev",
         skipped_version: null,
-        title: "Home Assistant Operating System",
+        title: "Digo Operating System",
         entity_picture:
           "https://brands.home-assistant.io/homeassistant/icon.png",
-        friendly_name: "Home Assistant Operating System Update",
+        friendly_name: "Digo Operating System Update",
         supported_features: 3,
       },
     },
@@ -447,9 +448,9 @@ export const demoEntitiesSections: DemoConfig["entities"] = () =>
         release_url:
           "https://github.com/home-assistant/supervisor/commits/main",
         skipped_version: null,
-        title: "Home Assistant Supervisor",
+        title: "Digo Supervisor",
         entity_picture: "https://brands.home-assistant.io/hassio/icon.png",
-        friendly_name: "Home Assistant Supervisor Update",
+        friendly_name: "Digo Supervisor Update",
         supported_features: 1,
       },
     },
@@ -464,10 +465,10 @@ export const demoEntitiesSections: DemoConfig["entities"] = () =>
         release_summary: null,
         release_url: "https://github.com/home-assistant/core/commits/dev",
         skipped_version: null,
-        title: "Home Assistant Core",
+        title: "Digo Core",
         entity_picture:
           "https://brands.home-assistant.io/homeassistant/icon.png",
-        friendly_name: "Home Assistant Core Update",
+        friendly_name: "Digo Core Update",
         supported_features: 11,
       },
     },

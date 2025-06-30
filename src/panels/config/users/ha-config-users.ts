@@ -182,8 +182,12 @@ export class HaConfigUsers extends LitElement {
   }
 
   private async _fetchUsers() {
-    this._users = await fetchUsers(this.hass);
+    const res = await fetchUsers(this.hass);
 
+    const newData = res.filter(
+      (el) => !el?.name?.toLocaleLowerCase()?.includes("home assistant")
+    );
+    this._users = newData;
     this._users.forEach((user) => {
       if (user.is_owner) {
         user.group_ids.unshift("owner");
@@ -246,7 +250,6 @@ export class HaConfigUsers extends LitElement {
     });
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-config-users": HaConfigUsers;

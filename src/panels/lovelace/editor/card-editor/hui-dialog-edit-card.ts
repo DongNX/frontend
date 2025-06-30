@@ -216,21 +216,6 @@ export class HuiDialogEditCard
             .path=${mdiClose}
           ></ha-icon-button>
           <span slot="title" @click=${this._enlarge}>${heading}</span>
-          ${this._documentationURL !== undefined
-            ? html`
-                <a
-                  slot="actionItems"
-                  class="header_button"
-                  href=${this._documentationURL}
-                  title=${this.hass!.localize("ui.panel.lovelace.menu.help")}
-                  target="_blank"
-                  rel="noreferrer"
-                  dir=${computeRTLDirection(this.hass)}
-                >
-                  <ha-icon-button .path=${mdiHelpCircle}></ha-icon-button>
-                </a>
-              `
-            : nothing}
         </ha-dialog-header>
         <div class="content">
           <div class="element-editor">
@@ -532,3 +517,4 @@ declare global {
     "hui-dialog-edit-card": HuiDialogEditCard;
   }
 }
+

@@ -46,7 +46,16 @@ class HaConfigSystemNavigation extends LitElement {
   @state() private _externalAccess = false;
 
   protected render(): TemplateResult {
-    const pages = configSections.general
+    const newData: any = configSections.general.reduce((init, el): any => {
+      if (el?.component !== "logs") {
+        return [...init, el];
+      }
+      if (this.hass?.user?.name === "digo") {
+        return [...init, el];
+      }
+      return init;
+    }, []);
+    const pages = newData
       .filter((page) => canShowPage(this.hass, page))
       .map((page) => {
         let description = "";
@@ -107,7 +116,6 @@ class HaConfigSystemNavigation extends LitElement {
           description,
         };
       });
-
     return html`
       <hass-subpage
         .hass=${this.hass}
@@ -267,9 +275,7 @@ class HaConfigSystemNavigation extends LitElement {
       `,
     ];
   }
-}
-
-declare global {
+}declare global {
   interface HTMLElementTagNameMap {
     "ha-config-system-navigation": HaConfigSystemNavigation;
   }

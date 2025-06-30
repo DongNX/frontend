@@ -6,6 +6,7 @@ import "../../layouts/hass-subpage";
 import { HomeAssistant, PanelInfo } from "../../types";
 
 @customElement("ha-panel-iframe")
+  //DIGO
 class HaPanelIframe extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

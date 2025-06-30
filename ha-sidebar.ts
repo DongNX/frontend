@@ -188,6 +188,7 @@ const computePanels = memoizeOne(
 );
 
 @customElement("ha-sidebar")
+  //DIGO
 class HaSidebar extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

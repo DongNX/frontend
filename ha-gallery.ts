@@ -24,6 +24,7 @@ const FAKE_HASS = {
 };
 
 @customElement("ha-gallery")
+  // DIGO
 class HaGallery extends LitElement {
   @state() private _page =
     document.location.hash.substring(1) ||

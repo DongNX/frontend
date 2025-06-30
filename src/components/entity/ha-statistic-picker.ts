@@ -109,18 +109,9 @@ export class HaStatisticPicker extends LitElement {
           ></state-badge>`
         : ""}
       <span>${item.name}</span>
-      <span slot="secondary"
-        >${item.id === "" || item.id === "__missing"
-          ? html`<a
-              target="_blank"
-              rel="noopener noreferrer"
-              href=${documentationUrl(this.hass, this.helpMissingEntityUrl)}
-              >${this.hass.localize(
-                "ui.components.statistic-picker.learn_more"
-              )}</a
-            >`
-          : item.id}</span
-      >
+      ${!item.id || item.id === "" || item.id === "__missing"
+        ? ""
+        : html`<span slot="secondary"> ${item.id}</span>`}
     </mwc-list-item>`;
 
   private _getStatistics = memoizeOne(

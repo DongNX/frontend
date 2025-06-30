@@ -1,6 +1,7 @@
 import { css, CSSResultGroup, html, LitElement, PropertyValues } from "lit";
 import { property, state } from "lit/decorators";
 
+  // DIGO
 class HaInitPage extends LitElement {
   @property({ type: Boolean }) public error = false;
 

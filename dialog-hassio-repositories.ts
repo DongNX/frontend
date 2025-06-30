@@ -28,6 +28,7 @@ import "../../../../src/components/ha-textfield";
 import "../../../../src/components/ha-list-new";
 import "../../../../src/components/ha-list-item-new";
 
+// DIGO
 @customElement("dialog-hassio-repositories")
 class HassioRepositoriesDialog extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

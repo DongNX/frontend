@@ -8,6 +8,7 @@ import "../../../components/ha-svg-icon";
 import "../../../components/ha-button";
 import { isComponentLoaded } from "../../../common/config/is_component_loaded";
 
+// DIGO
 @customElement("cloud-discover")
 export class CloudDiscover extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -18,13 +19,13 @@ export class CloudDiscover extends LitElement {
         <div class="card-content">
           <h1 class="header">
             ${this.hass.localize(
-              "ui.panel.config.voice_assistants.assistants.cloud.title",
-              {
-                home_assistant_cloud: html`
-                  <span class="no-wrap">Home Assistant Cloud</span>
+      "ui.panel.config.voice_assistants.assistants.cloud.title",
+      {
+        home_assistant_cloud: html`
+                  <span class="no-wrap">Digo Cloud</span>
                 `,
-              }
-            )}
+      }
+    )}
           </h1>
           <div class="features">
             <div class="feature">
@@ -35,14 +36,14 @@ export class CloudDiscover extends LitElement {
               </div>
               <h2>
                 ${this.hass.localize(
-                  "ui.panel.config.voice_assistants.assistants.cloud.features.speech.title"
-                )}
+      "ui.panel.config.voice_assistants.assistants.cloud.features.speech.title"
+    )}
                 <span class="no-wrap"></span>
               </h2>
               <p>
                 ${this.hass.localize(
-                  "ui.panel.config.voice_assistants.assistants.cloud.features.speech.text"
-                )}
+      "ui.panel.config.voice_assistants.assistants.cloud.features.speech.text"
+    )}
               </p>
             </div>
             <div class="feature">
@@ -50,65 +51,65 @@ export class CloudDiscover extends LitElement {
                 <img
                   alt="Google Assistant"
                   src=${brandsUrl({
-                    domain: "google_assistant",
-                    type: "icon",
-                    darkOptimized: this.hass.themes?.darkMode,
-                  })}
+      domain: "google_assistant",
+      type: "icon",
+      darkOptimized: this.hass.themes?.darkMode,
+    })}
                   crossorigin="anonymous"
                   referrerpolicy="no-referrer"
                 />
                 <img
                   alt="Amazon Alexa"
                   src=${brandsUrl({
-                    domain: "alexa",
-                    type: "icon",
-                    darkOptimized: this.hass.themes?.darkMode,
-                  })}
+      domain: "alexa",
+      type: "icon",
+      darkOptimized: this.hass.themes?.darkMode,
+    })}
                   crossorigin="anonymous"
                   referrerpolicy="no-referrer"
                 />
               </div>
               <h2>
                 ${this.hass.localize(
-                  "ui.panel.config.voice_assistants.assistants.cloud.features.assistants.title"
-                )}
+      "ui.panel.config.voice_assistants.assistants.cloud.features.assistants.title"
+    )}
               </h2>
               <p>
                 ${this.hass.localize(
-                  "ui.panel.config.voice_assistants.assistants.cloud.features.assistants.text"
-                )}
+      "ui.panel.config.voice_assistants.assistants.cloud.features.assistants.text"
+    )}
               </p>
             </div>
           </div>
           <div class="more">
             <a href="https://www.nabucasa.com" target="_blank" rel="noreferrer">
               ${this.hass.localize(
-                "ui.panel.config.voice_assistants.assistants.cloud.and_more"
-              )}
+      "ui.panel.config.voice_assistants.assistants.cloud.and_more"
+    )}
               <ha-svg-icon .path=${mdiOpenInNew}></ha-svg-icon>
             </a>
           </div>
         </div>
         ${isComponentLoaded(this.hass, "cloud")
-          ? html`
+        ? html`
               <div class="card-actions">
                 <a href="/config/cloud/register">
                   <ha-button unelevated>
                     ${this.hass.localize(
-                      "ui.panel.config.voice_assistants.assistants.cloud.try_one_month"
-                    )}
+          "ui.panel.config.voice_assistants.assistants.cloud.try_one_month"
+        )}
                   </ha-button>
                 </a>
                 <a href="/config/cloud/login">
                   <ha-button>
                     ${this.hass.localize(
-                      "ui.panel.config.voice_assistants.assistants.cloud.sign_in"
-                    )}
+          "ui.panel.config.voice_assistants.assistants.cloud.sign_in"
+        )}
                   </ha-button>
                 </a>
               </div>
             `
-          : nothing}
+        : nothing}
       </ha-card>
     `;
   }

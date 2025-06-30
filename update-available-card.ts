@@ -52,6 +52,7 @@ declare global {
   }
 }
 
+
 const SUPERVISOR_UPDATE_NAMES = {
   core: "Digo Core",
   os: "Digo Operating System",
@@ -88,6 +89,7 @@ const changelogUrl = (
 };
 
 @customElement("update-available-card")
+  // DIGO
 class UpdateAvailableCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

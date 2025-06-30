@@ -20,33 +20,6 @@ export const getMyRedirects = (hasSupervisor: boolean): Redirects => ({
   application_credentials: {
     redirect: "/config/application_credentials",
   },
-  developer_assist: {
-    redirect: "/developer-tools/assist",
-  },
-  developer_states: {
-    redirect: "/developer-tools/state",
-  },
-  developer_services: {
-    redirect: "/developer-tools/service",
-  },
-  developer_call_service: {
-    redirect: "/developer-tools/service",
-    params: {
-      service: "string",
-    },
-  },
-  developer_template: {
-    redirect: "/developer-tools/template",
-  },
-  developer_events: {
-    redirect: "/developer-tools/event",
-  },
-  developer_statistics: {
-    redirect: "/developer-tools/statistics",
-  },
-  server_controls: {
-    redirect: "/developer-tools/yaml",
-  },
   calendar: {
     component: "calendar",
     redirect: "/calendar",
@@ -57,10 +30,7 @@ export const getMyRedirects = (hasSupervisor: boolean): Redirects => ({
   config: {
     redirect: "/config/dashboard",
   },
-  cloud: {
-    component: "cloud",
-    redirect: "/config/cloud",
-  },
+
   config_flow_start: {
     redirect: "/config/integrations/dashboard/add",
     params: {
@@ -193,15 +163,9 @@ export const getMyRedirects = (hasSupervisor: boolean): Redirects => ({
       provider: "string?",
     },
   },
-  repairs: {
-    component: "repairs",
-    redirect: "/config/repairs",
-  },
+
   info: {
     redirect: "/config/info",
-  },
-  system_health: {
-    redirect: "/config/repairs?dialog=system-health",
   },
   hardware: {
     redirect: "/config/hardware",
@@ -215,9 +179,7 @@ export const getMyRedirects = (hasSupervisor: boolean): Redirects => ({
   analytics: {
     redirect: "/config/analytics",
   },
-  updates: {
-    redirect: "/config/updates",
-  },
+
   system_dashboard: {
     redirect: "/config/system",
   },
@@ -382,51 +344,19 @@ class HaPanelMy extends LitElement {
       let error: string;
       switch (this._error) {
         case "not_supported":
-          error =
-            this.hass.localize("ui.panel.my.not_supported", {
-              link: html`<a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://my.home-assistant.io/faq.html#supported-pages"
-                >${this.hass.localize("ui.panel.my.faq_link")}</a
-              >`,
-            }) || "This redirect is not supported.";
+          error = "This redirect is not supported.";
           break;
         case "no_component":
-          error =
-            this.hass.localize("ui.panel.my.component_not_loaded", {
-              integration: html`<a
-                target="_blank"
-                rel="noreferrer noopener"
-                href=${documentationUrl(
-                  this.hass,
-                  `/integrations/${this._redirect!.component!}`
-                )}
-                >${domainToName(
-                  this.hass.localize,
-                  this._redirect!.component!
-                )}</a
-              >`,
-            }) || "This redirect is not supported.";
+          error = "This redirect is not supported.";
           break;
         case "no_supervisor":
           error = this.hass.localize("ui.panel.my.no_supervisor", {
-            docs_link: html`<a
-              target="_blank"
-              rel="noreferrer noopener"
-              href=${documentationUrl(this.hass, "/installation")}
-              >${this.hass.localize("ui.panel.my.documentation")}</a
-            >`,
+            docs_link: this.hass.localize("ui.panel.my.documentation"),
           });
           break;
         case "not_app":
           error = this.hass.localize("ui.panel.my.not_app", {
-            link: html`<a
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://companion.home-assistant.io/download"
-              >${this.hass.localize("ui.panel.my.download_app")}</a
-            >`,
+            link: "",
           });
           break;
         default:
@@ -473,7 +403,6 @@ class HaPanelMy extends LitElement {
     return false;
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-panel-my": HaPanelMy;

@@ -25,6 +25,7 @@ const NAME_MAP = {
 };
 
 @customElement("ha-tts-picker")
+  // DIGO
 export class HaTTSPicker extends LitElement {
   @property() public value?: string;
 

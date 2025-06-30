@@ -10,6 +10,7 @@ import {
 import { HomeAssistant } from "../../types";
 
 @customElement("ha-advanced-mode-row")
+    // DIGO
 class AdvancedModeRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -46,16 +46,16 @@ class ConfigNetwork extends LitElement {
       >
         <div class="card-content">
           ${this._error
-            ? html`
+        ? html`
                 <ha-alert alert-type="error"
                   >${this._error.message || this._error.code}</ha-alert
                 >
               `
-            : ""}
+        : ""}
           <p>
             ${this.hass.localize(
-              "ui.panel.config.network.network_adapter_info"
-            )}
+          "ui.panel.config.network.network_adapter_info"
+        )}
           </p>
           <ha-network
             @network-config-changed=${this._configChanged}
@@ -66,8 +66,8 @@ class ConfigNetwork extends LitElement {
         <div class="card-actions">
           <mwc-button @click=${this._save}>
             ${this.hass.localize(
-              "ui.panel.config.core.section.core.core_config.save_button"
-            )}
+          "ui.panel.config.core.section.core.core_config.save_button"
+        )}
           </mwc-button>
         </div>
       </ha-card>

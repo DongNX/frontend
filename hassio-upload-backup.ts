@@ -16,6 +16,7 @@ declare global {
 }
 
 @customElement("hassio-upload-backup")
+  //DIGO
 export class HassioUploadBackup extends LitElement {
   public hass?: HomeAssistant;
 

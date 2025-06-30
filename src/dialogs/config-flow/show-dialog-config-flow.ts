@@ -49,10 +49,11 @@ export const showConfigFlowDialog = (
       );
 
       return description
-        ? html`
-            <ha-markdown allowsvg breaks .content=${description}></ha-markdown>
-          `
-        : "";
+        ? ""
+        : // html`
+          //     <ha-markdown allowsvg breaks .content=${description}></ha-markdown>
+          //   `
+          "";
     },
 
     renderShowFormStepHeader(hass, step) {
@@ -69,9 +70,14 @@ export const showConfigFlowDialog = (
         `component.${step.translation_domain || step.handler}.config.step.${step.step_id}.description`,
         step.description_placeholders
       );
+
       return description
         ? html`
-            <ha-markdown allowsvg breaks .content=${description}></ha-markdown>
+            <ha-markdown
+              allowsvg
+              breaks
+              .content=${description?.replace("Home Assistant", "Digo")}
+            ></ha-markdown>
           `
         : "";
     },

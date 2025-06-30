@@ -117,7 +117,7 @@ export const handleChangeEvent = (element: ActionElement, ev: CustomEvent) => {
 };
 
 const preventDefault = (ev) => ev.preventDefault();
-
+// DIGO
 @customElement("ha-automation-action-row")
 export default class HaAutomationActionRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -187,46 +187,46 @@ export default class HaAutomationActionRow extends LitElement {
     return html`
       <ha-card outlined>
         ${this.action.enabled === false
-          ? html`
+        ? html`
               <div class="disabled-bar">
                 ${this.hass.localize(
-                  "ui.panel.config.automation.editor.actions.disabled"
-                )}
+          "ui.panel.config.automation.editor.actions.disabled"
+        )}
               </div>
             `
-          : nothing}
+        : nothing}
         <ha-expansion-panel leftChevron>
           <h3 slot="header">
             ${type === "service" &&
-            "service" in this.action &&
-            this.action.service
-              ? html`<ha-service-icon
+        "service" in this.action &&
+        this.action.service
+        ? html`<ha-service-icon
                   class="action-icon"
                   .hass=${this.hass}
                   .service=${this.action.service}
                 ></ha-service-icon>`
-              : html`<ha-svg-icon
+        : html`<ha-svg-icon
                   class="action-icon"
                   .path=${ACTION_ICONS[type!]}
                 ></ha-svg-icon>`}
             ${capitalizeFirstLetter(
-              describeAction(this.hass, this._entityReg, this.action)
-            )}
+          describeAction(this.hass, this._entityReg, this.action)
+        )}
           </h3>
 
           <slot name="icons" slot="icons"></slot>
 
           ${type !== "condition" &&
-          (this.action as NonConditionAction).continue_on_error === true
-            ? html`<div slot="icons">
+        (this.action as NonConditionAction).continue_on_error === true
+        ? html`<div slot="icons">
                 <ha-svg-icon .path=${mdiAlertCircleCheck}></ha-svg-icon>
                 <simple-tooltip animation-delay="0">
                   ${this.hass.localize(
-                    "ui.panel.config.automation.editor.actions.continue_on_error"
-                  )}
+          "ui.panel.config.automation.editor.actions.continue_on_error"
+        )}
                 </simple-tooltip>
               </div> `
-            : nothing}
+        : nothing}
 
           <ha-button-menu
             slot="icons"
@@ -241,15 +241,15 @@ export default class HaAutomationActionRow extends LitElement {
             ></ha-icon-button>
             <mwc-list-item graphic="icon">
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.run"
-              )}
+          "ui.panel.config.automation.editor.actions.run"
+        )}
               <ha-svg-icon slot="graphic" .path=${mdiPlay}></ha-svg-icon>
             </mwc-list-item>
 
             <mwc-list-item graphic="icon" .disabled=${this.disabled}>
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.rename"
-              )}
+          "ui.panel.config.automation.editor.actions.rename"
+        )}
               <ha-svg-icon slot="graphic" .path=${mdiRenameBox}></ha-svg-icon>
             </mwc-list-item>
 
@@ -257,8 +257,8 @@ export default class HaAutomationActionRow extends LitElement {
 
             <mwc-list-item graphic="icon" .disabled=${this.disabled}>
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.duplicate"
-              )}
+          "ui.panel.config.automation.editor.actions.duplicate"
+        )}
               <ha-svg-icon
                 slot="graphic"
                 .path=${mdiContentDuplicate}
@@ -267,15 +267,15 @@ export default class HaAutomationActionRow extends LitElement {
 
             <mwc-list-item graphic="icon" .disabled=${this.disabled}>
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.triggers.copy"
-              )}
+          "ui.panel.config.automation.editor.triggers.copy"
+        )}
               <ha-svg-icon slot="graphic" .path=${mdiContentCopy}></ha-svg-icon>
             </mwc-list-item>
 
             <mwc-list-item graphic="icon" .disabled=${this.disabled}>
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.triggers.cut"
-              )}
+          "ui.panel.config.automation.editor.triggers.cut"
+        )}
               <ha-svg-icon slot="graphic" .path=${mdiContentCut}></ha-svg-icon>
             </mwc-list-item>
 
@@ -292,8 +292,8 @@ export default class HaAutomationActionRow extends LitElement {
               .disabled=${this.disabled || this.last}
             >
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.move_down"
-              )}
+          "ui.panel.config.automation.editor.move_down"
+        )}
               <ha-svg-icon slot="graphic" .path=${mdiArrowDown}></ha-svg-icon
             ></mwc-list-item>
 
@@ -302,42 +302,42 @@ export default class HaAutomationActionRow extends LitElement {
             <mwc-list-item .disabled=${!this._uiModeAvailable} graphic="icon">
               ${this.hass.localize("ui.panel.config.automation.editor.edit_ui")}
               ${!yamlMode
-                ? html`<ha-svg-icon
+        ? html`<ha-svg-icon
                     class="selected_menu_item"
                     slot="graphic"
                     .path=${mdiCheck}
                   ></ha-svg-icon>`
-                : ``}
+        : ``}
             </mwc-list-item>
 
             <mwc-list-item .disabled=${!this._uiModeAvailable} graphic="icon">
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.edit_yaml"
-              )}
+          "ui.panel.config.automation.editor.edit_yaml"
+        )}
               ${yamlMode
-                ? html`<ha-svg-icon
+        ? html`<ha-svg-icon
                     class="selected_menu_item"
                     slot="graphic"
                     .path=${mdiCheck}
                   ></ha-svg-icon>`
-                : ``}
+        : ``}
             </mwc-list-item>
 
             <li divider role="separator"></li>
 
             <mwc-list-item graphic="icon" .disabled=${this.disabled}>
               ${this.action.enabled === false
-                ? this.hass.localize(
-                    "ui.panel.config.automation.editor.actions.enable"
-                  )
-                : this.hass.localize(
-                    "ui.panel.config.automation.editor.actions.disable"
-                  )}
+        ? this.hass.localize(
+          "ui.panel.config.automation.editor.actions.enable"
+        )
+        : this.hass.localize(
+          "ui.panel.config.automation.editor.actions.disable"
+        )}
               <ha-svg-icon
                 slot="graphic"
                 .path=${this.action.enabled === false
-                  ? mdiPlayCircleOutline
-                  : mdiStopCircleOutline}
+        ? mdiPlayCircleOutline
+        : mdiStopCircleOutline}
               ></ha-svg-icon>
             </mwc-list-item>
             <mwc-list-item
@@ -346,8 +346,8 @@ export default class HaAutomationActionRow extends LitElement {
               .disabled=${this.disabled}
             >
               ${this.hass.localize(
-                "ui.panel.config.automation.editor.actions.delete"
-              )}
+          "ui.panel.config.automation.editor.actions.delete"
+        )}
               <ha-svg-icon
                 class="warning"
                 slot="graphic"
@@ -358,39 +358,39 @@ export default class HaAutomationActionRow extends LitElement {
 
           <div
             class=${classMap({
-              "card-content": true,
-              disabled: this.action.enabled === false,
-            })}
+          "card-content": true,
+          disabled: this.action.enabled === false,
+        })}
           >
             ${this._warnings
-              ? html`<ha-alert
+        ? html`<ha-alert
                   alert-type="warning"
                   .title=${this.hass.localize(
-                    "ui.errors.config.editor_not_supported"
-                  )}
+          "ui.errors.config.editor_not_supported"
+        )}
                 >
                   ${this._warnings!.length > 0 &&
-                  this._warnings![0] !== undefined
-                    ? html` <ul>
+            this._warnings![0] !== undefined
+            ? html` <ul>
                         ${this._warnings!.map(
-                          (warning) => html`<li>${warning}</li>`
-                        )}
+              (warning) => html`<li>${warning}</li>`
+            )}
                       </ul>`
-                    : ""}
+            : ""}
                   ${this.hass.localize(
-                    "ui.errors.config.edit_in_yaml_supported"
-                  )}
+              "ui.errors.config.edit_in_yaml_supported"
+            )}
                 </ha-alert>`
-              : ""}
+        : ""}
             ${yamlMode
-              ? html`
+        ? html`
                   ${type === undefined
-                    ? html`
+            ? html`
                         ${this.hass.localize(
-                          "ui.panel.config.automation.editor.actions.unsupported_action"
-                        )}
+              "ui.panel.config.automation.editor.actions.unsupported_action"
+            )}
                       `
-                    : ""}
+            : ""}
                   <ha-yaml-editor
                     .hass=${this.hass}
                     .defaultValue=${this.action}
@@ -398,18 +398,18 @@ export default class HaAutomationActionRow extends LitElement {
                     @value-changed=${this._onYamlChange}
                   ></ha-yaml-editor>
                 `
-              : html`
+        : html`
                   <div
                     @ui-mode-not-available=${this._handleUiModeNotAvailable}
                     @value-changed=${this._onUiChanged}
                   >
                     ${dynamicElement(`ha-automation-action-${type}`, {
-                      hass: this.hass,
-                      action: this.action,
-                      narrow: this.narrow,
-                      disabled: this.disabled,
-                      path: this.path,
-                    })}
+          hass: this.hass,
+          action: this.action,
+          narrow: this.narrow,
+          disabled: this.disabled,
+          path: this.path,
+        })}
                   </div>
                 `}
           </div>

@@ -26,6 +26,7 @@ import { showYamlIntegrationDialog } from "./show-add-integration-dialog";
 const standardToDomain = { zigbee: "zha", zwave: "zwave_js" } as const;
 
 @customElement("ha-domain-integrations")
+  // DIGO
 class HaDomainIntegrations extends LitElement {
   public hass!: HomeAssistant;
 

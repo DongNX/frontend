@@ -58,66 +58,6 @@ export class HaConfigFlowCard extends LitElement {
               )}
             ></ha-button>`
           : ""}
-        ${this.flow.context.configuration_url || this.manifest
-          ? html`<ha-button-menu slot="header-button">
-              <ha-icon-button
-                slot="trigger"
-                .label=${this.hass.localize("ui.common.menu")}
-                .path=${mdiDotsVertical}
-              ></ha-icon-button>
-              ${this.flow.context.configuration_url
-                ? html`<a
-                    href=${this.flow.context.configuration_url.replace(
-                      /^homeassistant:\/\//,
-                      ""
-                    )}
-                    rel="noreferrer"
-                    target=${this.flow.context.configuration_url.startsWith(
-                      "homeassistant://"
-                    )
-                      ? "_self"
-                      : "_blank"}
-                  >
-                    <ha-list-item graphic="icon" hasMeta>
-                      ${this.hass.localize(
-                        "ui.panel.config.integrations.config_entry.open_configuration_url"
-                      )}
-                      <ha-svg-icon slot="graphic" .path=${mdiCog}></ha-svg-icon>
-                      <ha-svg-icon
-                        slot="meta"
-                        .path=${mdiOpenInNew}
-                      ></ha-svg-icon>
-                    </ha-list-item>
-                  </a>`
-                : ""}
-              ${this.manifest
-                ? html`<a
-                    href=${this.manifest.is_built_in
-                      ? documentationUrl(
-                          this.hass,
-                          `/integrations/${this.manifest.domain}`
-                        )
-                      : this.manifest.documentation}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <ha-list-item graphic="icon" hasMeta>
-                      ${this.hass.localize(
-                        "ui.panel.config.integrations.config_entry.documentation"
-                      )}
-                      <ha-svg-icon
-                        slot="graphic"
-                        .path=${mdiBookshelf}
-                      ></ha-svg-icon>
-                      <ha-svg-icon
-                        slot="meta"
-                        .path=${mdiOpenInNew}
-                      ></ha-svg-icon>
-                    </ha-list-item>
-                  </a>`
-                : ""}
-            </ha-button-menu>`
-          : ""}
       </ha-integration-action-card>
     `;
   }

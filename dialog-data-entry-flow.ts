@@ -58,7 +58,7 @@ declare global {
     "flow-update": HASSDomEvent<FlowUpdateEvent>;
   }
 }
-
+// DIGO
 @customElement("dialog-data-entry-flow")
 class DataEntryFlowDialog extends LitElement {
   public hass!: HomeAssistant;

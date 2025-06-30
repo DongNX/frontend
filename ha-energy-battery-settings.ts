@@ -28,6 +28,7 @@ import "./ha-energy-validation-result";
 import { energyCardStyles } from "./styles";
 
 @customElement("ha-energy-battery-settings")
+  // DIGO
 export class EnergyBatterySettings extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

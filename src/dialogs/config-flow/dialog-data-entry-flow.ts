@@ -1,5 +1,5 @@
 import "@material/mwc-button";
-import { mdiClose, mdiHelpCircle } from "@mdi/js";
+import { mdiClose } from "@mdi/js";
 import type { UnsubscribeFunc } from "home-assistant-js-websocket";
 import {
   CSSResultGroup,
@@ -28,7 +28,6 @@ import {
 } from "../../data/device_registry";
 import { haStyleDialog } from "../../resources/styles";
 import type { HomeAssistant } from "../../types";
-import { documentationUrl } from "../../util/documentation-url";
 import { showAlertDialog } from "../generic/show-dialog-box";
 import {
   DataEntryFlowDialogParams,
@@ -59,7 +58,7 @@ declare global {
     "flow-update": HASSDomEvent<FlowUpdateEvent>;
   }
 }
-
+// DIGO
 @customElement("dialog-data-entry-flow")
 class DataEntryFlowDialog extends LitElement {
   public hass!: HomeAssistant;
@@ -241,24 +240,7 @@ class DataEntryFlowDialog extends LitElement {
                     ].includes(this._step?.type as any) &&
                       this._params.manifest?.is_built_in) ||
                     this._params.manifest?.documentation
-                      ? html`
-                          <a
-                            href=${this._params.manifest.is_built_in
-                              ? documentationUrl(
-                                  this.hass,
-                                  `/integrations/${this._params.manifest.domain}`
-                                )
-                              : this._params?.manifest?.documentation}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            <ha-icon-button
-                              .label=${this.hass.localize("ui.common.help")}
-                              .path=${mdiHelpCircle}
-                            >
-                            </ha-icon-button
-                          ></a>
-                        `
+                      ? ""
                       : ""}
                     <ha-icon-button
                       .label=${this.hass.localize(

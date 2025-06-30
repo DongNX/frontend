@@ -42,6 +42,7 @@ import { CalendarEventEditDialogParams } from "./show-dialog-calendar-event-edit
 
 const CALENDAR_DOMAINS = ["calendar"];
 
+// DIGO
 @customElement("dialog-calendar-event-editor")
 class DialogCalendarEventEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -69,8 +70,8 @@ class DialogCalendarEventEditor extends LitElement {
   @state() private _submitting = false;
 
   // Dates are displayed in the timezone according to the user's profile
-  // which may be different from the Home Assistant timezone. When
-  // events are persisted, they are relative to the Home Assistant
+  // which may be different from the Digo timezone. When
+  // events are persisted, they are relative to the Digo
   // timezone, but floating without a timezone.
   private _timeZone?: string;
 
@@ -147,24 +148,24 @@ class DialogCalendarEventEditor extends LitElement {
         scrimClickAction
         escapeKeyAction
         .heading=${createCloseHeading(
-          this.hass,
-          this.hass.localize(
-            `ui.components.calendar.event.${isCreate ? "add" : "edit"}`
-          )
-        )}
+      this.hass,
+      this.hass.localize(
+        `ui.components.calendar.event.${isCreate ? "add" : "edit"}`
+      )
+    )}
       >
         <div class="content">
           ${this._error
-            ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
-            : ""}
+        ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
+        : ""}
           ${this._info
-            ? html`<ha-alert
+        ? html`<ha-alert
                 alert-type="info"
                 dismissable
                 @alert-dismissed-clicked=${this._clearInfo}
                 >${this._info}</ha-alert
               >`
-            : ""}
+        : ""}
 
           <ha-textfield
             class="summary"
@@ -180,8 +181,8 @@ class DialogCalendarEventEditor extends LitElement {
             class="description"
             name="description"
             .label=${this.hass.localize(
-              "ui.components.calendar.event.description"
-            )}
+          "ui.components.calendar.event.description"
+        )}
             .value=${this._description}
             @change=${this._handleDescriptionChanged}
             autogrow
@@ -210,8 +211,8 @@ class DialogCalendarEventEditor extends LitElement {
           <div>
             <span class="label"
               >${this.hass.localize(
-                "ui.components.calendar.event.start"
-              )}:</span
+          "ui.components.calendar.event.start"
+        )}:</span
             >
             <div class="flex">
               <ha-date-input
@@ -220,12 +221,12 @@ class DialogCalendarEventEditor extends LitElement {
                 @value-changed=${this._startDateChanged}
               ></ha-date-input>
               ${!this._allDay
-                ? html`<ha-time-input
+        ? html`<ha-time-input
                     .value=${startTime}
                     .locale=${this.hass.locale}
                     @value-changed=${this._startTimeChanged}
                   ></ha-time-input>`
-                : ""}
+        : ""}
             </div>
           </div>
           <div>
@@ -240,12 +241,12 @@ class DialogCalendarEventEditor extends LitElement {
                 @value-changed=${this._endDateChanged}
               ></ha-date-input>
               ${!this._allDay
-                ? html`<ha-time-input
+        ? html`<ha-time-input
                     .value=${endTime}
                     .locale=${this.hass.locale}
                     @value-changed=${this._endTimeChanged}
                   ></ha-time-input>`
-                : ""}
+        : ""}
             </div>
           </div>
           <ha-recurrence-rule-editor
@@ -260,7 +261,7 @@ class DialogCalendarEventEditor extends LitElement {
           </ha-recurrence-rule-editor>
         </div>
         ${isCreate
-          ? html`
+        ? html`
               <mwc-button
                 slot="primaryAction"
                 @click=${this._createEvent}
@@ -269,7 +270,7 @@ class DialogCalendarEventEditor extends LitElement {
                 ${this.hass.localize("ui.components.calendar.event.add")}
               </mwc-button>
             `
-          : html`
+        : html`
               <mwc-button
                 slot="primaryAction"
                 @click=${this._saveEvent}
@@ -278,7 +279,7 @@ class DialogCalendarEventEditor extends LitElement {
                 ${this.hass.localize("ui.components.calendar.event.save")}
               </mwc-button>
               ${this._params.canDelete
-                ? html`
+            ? html`
                     <mwc-button
                       slot="secondaryAction"
                       class="warning"
@@ -286,11 +287,11 @@ class DialogCalendarEventEditor extends LitElement {
                       .disabled=${this._submitting}
                     >
                       ${this.hass.localize(
-                        "ui.components.calendar.event.delete"
-                      )}
+              "ui.components.calendar.event.delete"
+            )}
                     </mwc-button>
                   `
-                : ""}
+            : ""}
             `}
       </ha-dialog>
     `;
@@ -536,22 +537,22 @@ class DialogCalendarEventEditor extends LitElement {
       ),
       text: entry.recurrence_id
         ? this.hass.localize(
-            "ui.components.calendar.event.confirm_delete.recurring_prompt"
-          )
+          "ui.components.calendar.event.confirm_delete.recurring_prompt"
+        )
         : this.hass.localize(
-            "ui.components.calendar.event.confirm_delete.prompt"
-          ),
+          "ui.components.calendar.event.confirm_delete.prompt"
+        ),
       confirmText: entry.recurrence_id
         ? this.hass.localize(
-            "ui.components.calendar.event.confirm_delete.delete_this"
-          )
+          "ui.components.calendar.event.confirm_delete.delete_this"
+        )
         : this.hass.localize(
-            "ui.components.calendar.event.confirm_delete.delete"
-          ),
+          "ui.components.calendar.event.confirm_delete.delete"
+        ),
       confirmFutureText: entry.recurrence_id
         ? this.hass.localize(
-            "ui.components.calendar.event.confirm_delete.delete_future"
-          )
+          "ui.components.calendar.event.confirm_delete.delete_future"
+        )
         : undefined,
     });
     if (range === undefined) {

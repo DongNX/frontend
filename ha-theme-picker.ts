@@ -16,6 +16,7 @@ import "./ha-select";
 const DEFAULT_THEME = "default";
 
 @customElement("ha-theme-picker")
+  //DIGO
 export class HaThemePicker extends LitElement {
   @property() public value?: string;
 

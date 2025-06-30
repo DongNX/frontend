@@ -22,6 +22,7 @@ const NONE = "__NONE_OPTION__";
 const NAME_MAP = { cloud: "Digo Cloud" };
 
 @customElement("ha-stt-picker")
+  //DIGO
 export class HaSTTPicker extends LitElement {
   @property() public value?: string;
 

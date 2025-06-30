@@ -9,6 +9,7 @@ import { customElement, property } from "lit/decorators";
 import "../../../../src/components/ha-card";
 
 @customElement("hc-layout")
+  //DIGO
 class HcLayout extends LitElement {
   @property() public subtitle?: string;
 

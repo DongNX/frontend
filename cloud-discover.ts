@@ -8,6 +8,7 @@ import "../../../components/ha-svg-icon";
 import "../../../components/ha-button";
 import { isComponentLoaded } from "../../../common/config/is_component_loaded";
 
+// DIGO
 @customElement("cloud-discover")
 export class CloudDiscover extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

@@ -18,6 +18,7 @@ import type { SaveDialogParams } from "./show-save-config-dialog";
 const EMPTY_CONFIG: LovelaceConfig = { views: [{ title: "Home" }] };
 
 @customElement("hui-dialog-save-config")
+  //DIGO
 export class HuiSaveConfig extends LitElement implements HassDialog {
   @property({ attribute: false }) public hass?: HomeAssistant;
 

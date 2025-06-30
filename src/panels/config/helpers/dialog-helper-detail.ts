@@ -88,6 +88,7 @@ const HELPERS: HelperCreators = {
   },
 };
 
+// DIGO
 @customElement("dialog-helper-detail")
 export class DialogHelperDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -224,11 +225,11 @@ export class DialogHelperDetail extends LitElement {
               </ha-list-item>
               ${!isLoaded
                 ? html`
-                    <simple-tooltip animation-delay="0"
+                    <ha-help-tooltip animation-delay="0"
                       >${this.hass.localize(
                         "ui.dialogs.helper_settings.platform_not_loaded",
                         { platform: domain }
-                      )}</simple-tooltip
+                      )}</ha-help-tooltip
                     >
                   `
                 : ""}

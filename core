@@ -38,8 +38,8 @@ done
 
 if [ -n "$ref" ]; then
   echo "Installing Digo core at ${ref}..."
-  python3 -m pip install --user --upgrade --src "$HOME/src" \
-  --editable "git+${coreURL}@${ref}#egg=homeassistant"
+  python3 -m pip install --user --upgrade "homeassistant==2024.3.3"
+
   (cd ~/src/homeassistant && exec python3 -m script.translations develop --all)
 fi
 

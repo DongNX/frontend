@@ -28,6 +28,7 @@ interface StatisticItem extends ScorableTextItem {
 }
 
 @customElement("ha-statistic-picker")
+  //DIGO
 export class HaStatisticPicker extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -20,7 +20,6 @@ import {
 } from "../../../data/analytics";
 import { haStyle } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
-import { documentationUrl } from "../../../util/documentation-url";
 
 @customElement("ha-config-analytics")
 class ConfigAnalytics extends LitElement {
@@ -57,15 +56,6 @@ class ConfigAnalytics extends LitElement {
           </mwc-button>
         </div>
       </ha-card>
-      <div class="footer">
-        <a
-          .href=${documentationUrl(this.hass, "/integrations/analytics/")}
-          target="_blank"
-          rel="noreferrer"
-        >
-          ${this.hass.localize("ui.panel.config.analytics.learn_more")}
-        </a>
-      </div>
     `;
   }
 
@@ -132,7 +122,6 @@ class ConfigAnalytics extends LitElement {
     ];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-config-analytics": ConfigAnalytics;

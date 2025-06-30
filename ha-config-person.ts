@@ -31,6 +31,7 @@ import {
 } from "./show-dialog-person-detail";
 
 @customElement("ha-config-person")
+  // DIGO
 export class HaConfigPerson extends LitElement {
   @property({ attribute: false }) public hass?: HomeAssistant;
 

@@ -344,6 +344,7 @@ export const configSections: { [name: string]: PageNavigation[] } = {
 };
 
 @customElement("ha-panel-config")
+  //DIGO
 class HaPanelConfig extends SubscribeMixin(HassRouterPage) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -1,10 +1,8 @@
-import { mdiHelpCircle } from "@mdi/js";
 import { css, CSSResultGroup, html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators";
 import memoizeOne from "memoize-one";
 import { fireEvent } from "../../../common/dom/fire_event";
 import { LocalizeFunc } from "../../../common/translations/localize";
-import { computeRTLDirection } from "../../../common/util/compute_rtl";
 import "../../../components/buttons/ha-progress-button";
 import type { HaProgressButton } from "../../../components/buttons/ha-progress-button";
 import "../../../components/ha-form/ha-form";
@@ -21,7 +19,6 @@ import {
 } from "../../../data/supervisor/mounts";
 import { haStyle, haStyleDialog } from "../../../resources/styles";
 import { HomeAssistant } from "../../../types";
-import { documentationUrl } from "../../../util/documentation-url";
 import { MountViewDialogParams } from "./show-dialog-view-mount";
 
 const mountSchema = memoizeOne(
@@ -85,70 +82,71 @@ const mountSchema = memoizeOne(
       },
       ...(mountType === "nfs"
         ? ([
+          {
+            name: "path",
+            required: true,
+            selector: { text: {} },
+          },
+        ] as const)
+        : mountType === "cifs"
+          ? ([
+            ...(showCIFSVersion
+              ? ([
+                {
+                  name: "version",
+                  required: true,
+                  selector: {
+                    select: {
+                      options: [
+                        {
+                          label: localize(
+                            "ui.panel.config.storage.network_mounts.cifs_versions.auto"
+                          ),
+                          value: "auto",
+                        },
+                        {
+                          label: localize(
+                            "ui.panel.config.storage.network_mounts.cifs_versions.legacy",
+                            { version: "2.0" }
+                          ),
+                          value: "2.0",
+                        },
+                        {
+                          label: localize(
+                            "ui.panel.config.storage.network_mounts.cifs_versions.legacy",
+                            { version: "1.0" }
+                          ),
+                          value: "1.0",
+                        },
+                      ],
+                      mode: "dropdown",
+                    },
+                  },
+                },
+              ] as const)
+              : ([] as const)),
             {
-              name: "path",
+              name: "share",
               required: true,
               selector: { text: {} },
             },
+            {
+              name: "username",
+              required: false,
+              selector: { text: {} },
+            },
+            {
+              name: "password",
+              required: false,
+              selector: { text: { type: "password" } },
+            },
           ] as const)
-        : mountType === "cifs"
-          ? ([
-              ...(showCIFSVersion
-                ? ([
-                    {
-                      name: "version",
-                      required: true,
-                      selector: {
-                        select: {
-                          options: [
-                            {
-                              label: localize(
-                                "ui.panel.config.storage.network_mounts.cifs_versions.auto"
-                              ),
-                              value: "auto",
-                            },
-                            {
-                              label: localize(
-                                "ui.panel.config.storage.network_mounts.cifs_versions.legacy",
-                                { version: "2.0" }
-                              ),
-                              value: "2.0",
-                            },
-                            {
-                              label: localize(
-                                "ui.panel.config.storage.network_mounts.cifs_versions.legacy",
-                                { version: "1.0" }
-                              ),
-                              value: "1.0",
-                            },
-                          ],
-                          mode: "dropdown",
-                        },
-                      },
-                    },
-                  ] as const)
-                : ([] as const)),
-              {
-                name: "share",
-                required: true,
-                selector: { text: {} },
-              },
-              {
-                name: "username",
-                required: false,
-                selector: { text: {} },
-              },
-              {
-                name: "password",
-                required: false,
-                selector: { text: { type: "password" } },
-              },
-            ] as const)
           : ([] as const)),
     ] as const
 );
 
 @customElement("dialog-mount-view")
+  // DIGO
 class ViewMountDialog extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -205,52 +203,37 @@ class ViewMountDialog extends LitElement {
         scrimClickAction
         escapeKeyAction
         .heading=${this._existing
-          ? this.hass.localize(
-              "ui.panel.config.storage.network_mounts.update_title"
-            )
-          : this.hass.localize(
-              "ui.panel.config.storage.network_mounts.add_title"
-            )}
+        ? this.hass.localize(
+          "ui.panel.config.storage.network_mounts.update_title"
+        )
+        : this.hass.localize(
+          "ui.panel.config.storage.network_mounts.add_title"
+        )}
         @closed=${this.closeDialog}
       >
         <ha-dialog-header slot="heading">
           <span slot="title"
             >${this._existing
-              ? this.hass.localize(
-                  "ui.panel.config.storage.network_mounts.update_title"
-                )
-              : this.hass.localize(
-                  "ui.panel.config.storage.network_mounts.add_title"
-                )}
+        ? this.hass.localize(
+          "ui.panel.config.storage.network_mounts.update_title"
+        )
+        : this.hass.localize(
+          "ui.panel.config.storage.network_mounts.add_title"
+        )}
           </span>
-          <a
-            slot="actionItems"
-            class="header_button"
-            href=${documentationUrl(
-              this.hass,
-              "/common-tasks/os#network-storage"
-            )}
-            title=${this.hass.localize(
-              "ui.panel.config.storage.network_mounts.documentation"
-            )}
-            target="_blank"
-            rel="noreferrer"
-            dir=${computeRTLDirection(this.hass)}
-          >
-            <ha-icon-button .path=${mdiHelpCircle}></ha-icon-button>
-          </a>
+
         </ha-dialog-header>
         ${this._error
-          ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
-          : nothing}
+        ? html`<ha-alert alert-type="error">${this._error}</ha-alert>`
+        : nothing}
         <ha-form
           .data=${this._data}
           .schema=${mountSchema(
-            this.hass.localize,
-            this._existing,
-            this._data?.type,
-            this._showCIFSVersion
-          )}
+          this.hass.localize,
+          this._existing,
+          this._data?.type,
+          this._showCIFSVersion
+        )}
           .error=${this._validationError}
           .warning=${this._validationWarning}
           .computeLabel=${this._computeLabelCallback}
@@ -265,10 +248,10 @@ class ViewMountDialog extends LitElement {
             ${this.hass.localize("ui.common.cancel")}
           </mwc-button>
           ${this._existing
-            ? html`<mwc-button @click=${this._deleteMount} class="delete-btn">
+        ? html`<mwc-button @click=${this._deleteMount} class="delete-btn">
                 ${this.hass.localize("ui.common.delete")}
               </mwc-button>`
-            : nothing}
+        : nothing}
         </div>
 
         <ha-progress-button
@@ -277,12 +260,12 @@ class ViewMountDialog extends LitElement {
           @click=${this._connectMount}
         >
           ${this._existing
-            ? this.hass.localize(
-                "ui.panel.config.storage.network_mounts.update"
-              )
-            : this.hass.localize(
-                "ui.panel.config.storage.network_mounts.connect"
-              )}
+        ? this.hass.localize(
+          "ui.panel.config.storage.network_mounts.update"
+        )
+        : this.hass.localize(
+          "ui.panel.config.storage.network_mounts.connect"
+        )}
         </ha-progress-button>
       </ha-dialog>
     `;

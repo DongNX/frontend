@@ -45,6 +45,7 @@ const logProviders: LogProvider[] = [
 ];
 
 @customElement("ha-config-logs")
+  //DIGO
 export class HaConfigLogs extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

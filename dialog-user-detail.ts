@@ -22,6 +22,7 @@ import { showAdminChangePasswordDialog } from "./show-dialog-admin-change-passwo
 import { UserDetailDialogParams } from "./show-dialog-user-detail";
 
 @customElement("dialog-user-detail")
+  // DIGO
 class DialogUserDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

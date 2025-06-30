@@ -13,6 +13,7 @@ import "./ha-script-fields";
 import type HaScriptFields from "./ha-script-fields";
 
 @customElement("manual-script-editor")
+  //DIGO
 export class HaManualScriptEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

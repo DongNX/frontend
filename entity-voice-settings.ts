@@ -48,6 +48,7 @@ import { brandsUrl } from "../../../util/brands-url";
 import { EntityRegistrySettings } from "../entities/entity-registry-settings";
 
 @customElement("entity-voice-settings")
+  // DIGO
 export class EntityVoiceSettings extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

@@ -42,6 +42,7 @@ import { CalendarEventEditDialogParams } from "./show-dialog-calendar-event-edit
 
 const CALENDAR_DOMAINS = ["calendar"];
 
+// DIGO
 @customElement("dialog-calendar-event-editor")
 class DialogCalendarEventEditor extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

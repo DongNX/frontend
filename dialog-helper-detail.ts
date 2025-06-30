@@ -88,6 +88,7 @@ const HELPERS: HelperCreators = {
   },
 };
 
+// DIGO
 @customElement("dialog-helper-detail")
 export class DialogHelperDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

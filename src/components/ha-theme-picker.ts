@@ -33,7 +33,7 @@ export class HaThemePicker extends LitElement {
     return html`
       <ha-select
         .label=${this.label ||
-        this.hass!.localize("ui.components.theme-picker.theme")}
+      this.hass!.localize("ui.components.theme-picker.theme")}
         .value=${this.value}
         .required=${this.required}
         .disabled=${this.disabled}
@@ -43,25 +43,25 @@ export class HaThemePicker extends LitElement {
         naturalMenuWidth
       >
         ${!this.required
-          ? html`
+        ? html`
               <mwc-list-item value="remove">
                 ${this.hass!.localize("ui.components.theme-picker.no_theme")}
               </mwc-list-item>
             `
-          : nothing}
+        : nothing}
         ${this.includeDefault
-          ? html`
+        ? html`
               <mwc-list-item .value=${DEFAULT_THEME}>
-                Home Assistant
+                Digo
               </mwc-list-item>
             `
-          : nothing}
+        : nothing}
         ${Object.keys(this.hass!.themes.themes)
-          .sort()
-          .map(
-            (theme) =>
-              html`<mwc-list-item .value=${theme}>${theme}</mwc-list-item>`
-          )}
+        .sort()
+        .map(
+          (theme) =>
+            html`<mwc-list-item .value=${theme}>${theme}</mwc-list-item>`
+        )}
       </ha-select>
     `;
   }

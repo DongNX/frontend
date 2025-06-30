@@ -55,17 +55,6 @@ export class EnergyDeviceSettings extends LitElement {
             ${this.hass.localize(
               "ui.panel.config.energy.device_consumption.sub"
             )}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href=${documentationUrl(
-                this.hass,
-                "/docs/energy/individual-devices/"
-              )}
-              >${this.hass.localize(
-                "ui.panel.config.energy.device_consumption.learn_more"
-              )}</a
-            >
           </p>
           ${this.validationResult?.device_consumption.map(
             (result) => html`
@@ -164,7 +153,6 @@ export class EnergyDeviceSettings extends LitElement {
     return [haStyle, energyCardStyles];
   }
 }
-
 declare global {
   interface HTMLElementTagNameMap {
     "ha-energy-device-settings": EnergyDeviceSettings;

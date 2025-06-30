@@ -31,6 +31,7 @@ const panelUrl = (path: string) => {
 };
 
 @customElement("home-assistant")
+//DIGO
 export class HomeAssistantAppEl extends QuickBarMixin(HassElement) {
   @state() private _route: Route;
 

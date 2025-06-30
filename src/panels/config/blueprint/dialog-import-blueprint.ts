@@ -1,13 +1,12 @@
 import "@material/mwc-button";
-import { mdiOpenInNew } from "@mdi/js";
 import { css, html, LitElement, nothing } from "lit";
 import { customElement, property, query, state } from "lit/decorators";
 import { fireEvent } from "../../../common/dom/fire_event";
+import "../../../components/ha-alert";
 import "../../../components/ha-circular-progress";
 import { createCloseHeading } from "../../../components/ha-dialog";
 import "../../../components/ha-expansion-panel";
 import "../../../components/ha-markdown";
-import "../../../components/ha-alert";
 import "../../../components/ha-textfield";
 import type { HaTextField } from "../../../components/ha-textfield";
 import {
@@ -18,6 +17,7 @@ import {
 import { haStyleDialog } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
 
+// DIGO
 @customElement("ha-dialog-import-blueprint")
 class DialogImportBlueprint extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -127,16 +127,7 @@ class DialogImportBlueprint extends LitElement {
                     "ui.panel.config.blueprint.add.import_introduction"
                   )}
                 </p>
-                <a
-                  href="https://www.home-assistant.io/get-blueprints"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  ${this.hass.localize(
-                    "ui.panel.config.blueprint.add.community_forums"
-                  )}
-                  <ha-svg-icon .path=${mdiOpenInNew}></ha-svg-icon>
-                </a>
+
                 <ha-textfield
                   id="input"
                   .label=${this.hass.localize(

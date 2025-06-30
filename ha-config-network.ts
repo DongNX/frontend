@@ -24,6 +24,7 @@ import { haStyle } from "../../../resources/styles";
 import type { HomeAssistant } from "../../../types";
 
 @customElement("ha-config-network")
+  // DIGO
 class ConfigNetwork extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

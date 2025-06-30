@@ -33,6 +33,7 @@ import "./ha-set-suspend-row";
 import "./ha-set-vibrate-row";
 
 @customElement("ha-panel-profile")
+  //DIGO
 class HaPanelProfile extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

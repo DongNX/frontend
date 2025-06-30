@@ -53,6 +53,7 @@ const INTRO = html`
 `;
 
 @customElement("hc-connect")
+  //DIGO
 export class HcConnect extends LitElement {
   @state() private loading = false;
 

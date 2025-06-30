@@ -54,6 +54,7 @@ type BackupItem = HassioBackup & {
 };
 
 @customElement("hassio-backups")
+  //DIGO
 export class HassioBackups extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

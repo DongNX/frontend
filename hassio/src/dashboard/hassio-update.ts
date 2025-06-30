@@ -47,28 +47,28 @@ export class HassioUpdate extends LitElement {
       <div class="content">
         <h1>
           ${this.supervisor.localize("common.update_available", {
-            count: updatesAvailable,
-          })}
+      count: updatesAvailable,
+    })}
           🎉
         </h1>
         <div class="card-group">
           ${this._renderUpdateCard(
-            "Home Assistant Core",
-            "core",
-            this.supervisor.core
-          )}
+      "Digo Core",
+      "core",
+      this.supervisor.core
+    )}
           ${this._renderUpdateCard(
-            "Supervisor",
-            "supervisor",
-            this.supervisor.supervisor
-          )}
+      "Supervisor",
+      "supervisor",
+      this.supervisor.supervisor
+    )}
           ${this.supervisor.host.features.includes("haos")
-            ? this._renderUpdateCard(
-                "Operating System",
-                "os",
-                this.supervisor.os
-              )
-            : ""}
+        ? this._renderUpdateCard(
+          "Operating System",
+          "os",
+          this.supervisor.os
+        )
+        : ""}
         </div>
       </div>
     `;
@@ -151,6 +151,7 @@ export class HassioUpdate extends LitElement {
     ];
   }
 }
+
 
 declare global {
   interface HTMLElementTagNameMap {

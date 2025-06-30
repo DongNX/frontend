@@ -22,6 +22,7 @@ import { showAdminChangePasswordDialog } from "./show-dialog-admin-change-passwo
 import { UserDetailDialogParams } from "./show-dialog-user-detail";
 
 @customElement("dialog-user-detail")
+  // DIGO
 class DialogUserDetail extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
@@ -72,17 +73,17 @@ class DialogUserDetail extends LitElement {
             ${user.username}
           </div>
           ${badges.length === 0
-            ? ""
-            : html`
+        ? ""
+        : html`
                 <div class="badge-container">
                   ${badges.map(
-                    ([icon, label]) => html`
+          ([icon, label]) => html`
                       <ha-label>
                         <ha-svg-icon slot="icon" .path=${icon}></ha-svg-icon>
                         ${label}
                       </ha-label>
                     `
-                  )}
+        )}
                 </div>
               `}
           <div class="form">
@@ -96,8 +97,8 @@ class DialogUserDetail extends LitElement {
             <div class="row">
               <ha-formfield
                 .label=${this.hass.localize(
-                  "ui.panel.config.users.editor.local_only"
-                )}
+          "ui.panel.config.users.editor.local_only"
+        )}
               >
                 <ha-switch
                   .disabled=${user.system_generated}
@@ -110,8 +111,8 @@ class DialogUserDetail extends LitElement {
             <div class="row">
               <ha-formfield
                 .label=${this.hass.localize(
-                  "ui.panel.config.users.editor.admin"
-                )}
+          "ui.panel.config.users.editor.admin"
+        )}
               >
                 <ha-switch
                   .disabled=${user.system_generated || user.is_owner}
@@ -122,18 +123,18 @@ class DialogUserDetail extends LitElement {
               </ha-formfield>
             </div>
             ${!this._isAdmin
-              ? html`
+        ? html`
                   <br />
                   ${this.hass.localize(
-                    "ui.panel.config.users.users_privileges_note"
-                  )}
+          "ui.panel.config.users.users_privileges_note"
+        )}
                 `
-              : ""}
+        : ""}
             <div class="row">
               <ha-formfield
                 .label=${this.hass.localize(
-                  "ui.panel.config.users.editor.active"
-                )}
+          "ui.panel.config.users.editor.active"
+        )}
               >
                 <ha-switch
                   .disabled=${user.system_generated || user.is_owner}
@@ -144,8 +145,8 @@ class DialogUserDetail extends LitElement {
               </ha-formfield>
               <ha-help-tooltip
                 .label=${this.hass.localize(
-                  "ui.panel.config.users.editor.active_tooltip"
-                )}
+          "ui.panel.config.users.editor.active_tooltip"
+        )}
               >
               </ha-help-tooltip>
             </div>
@@ -157,47 +158,47 @@ class DialogUserDetail extends LitElement {
             class="warning"
             @click=${this._deleteEntry}
             .disabled=${this._submitting ||
-            user.system_generated ||
-            user.is_owner}
+      user.system_generated ||
+      user.is_owner}
           >
             ${this.hass!.localize("ui.panel.config.users.editor.delete_user")}
           </mwc-button>
           ${user.system_generated
-            ? html`
+        ? html`
                 <simple-tooltip animation-delay="0" position="right">
                   ${this.hass.localize(
-                    "ui.panel.config.users.editor.system_generated_users_not_removable"
-                  )}
+          "ui.panel.config.users.editor.system_generated_users_not_removable"
+        )}
                 </simple-tooltip>
               `
-            : ""}
+        : ""}
           ${!user.system_generated && this.hass.user?.is_owner
-            ? html`<mwc-button @click=${this._changePassword}>
+        ? html`<mwc-button @click=${this._changePassword}>
                 ${this.hass.localize(
-                  "ui.panel.config.users.editor.change_password"
-                )}
+          "ui.panel.config.users.editor.change_password"
+        )}
               </mwc-button>`
-            : ""}
+        : ""}
         </div>
 
         <div slot="primaryAction">
           <mwc-button
             @click=${this._updateEntry}
             .disabled=${!this._name ||
-            this._submitting ||
-            user.system_generated}
+      this._submitting ||
+      user.system_generated}
           >
             ${this.hass!.localize("ui.panel.config.users.editor.update_user")}
           </mwc-button>
           ${user.system_generated
-            ? html`
+        ? html`
                 <simple-tooltip animation-delay="0" position="left">
                   ${this.hass.localize(
-                    "ui.panel.config.users.editor.system_generated_users_not_editable"
-                  )}
+          "ui.panel.config.users.editor.system_generated_users_not_editable"
+        )}
                 </simple-tooltip>
               `
-            : ""}
+        : ""}
         </div>
       </ha-dialog>
     `;
@@ -256,7 +257,7 @@ class DialogUserDetail extends LitElement {
     );
     if (!credential) {
       showAlertDialog(this, {
-        title: "No Home Assistant credentials found.",
+        title: "No Digo credentials found.",
       });
       return;
     }

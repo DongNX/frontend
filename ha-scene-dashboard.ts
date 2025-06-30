@@ -60,6 +60,7 @@ type SceneItem = SceneEntity & {
 };
 
 @customElement("ha-scene-dashboard")
+  //DIGO
 class HaSceneDashboard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

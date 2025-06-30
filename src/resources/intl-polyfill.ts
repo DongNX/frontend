@@ -12,9 +12,11 @@ import {
   polyfillTimeZoneData,
 } from "./locale-data-polyfill";
 
-const polyfillIntl = async () => {
+
+(async () => {
   const locale = getLocalLanguage();
   const polyfills: Promise<unknown>[] = [];
+
   if (shouldPolyfillGetCanonicalLocales()) {
     await import("@formatjs/intl-getcanonicallocales/polyfill-force");
   }
@@ -40,9 +42,6 @@ const polyfillIntl = async () => {
   if (shouldPolyfillPluralRules(locale)) {
     polyfills.push(
       import("@formatjs/intl-pluralrules/polyfill-force").then(
-        // Locale data for plural rules breaks current JSON conversions as it includes functions,
-        // so only import English to avoid huge bundles
-        // TODo: Setup JS imports instead of JSON fetches
         () => import("@formatjs/intl-pluralrules/locale-data/en")
       )
     );
@@ -50,13 +49,9 @@ const polyfillIntl = async () => {
   if (shouldPolyfillRelativeTimeFormat(locale)) {
     polyfills.push(import("@formatjs/intl-relativetimeformat/polyfill-force"));
   }
-  if (polyfills.length === 0) {
-    return;
-  }
-  await Promise.all(polyfills).then(() =>
-    // Load the default language
-    polyfillLocaleData(locale)
-  );
-};
 
-await polyfillIntl();
+  if (polyfills.length > 0) {
+    await Promise.all(polyfills);
+    await polyfillLocaleData(locale);
+  }
+})();

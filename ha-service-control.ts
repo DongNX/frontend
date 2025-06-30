@@ -76,6 +76,7 @@ interface ExtHassService extends Omit<HassService, "fields"> {
 }
 
 @customElement("ha-service-control")
+  //DIGO
 export class HaServiceControl extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 

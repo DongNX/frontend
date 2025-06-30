@@ -22,6 +22,7 @@ const appNames = {
 };
 
 @customElement("ha-authorize")
+  // DIGO
 export class HaAuthorize extends litLocalizeLiteMixin(LitElement) {
   @property() public clientId?: string;
 
@@ -261,7 +262,7 @@ export class HaAuthorize extends litLocalizeLiteMixin(LitElement) {
     }
 
     if (window.innerWidth > 450) {
-      import("../resources/particles");
+      // import("../resources/particles");
     }
 
     // If we are logging into the instance that is hosting this auth form

@@ -117,7 +117,7 @@ export const handleChangeEvent = (element: ActionElement, ev: CustomEvent) => {
 };
 
 const preventDefault = (ev) => ev.preventDefault();
-
+// DIGO
 @customElement("ha-automation-action-row")
 export default class HaAutomationActionRow extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

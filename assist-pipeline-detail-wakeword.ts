@@ -15,6 +15,7 @@ import { AssistPipeline } from "../../../../data/assist_pipeline";
 import { fetchWakeWordInfo, WakeWord } from "../../../../data/wake_word";
 import { HomeAssistant } from "../../../../types";
 
+// DIGO
 @customElement("assist-pipeline-detail-wakeword")
 export class AssistPipelineDetailWakeWord extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;

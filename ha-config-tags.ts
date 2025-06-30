@@ -31,6 +31,7 @@ export interface TagRowData extends Tag {
 }
 
 @customElement("ha-config-tags")
+  // DIGO
 export class HaConfigTags extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
